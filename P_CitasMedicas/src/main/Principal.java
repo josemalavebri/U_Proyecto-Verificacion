@@ -4,6 +4,9 @@
  */
 package main;
 
+import java.awt.BorderLayout;
+import vistas.citas_medicas.Pnl_CitaMedica;
+
 /**
  *
  * @author josem
@@ -26,21 +29,66 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnl_panelPrincipal = new javax.swing.JPanel();
+        btn_citasMedicas = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout pnl_panelPrincipalLayout = new javax.swing.GroupLayout(pnl_panelPrincipal);
+        pnl_panelPrincipal.setLayout(pnl_panelPrincipalLayout);
+        pnl_panelPrincipalLayout.setHorizontalGroup(
+            pnl_panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+        );
+        pnl_panelPrincipalLayout.setVerticalGroup(
+            pnl_panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 303, Short.MAX_VALUE)
+        );
+
+        btn_citasMedicas.setText("Citas Medicas");
+        btn_citasMedicas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_citasMedicasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(btn_citasMedicas)
+                .addGap(42, 42, 42)
+                .addComponent(pnl_panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(btn_citasMedicas))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(pnl_panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_citasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_citasMedicasActionPerformed
+        // TODO add your handling code here:
+        pnl_panelPrincipal.setLayout(new BorderLayout());
+
+        Pnl_CitaMedica pnl_citaMedica = new Pnl_CitaMedica();
+        pnl_panelPrincipal.removeAll();           
+        pnl_panelPrincipal.add(pnl_citaMedica);            
+        pnl_panelPrincipal.revalidate();          
+        pnl_panelPrincipal.repaint();  
+    }//GEN-LAST:event_btn_citasMedicasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +126,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_citasMedicas;
+    private javax.swing.JPanel pnl_panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
