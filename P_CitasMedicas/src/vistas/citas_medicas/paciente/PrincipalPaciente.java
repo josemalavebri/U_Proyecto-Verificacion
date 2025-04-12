@@ -116,6 +116,8 @@ public class PrincipalPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     
+    
     private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetearActionPerformed
