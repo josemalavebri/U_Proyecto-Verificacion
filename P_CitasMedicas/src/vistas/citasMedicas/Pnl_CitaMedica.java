@@ -203,16 +203,14 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         cbx_paciente.setSelectedIndex(0);
         cbx_medicos.setSelectedIndex(0);
         txta_descripcion.setText("");
-
-        
         
     }//GEN-LAST:event_btn_resetearActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
-        
-       
-        
-        
+    
+    
+    
+    
     }//GEN-LAST:event_btn_guardar1ActionPerformed
 
 

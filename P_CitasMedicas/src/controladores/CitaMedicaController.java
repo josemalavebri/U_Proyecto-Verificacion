@@ -22,7 +22,7 @@ public class CitaMedicaController {
     
     public boolean GuardarCitaMedica(CitaMedica citaMedica ){
         try {
-            dataBase.AddDataCitaMedico(citaMedica);
+            dataBase.AddDataCitaMedica(citaMedica);
             return true;
 
         } catch(Exception ex){

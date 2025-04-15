@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos;
 
-/**
- *
- * @author josem
- */
+
 public class Turnos {
 
     private int id;
@@ -15,9 +8,9 @@ public class Turnos {
     private String hora;
     private String minuto;
     
-    public Turnos(){
-        
+    public Turnos(){  
     }
+    
     public Turnos(int id, String fecha, String hora, String minuto) {
         this.id = id;
         this.fecha = fecha;
@@ -25,7 +18,7 @@ public class Turnos {
         this.minuto = minuto;
     }
       
-      public int getId() {
+    public int getId() {
         return id;
     }
 

@@ -6,29 +6,30 @@ package Data;
 
 import java.util.ArrayList;
 import modelos.CitaMedica;
+import modelos.Turnos;
 
 
 public class FakeDataBase {
     
     private static FakeDataBase instancia;
-
     private ArrayList<CitaMedica> dataCitasMedicas = new ArrayList();
+    private ArrayList<Turnos> dataTurnos = new ArrayList();
+    private DatosTemporales datosTemporales = new DatosTemporales();
 
-    
     private FakeDataBase() {
-    
+        this.dataTurnos = datosTemporales.CrearTurnosTemporales();
     }
-    
     
     public static synchronized FakeDataBase getInstancia() {
         if (instancia == null) {
             instancia = new FakeDataBase();
         }
         return instancia;
-        
+  
     }
     
-    public boolean AddDataCitaMedico(CitaMedica citaMedica){
+    //Metodos para CitaMedica
+    public boolean AddDataCitaMedica(CitaMedica citaMedica){
         dataCitasMedicas.add(citaMedica);
         return true;
     }
@@ -36,12 +37,5 @@ public class FakeDataBase {
     public ArrayList<CitaMedica> AllCitasMedicas(){
          return dataCitasMedicas;
     }
-    
-    
-    
-    
-    
-
-
     
 }

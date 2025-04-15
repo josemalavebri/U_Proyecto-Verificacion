@@ -6,14 +6,11 @@ package utilidades;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
 //CLASE PARA CREAR LOS MODELOS DE LAS TABLAS BASADO EN LOS NOMBRES DE LOS CAMPOS DE LOS OBJETOS
 public class TableAsing {
-    
     
     //Retorna Modelo total de la tabla
     public static DefaultTableModel CrearModeloTabla(Object objeto){
