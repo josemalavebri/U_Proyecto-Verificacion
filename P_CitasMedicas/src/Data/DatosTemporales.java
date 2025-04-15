@@ -1,4 +1,4 @@
-package utilidades;
+package Data;
 
 import java.util.ArrayList;
 import modelos.Turnos;
@@ -14,7 +14,7 @@ import modelos.Turnos;
  */
 public  class DatosTemporales {
     
-    public static ArrayList<Turnos> CrearTurnosTemporales(){
+    public ArrayList<Turnos> CrearTurnosTemporales(){
         String fechaFija = "11/04/2025";
         // Crear lista de turnos
         ArrayList<Turnos> listaTurnos = new ArrayList<>();

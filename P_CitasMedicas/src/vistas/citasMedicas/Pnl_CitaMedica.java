@@ -4,7 +4,7 @@
  */
 package vistas.citasMedicas;
 
-import utilidades.DatosTemporales;
+import Data.DatosTemporales;
 import utilidades.TableAsing;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -30,8 +30,9 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     
     
      private void cargarDatosTurnos() {
-         
-        ArrayList<Turnos> turnosTemporales = DatosTemporales.CrearTurnosTemporales();
+        
+         /*
+        ArrayList<Turnos> turnosTemporales;
         
         DefaultTableModel modeloTabla = TableAsing.CrearModeloTabla(turnosTemporales.get(0));
          
@@ -42,7 +43,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         
         JTable tabla = new JTable(modeloTabla);
         tb_turnos = tabla;
-
+        */
     }
      
     @SuppressWarnings("unchecked")
@@ -208,7 +209,10 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_resetearActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
-        // TODO add your handling code here:
+        
+       
+        
+        
     }//GEN-LAST:event_btn_guardar1ActionPerformed
 
 
