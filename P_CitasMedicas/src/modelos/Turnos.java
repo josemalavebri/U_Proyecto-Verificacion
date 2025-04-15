@@ -10,8 +10,6 @@ package modelos;
  */
 public class Turnos {
 
-  
-    
     private int id;
     private String fecha;
     private String hora;
