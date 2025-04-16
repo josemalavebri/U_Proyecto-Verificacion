@@ -10,18 +10,18 @@ package modelos;
  */
 public class Paciente {
     private String cedula;
-    private int edad;
     private String nombre;
     private String apellido;
+    private int edad;
     private String correo;
     private String telefono;
 
     // Constructor
-    public Paciente(String cedula, int edad, String nombre, String apellido, String correo, String telefono) {
+    public Paciente(String cedula, String nombre, String apellido, int edad, String correo, String telefono) {
         this.cedula = cedula;
-        this.edad = edad;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
     }
@@ -33,14 +33,6 @@ public class Paciente {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     public String getNombre() {
@@ -57,6 +49,14 @@ public class Paciente {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public String getCorreo() {

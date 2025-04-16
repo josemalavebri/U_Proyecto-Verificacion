@@ -4,8 +4,18 @@
  */
 package vistas.paciente;
 
+import Data.DatosTemporales;
+import Data.FakeDataBase;
+import controladores.PacienteController;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelos.Paciente;
+import utilidades.TableColumns;
+import utilidades.TableColumns;
 
 /**
  *
@@ -18,7 +28,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
      */
     public Pnl_GestorPaciente() {
         initComponents();
-      
+        TablaPacienteLlenado();
     }
 
     /**
@@ -36,7 +46,8 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         btn_nuevo = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_paciente = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -59,7 +70,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
         btn_buscar.setText("Buscar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_paciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,19 +81,20 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_paciente);
+
+        jLabel1.setText("Paciente:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(btn_nuevo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addComponent(jLabel1)
+                        .addGap(91, 91, 91)
                         .addComponent(lbl_cedula)
                         .addGap(18, 18, 18)
                         .addComponent(txt_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -90,28 +102,36 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_buscar)
                             .addComponent(btn_borrar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_nuevo)
+                .addGap(260, 260, 260))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(btn_buscar))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl_cedula))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(btn_borrar)
-                .addGap(18, 18, 18)
-                .addComponent(btn_nuevo)
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_buscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_borrar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_cedula))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_nuevo)
+                        .addGap(0, 29, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -131,14 +151,29 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         dialogo.setVisible(true);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
+    private void TablaPacienteLlenado(){
+        FakeDataBase dataBase = new FakeDataBase();
+        ArrayList<Paciente> listaPaciente = dataBase.AllPacientes();
+        
+        DefaultTableModel modelo = TableColumns.CrearColumnasModelo(listaPaciente.get(1));
+        
+        for (Paciente p : listaPaciente){
+            Object[] fila = {p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getCorreo(), p.getTelefono()};
+            modelo.addRow(fila);
+        }
+        
+        JTable tabla = new JTable(modelo);
+        tb_paciente.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_nuevo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbl_cedula;
+    private javax.swing.JTable tb_paciente;
     private javax.swing.JTextField txt_cedula;
     // End of variables declaration//GEN-END:variables
 }
