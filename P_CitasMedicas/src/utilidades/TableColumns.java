@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utilidades;
 
 import java.lang.reflect.Field;
@@ -10,10 +6,10 @@ import javax.swing.table.DefaultTableModel;
 
 
 //CLASE PARA CREAR LOS MODELOS DE LAS TABLAS BASADO EN LOS NOMBRES DE LOS CAMPOS DE LOS OBJETOS
-public class TableAsing {
+public class TableColumns {
     
     //Retorna Modelo total de la tabla
-    public static DefaultTableModel CrearModeloTabla(Object objeto){
+    public static DefaultTableModel CrearColumnasModelo(Object objeto){
         String[] nombreDeColumnas= NombresColumnasGet(objeto);
         DefaultTableModel modelo = new DefaultTableModel(nombreDeColumnas, 0);
         return modelo;
@@ -28,7 +24,7 @@ public class TableAsing {
         }
         String[] nombresDeColumnas = new String[campos.length];
         for(int i=0; i<campos.length;i++ ){
-            nombresDeColumnas[i]= campos[i].toString();
+            nombresDeColumnas[i]= campos[i].getName();
         }
         return nombresDeColumnas;
     }

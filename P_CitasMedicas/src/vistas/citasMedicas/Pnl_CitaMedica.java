@@ -5,7 +5,10 @@
 package vistas.citasMedicas;
 
 import Data.DatosTemporales;
-import utilidades.TableAsing;
+import Data.FakeDataBase;
+import controladores.CitaMedicaController;
+import controladores.TurnosController;
+import utilidades.TableColumns;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +17,6 @@ import modelos.*;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
 
-   
     
     private Paciente paciente;
     private Medico medico;
@@ -30,20 +32,20 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     
     
      private void cargarDatosTurnos() {
-        
-         /*
-        ArrayList<Turnos> turnosTemporales;
-        
-        DefaultTableModel modeloTabla = TableAsing.CrearModeloTabla(turnosTemporales.get(0));
+        TurnosController turnos = new TurnosController();
+        FakeDataBase data = new FakeDataBase();
+        ArrayList<Turnos> turnosTemporales = data.AllTurnos();
+        DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
+;
          
         for (Turnos t : turnosTemporales) {
-            Object[] fila = { t.getFecha(), t.getHora(), t.getMinuto()};
+            Object[] fila = {t.getHora(),t.getId(), t.getFecha() , t.getMinuto()};
             modeloTabla.addRow(fila);
         }
         
         JTable tabla = new JTable(modeloTabla);
-        tb_turnos = tabla;
-        */
+        tb_turnos.setModel(modeloTabla);
+        
     }
      
     @SuppressWarnings("unchecked")

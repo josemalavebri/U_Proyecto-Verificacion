@@ -16,7 +16,7 @@ public class FakeDataBase {
     private ArrayList<Turnos> dataTurnos = new ArrayList();
     private DatosTemporales datosTemporales = new DatosTemporales();
 
-    private FakeDataBase() {
+    public FakeDataBase() {
         this.dataTurnos = datosTemporales.CrearTurnosTemporales();
     }
     
@@ -36,6 +36,12 @@ public class FakeDataBase {
      
     public ArrayList<CitaMedica> AllCitasMedicas(){
          return dataCitasMedicas;
+    }
+    
+    
+    //Metodos para turnos
+    public ArrayList<Turnos> AllTurnos(){
+         return dataTurnos;
     }
     
 }

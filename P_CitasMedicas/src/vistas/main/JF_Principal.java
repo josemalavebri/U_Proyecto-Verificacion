@@ -78,8 +78,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btn_citasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_citasMedicasActionPerformed
         Pnl_CitaMedica panelCitasMedica = new Pnl_CitaMedica();
+        pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelCitasMedica, BorderLayout.CENTER);
-        
     }//GEN-LAST:event_btn_citasMedicasActionPerformed
 
     /**
