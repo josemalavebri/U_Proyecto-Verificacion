@@ -8,8 +8,11 @@ import Data.DatosTemporales;
 import Data.FakeDataBase;
 import controladores.CitaMedicaController;
 import controladores.TurnosController;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import utilidades.TableColumns;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.*;
@@ -21,31 +24,29 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private Paciente paciente;
     private Medico medico;
     private CitaMedica citaMedica;
-    
+    private ArrayList<Turnos>  turnosTemporales;
+    private Turnos turnoSeleccionadoActual;
+    private CitaMedicaController citaMedicaController;
 
+    
     public Pnl_CitaMedica() {
         initComponents();
         cargarDatosTurnos();
+        MauseList();
+        citaMedicaController = new CitaMedicaController();
     }
     
-
-    
-    
-     private void cargarDatosTurnos() {
+    private void cargarDatosTurnos() {
         TurnosController turnos = new TurnosController();
         FakeDataBase data = new FakeDataBase();
-        ArrayList<Turnos> turnosTemporales = data.AllTurnos();
+        turnosTemporales = data.AllTurnos();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
-;
-         
         for (Turnos t : turnosTemporales) {
             Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
             modeloTabla.addRow(fila);
         }
-        
         JTable tabla = new JTable(modeloTabla);
         tb_turnos.setModel(modeloTabla);
-        
     }
      
     @SuppressWarnings("unchecked")
@@ -67,6 +68,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         btn_buscar1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txta_descripcion = new javax.swing.JTextArea();
+        txt_turnoSeleccionado = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -117,6 +119,9 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         txta_descripcion.setRows(5);
         jScrollPane2.setViewportView(txta_descripcion);
 
+        txt_turnoSeleccionado.setText("Turno Seleccionado");
+        txt_turnoSeleccionado.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,8 +130,8 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(116, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -142,10 +147,18 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
-                                .addGap(61, 61, 61)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane2)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(113, 113, 113)
+                                        .addComponent(txt_turnoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btn_resetear, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,47 +169,43 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel1)
+                .addGap(0, 362, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbx_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_buscar))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(btn_buscar1))
+                        .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap()
+                        .addComponent(btn_guardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_resetear, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(cbx_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_buscar))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(btn_buscar1))
-                                .addGap(17, 17, 17))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btn_guardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_resetear, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel4)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txt_turnoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(8, 8, 8))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -209,12 +218,37 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_resetearActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
-    
-    
-    
-    
+        Paciente paciente = (Paciente) cbx_paciente.getSelectedItem();
+        Medico medico = (Medico) cbx_medicos.getSelectedItem();
+        String descripcion = txta_descripcion.getText();
+        Turnos turno = turnoSeleccionadoActual;
+        CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
+        
+        boolean guardado = citaMedicaController.GuardarCitaMedica(citaMedica);
+        
+        if(guardado){
+            System.out.println("Guardado con exito");
+            JOptionPane.showMessageDialog(null, "Guardado con exito");
+        }
     }//GEN-LAST:event_btn_guardar1ActionPerformed
-
+    
+    private void MauseList(){
+        tb_turnos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tb_turnos.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    turnoSeleccionadoActual = turnosTemporales.get(filaSeleccionada);
+                    TextBoxTurno(turnoSeleccionadoActual);
+                }   
+            }
+        });
+    }
+    
+    private void TextBoxTurno(Turnos turnoSeleccionadoActual){
+        txt_turnoSeleccionado.setText(turnoSeleccionadoActual.getId()+" "+turnoSeleccionadoActual.getFecha()+" "+turnoSeleccionadoActual.getHora());
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
@@ -231,6 +265,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tb_turnos;
+    private javax.swing.JTextField txt_turnoSeleccionado;
     private javax.swing.JTextArea txta_descripcion;
     // End of variables declaration//GEN-END:variables
 
