@@ -39,7 +39,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
 ;
          
         for (Turnos t : turnosTemporales) {
-            Object[] fila = {t.getHora(),t.getId(), t.getFecha() , t.getMinuto()};
+            Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
             modeloTabla.addRow(fila);
         }
         
