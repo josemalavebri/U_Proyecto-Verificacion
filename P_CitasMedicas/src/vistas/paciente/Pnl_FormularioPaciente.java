@@ -4,8 +4,10 @@
  */
 package vistas.paciente;
 
+import Data.FakeDataBase;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
+import modelos.Paciente;
 
 /**
  *
@@ -16,7 +18,11 @@ public class Pnl_FormularioPaciente extends javax.swing.JPanel {
     /**
      * Creates new form FormularioPaciente
      */
-    public Pnl_FormularioPaciente() {
+    
+    private Pnl_GestorPaciente panelPadre;
+    
+    public Pnl_FormularioPaciente(Pnl_GestorPaciente panelPadre) {
+        this.panelPadre = panelPadre;
         initComponents();
     }
 
@@ -166,6 +172,22 @@ public class Pnl_FormularioPaciente extends javax.swing.JPanel {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        String cedula = txtCedula.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        int edad = Integer.parseInt(txtEdad.getText());
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        
+        Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
+        
+        FakeDataBase dataBase = FakeDataBase.getInstancia();
+        dataBase.AddPaciente(paciente);
+
+        panelPadre.TablaPacienteLlenado();
+
+        JDialog dialogo = (JDialog) SwingUtilities.getWindowAncestor(this);
+        dialogo.dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

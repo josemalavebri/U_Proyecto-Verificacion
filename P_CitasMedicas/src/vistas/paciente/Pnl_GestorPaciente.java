@@ -143,7 +143,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         // TODO add your handling code here:
-        Pnl_FormularioPaciente panelFormularioPaciente = new Pnl_FormularioPaciente();
+        Pnl_FormularioPaciente panelFormularioPaciente = new Pnl_FormularioPaciente(this);
         JDialog dialogo = new JDialog();
         dialogo.add(panelFormularioPaciente);
         dialogo.pack();
@@ -151,14 +151,14 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         dialogo.setVisible(true);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
-    private void TablaPacienteLlenado(){
-        FakeDataBase dataBase = new FakeDataBase();
+    public void TablaPacienteLlenado(){
+        FakeDataBase dataBase = FakeDataBase.getInstancia();
         ArrayList<Paciente> listaPaciente = dataBase.AllPacientes();
         
         DefaultTableModel modelo = TableColumns.CrearColumnasModelo(listaPaciente.get(1));
         
         for (Paciente p : listaPaciente){
-            Object[] fila = {p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getCorreo(), p.getTelefono()};
+            Object[] fila = {p.getId(), p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getCorreo(), p.getTelefono()};
             modelo.addRow(fila);
         }
         
