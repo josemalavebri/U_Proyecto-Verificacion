@@ -41,8 +41,10 @@ public class CitaMedicaController {
         }
         
     }
-    public boolean removeCitaMedica(){
-       return false;
+    
+    
+    public boolean removeCitaMedica(int indice){
+       return dataBase.RemoveCitaMedica(indice);
     }
     
     

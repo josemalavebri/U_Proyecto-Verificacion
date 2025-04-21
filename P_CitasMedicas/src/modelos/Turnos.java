@@ -11,12 +11,23 @@ public class Turnos {
     public Turnos(){  
     }
     
+    public Turnos(String fecha, String hora, String minuto) {
+        this.id = id;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.minuto = minuto;
+    }
+    
+    
     public Turnos(int id, String fecha, String hora, String minuto) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.minuto = minuto;
     }
+    
+    
+
       
     public int getId() {
         return id;

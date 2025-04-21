@@ -51,6 +51,8 @@ public class FakeDataBase {
     }
     
     public boolean AddDataCitaMedica(CitaMedica citaMedica){
+        int idCitaMedica = dataCitasMedicas.size()+1;
+        citaMedica.setId(idCitaMedica);
         dataCitasMedicas.add(citaMedica);
         return true;
     }
