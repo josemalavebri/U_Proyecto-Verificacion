@@ -91,18 +91,25 @@ public class JF_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_citasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_citasMedicasActionPerformed
+        pnl_principal.removeAll();
         Pnl_CitaMedica panelCitasMedica = new Pnl_CitaMedica();
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelCitasMedica, BorderLayout.CENTER);
+        pnl_principal.revalidate();
+        pnl_principal.repaint();
+        setVisible(true);
+
     }//GEN-LAST:event_btn_citasMedicasActionPerformed
 
     private void btn_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pacienteActionPerformed
+        pnl_principal.removeAll();
+
         Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente();
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelGestorPaciente, BorderLayout.CENTER);
+        pnl_principal.revalidate();
+        pnl_principal.repaint();
         setVisible(true);
-        
-        
     }//GEN-LAST:event_btn_pacienteActionPerformed
 
     /**

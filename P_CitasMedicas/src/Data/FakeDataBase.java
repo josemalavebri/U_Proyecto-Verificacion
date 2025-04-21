@@ -56,13 +56,10 @@ public class FakeDataBase {
         dataCitasMedicas.add(citaMedica);
         return true;
     }
-     
-    
-    
     
     //Metodos para Turnos
     public ArrayList<Turnos> AllTurnos(){
-         return dataTurnos;
+        return dataTurnos;
     }
     
     public boolean EnviarTurno(Turnos turno){
