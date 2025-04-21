@@ -14,14 +14,14 @@ public class TurnosController {
     }
     
     public ArrayList<Turnos> GetTurnos(){
+        ArrayList<Turnos> turnos = new ArrayList<>();
         try {
-            dataBase.AllTurnos();
-            return new ArrayList<Turnos>();
+            turnos = dataBase.AllTurnos();
+            return turnos;
         } catch(Exception ex){
             System.out.print(ex);
-        } finally{
             return null;
-        }
+        } 
     }
     
    

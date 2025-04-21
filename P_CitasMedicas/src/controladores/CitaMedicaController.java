@@ -20,28 +20,29 @@ public class CitaMedicaController {
     }
 
     
-    public boolean GuardarCitaMedica(CitaMedica citaMedica ){
-        try {
-            dataBase.AddDataCitaMedica(citaMedica);
-            return true;
-
-        } catch(Exception ex){
-            System.out.print(ex);
-        } finally{
-            return false;
-        }
-    }
-    
-    
     public ArrayList<CitaMedica> GetCitasMedicas(){
+        ArrayList<CitaMedica> citasMedicas = new ArrayList<CitaMedica>();
         try {
-            dataBase.AllCitasMedicas();
+            citasMedicas = dataBase.AllCitasMedicas();
             return new ArrayList<CitaMedica>();
         } catch(Exception ex){
             System.out.print(ex);
-        } finally{
             return null;
+        } 
+    }
+    
+    public boolean PostCitaMedica(CitaMedica citaMedica){
+        try {
+            dataBase.AllTurnos();
+            return true;
+        } catch(Exception ex){
+            System.out.print(ex);
+            return false;
         }
+        
+    }
+    public boolean removeCitaMedica(){
+       return false;
     }
     
     

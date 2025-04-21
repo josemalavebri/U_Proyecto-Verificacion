@@ -19,8 +19,6 @@ import modelos.*;
 
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
-
-    
     private Paciente paciente;
     private Medico medico;
     private CitaMedica citaMedica;
@@ -224,12 +222,8 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         Turnos turno = turnoSeleccionadoActual;
         CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
         
-        boolean guardado = citaMedicaController.GuardarCitaMedica(citaMedica);
         
-        if(guardado){
-            System.out.println("Guardado con exito");
-            JOptionPane.showMessageDialog(null, "Guardado con exito");
-        }
+        
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private void MauseList(){

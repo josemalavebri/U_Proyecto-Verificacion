@@ -31,15 +31,31 @@ public class FakeDataBase {
   
     }
     
-    //Metodos para CitaMedica
+    //------------- Metodos para CITA MEDICA -------------
+    public ArrayList<CitaMedica> AllCitasMedicas(){
+         return dataCitasMedicas;
+    }
+    
+    public boolean RemoveCitaMedica(int indice){
+        if(dataCitasMedicas.remove(indice)!= null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean UpdateCitaMedica(int id, CitaMedica citaMedica){
+        if(dataCitasMedicas.set( (id-1), citaMedica)!=null){
+            return true;
+        }
+        return false;
+    }
+    
     public boolean AddDataCitaMedica(CitaMedica citaMedica){
         dataCitasMedicas.add(citaMedica);
         return true;
     }
      
-    public ArrayList<CitaMedica> AllCitasMedicas(){
-         return dataCitasMedicas;
-    }
+    
     
     
     //Metodos para Turnos

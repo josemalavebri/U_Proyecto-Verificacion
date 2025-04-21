@@ -8,7 +8,6 @@
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/TableColumns.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/CitaMedicaController.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/FakeDataBase.java</file>
-            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/CitaMedico.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/CitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/.idea/.gitignore</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/.idea/misc.xml</file>
@@ -23,6 +22,8 @@
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/Pnl_GestorPaciente.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/Pnl_FormularioPaciente.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/medico/GestionMedico.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Factura.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/PacienteController.java</file>
         </group>
     </open-files>
 </project-private>
