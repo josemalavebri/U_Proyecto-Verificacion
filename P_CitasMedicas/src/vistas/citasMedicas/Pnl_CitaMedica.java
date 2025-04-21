@@ -221,9 +221,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         String descripcion = txta_descripcion.getText();
         Turnos turno = turnoSeleccionadoActual;
         CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
-        
-        
-        
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private void MauseList(){
