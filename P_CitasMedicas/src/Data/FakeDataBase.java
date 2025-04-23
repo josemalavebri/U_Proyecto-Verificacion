@@ -71,4 +71,10 @@ public class FakeDataBase {
     public ArrayList<Paciente> AllPacientes(){
         return dataPaciente;
     }
+    
+    public void AddPaciente(Paciente paciente){
+        int idPaciente = dataPaciente.size()+1;
+        paciente.setId(idPaciente);
+        dataPaciente.add(paciente);
+    }
 }

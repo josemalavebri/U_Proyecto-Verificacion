@@ -9,6 +9,7 @@ package modelos;
  * @author HP
  */
 public class Paciente {
+    private int id;
     private String cedula;
     private String nombre;
     private String apellido;
@@ -25,8 +26,26 @@ public class Paciente {
         this.correo = correo;
         this.telefono = telefono;
     }
+    
+    public Paciente(int id, String cedula, String nombre, String apellido, int edad, String correo, String telefono) {
+        this.id = id;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.correo = correo;
+        this.telefono = telefono;
+    }
 
     // Getters y Setters
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public String getCedula() {
         return cedula;
     }
