@@ -6,6 +6,7 @@ package vistas.main;
 
 import java.awt.BorderLayout;
 import vistas.citasMedicas.Pnl_CitaMedica;
+import vistas.citasMedicas.Pnl_NuevaCitaMedica;
 import vistas.paciente.Pnl_GestorPaciente;
 
 /**
@@ -103,7 +104,6 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btn_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pacienteActionPerformed
         pnl_principal.removeAll();
-
         Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente();
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelGestorPaciente, BorderLayout.CENTER);
