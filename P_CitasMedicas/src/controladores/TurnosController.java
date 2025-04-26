@@ -3,7 +3,7 @@ package controladores;
 import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.CitaMedica;
-import modelos.Turnos;
+import modelos.Turno;
 
 public class TurnosController {
 
@@ -13,8 +13,8 @@ public class TurnosController {
         dataBase = FakeDataBase.getInstancia();
     }
     
-    public ArrayList<Turnos> GetTurnos(){
-        ArrayList<Turnos> turnos = new ArrayList<>();
+    public ArrayList<Turno> GetTurnos(){
+        ArrayList<Turno> turnos = new ArrayList<>();
         try {
             turnos = dataBase.AllTurnos();
             return turnos;

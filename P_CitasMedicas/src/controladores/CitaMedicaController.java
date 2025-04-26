@@ -20,7 +20,7 @@ public class CitaMedicaController {
     }
 
     
-    public ArrayList<CitaMedica> GetCitasMedicas(){
+    public ArrayList<CitaMedica> getCitasMedicas(){
         ArrayList<CitaMedica> citasMedicas = new ArrayList<CitaMedica>();
         try {
             citasMedicas = dataBase.AllCitasMedicas();
@@ -31,9 +31,20 @@ public class CitaMedicaController {
         } 
     }
     
-    public boolean PostCitaMedica(CitaMedica citaMedica){
+    public boolean postCitaMedica(CitaMedica citaMedica){
         try {
-            dataBase.AllTurnos();
+            dataBase.AddDataCitaMedica(citaMedica);
+            return true;
+        } catch(Exception ex){
+            System.out.print(ex);
+            return false;
+        }
+        
+    }
+    
+    public boolean putCitaMedica(CitaMedica citaMedica){
+        try {
+            dataBase.UpdateCitaMedica(citaMedica);
             return true;
         } catch(Exception ex){
             System.out.print(ex);

@@ -1,17 +1,17 @@
 package modelos;
 
 
-public class Turnos {
+public class Turno {
 
     private int id;
     private String fecha;
     private String hora;
     private String minuto;
     
-    public Turnos(){  
+    public Turno(){  
     }
     
-    public Turnos(String fecha, String hora, String minuto) {
+    public Turno(String fecha, String hora, String minuto) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -19,7 +19,7 @@ public class Turnos {
     }
     
     
-    public Turnos(int id, String fecha, String hora, String minuto) {
+    public Turno(int id, String fecha, String hora, String minuto) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;

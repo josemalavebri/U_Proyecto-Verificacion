@@ -16,8 +16,10 @@ import javax.swing.table.DefaultTableModel;
 import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
-import modelos.Turnos;
+import modelos.Turno;
 import utilidades.TableColumns;
+import utilidades.Verificador.TipoValidacion;
+import utilidades.Verificador.Verificador;
 
 /**
  *
@@ -25,16 +27,18 @@ import utilidades.TableColumns;
  */
 public class JF_NuevaCitaMedica extends javax.swing.JFrame {
 
-    private Turnos turnoSeleccionadoActual;
-    private ArrayList<Turnos>  turnosTemporales;
+    private Turno turnoSeleccionadoActual;
+    private ArrayList<Turno>  turnosTemporales;
     private CitaMedicaController citaMedicaController;
+    private Verificador verificador;
 
     public JF_NuevaCitaMedica() {
         initComponents();
-        turnoSeleccionadoActual = new Turnos();
+        turnoSeleccionadoActual = new Turno();
         cargarDatosTurnos();
         MauseList();
         citaMedicaController = new CitaMedicaController();
+        verificador = new Verificador();
     }
 
    
@@ -200,14 +204,23 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_resetearActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
-        Paciente paciente = (Paciente) cbx_paciente.getSelectedItem();
-        Medico medico = (Medico) cbx_medicos.getSelectedItem();
         String descripcion = txta_descripcion.getText();
-        Turnos turno = turnoSeleccionadoActual;
-        CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
-        if(citaMedicaController.PostCitaMedica(citaMedica)){
-           JOptionPane.showMessageDialog(null, "¡Hola! Este es un mensaje.", "Título del diálogo", JOptionPane.INFORMATION_MESSAGE);
+        if(verificador.verificar(descripcion, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA)){
+            JOptionPane.showMessageDialog(null, "se ha verificado");
+        } else{
+            JOptionPane.showMessageDialog(null, "no se ha verificado");
         }
+        
+        
+        
+       /* Paciente paciente = (Paciente) cbx_paciente.getSelectedItem();
+        Medico medico = (Medico) cbx_medicos.getSelectedItem();
+        Turno turno = turnoSeleccionadoActual;
+        CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
+        if(citaMedicaController.postCitaMedica(citaMedica)){
+           JOptionPane.showMessageDialog(null, "¡Hola! Este es un mensaje.", "Título del diálogo", JOptionPane.INFORMATION_MESSAGE);
+        }*/
+        
     }//GEN-LAST:event_btn_guardar1ActionPerformed
 
     
@@ -224,7 +237,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         });
     }
     
-    private void TextBoxTurno(Turnos turnoSeleccionadoActual){
+    private void TextBoxTurno(Turno turnoSeleccionadoActual){
         txt_turnoSeleccionado.setText(turnoSeleccionadoActual.getId()+" "+turnoSeleccionadoActual.getFecha()+" "+turnoSeleccionadoActual.getHora());
     }
     
@@ -233,17 +246,16 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         FakeDataBase data = new FakeDataBase();
         turnosTemporales = data.AllTurnos();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
-        for (Turnos t : turnosTemporales) {
+        for (Turno t : turnosTemporales) {
             Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
             modeloTabla.addRow(fila);
         }
+        
         JTable tabla = new JTable(modeloTabla);
         tb_turnos.setModel(modeloTabla);
     }
     
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

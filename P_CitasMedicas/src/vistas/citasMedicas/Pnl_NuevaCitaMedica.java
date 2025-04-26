@@ -22,8 +22,8 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
     private Paciente paciente;
     private Medico medico;
     private CitaMedica citaMedica;
-    private ArrayList<Turnos>  turnosTemporales;
-    private Turnos turnoSeleccionadoActual;
+    private ArrayList<Turno>  turnosTemporales;
+    private Turno turnoSeleccionadoActual;
     private CitaMedicaController citaMedicaController;
 
     
@@ -39,7 +39,7 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
         FakeDataBase data = new FakeDataBase();
         turnosTemporales = data.AllTurnos();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
-        for (Turnos t : turnosTemporales) {
+        for (Turno t : turnosTemporales) {
             Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
             modeloTabla.addRow(fila);
         }
@@ -219,7 +219,7 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
         Paciente paciente = (Paciente) cbx_paciente.getSelectedItem();
         Medico medico = (Medico) cbx_medicos.getSelectedItem();
         String descripcion = txta_descripcion.getText();
-        Turnos turno = turnoSeleccionadoActual;
+        Turno turno = turnoSeleccionadoActual;
         CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
@@ -236,7 +236,7 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
         });
     }
     
-    private void TextBoxTurno(Turnos turnoSeleccionadoActual){
+    private void TextBoxTurno(Turno turnoSeleccionadoActual){
         txt_turnoSeleccionado.setText(turnoSeleccionadoActual.getId()+" "+turnoSeleccionadoActual.getFecha()+" "+turnoSeleccionadoActual.getHora());
     }
     

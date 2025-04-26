@@ -7,14 +7,14 @@ package Data;
 import java.util.ArrayList;
 import modelos.CitaMedica;
 import modelos.Paciente;
-import modelos.Turnos;
+import modelos.Turno;
 
 
 public class FakeDataBase {
     
     private static FakeDataBase instancia;
     private ArrayList<CitaMedica> dataCitasMedicas = new ArrayList();
-    private ArrayList<Turnos> dataTurnos = new ArrayList();
+    private ArrayList<Turno> dataTurnos = new ArrayList();
     private DatosTemporales datosTemporales = new DatosTemporales();
     private ArrayList<Paciente> dataPaciente = new ArrayList();
 
@@ -43,7 +43,8 @@ public class FakeDataBase {
         return false;
     }
     
-    public boolean UpdateCitaMedica(int id, CitaMedica citaMedica){
+    public boolean UpdateCitaMedica(CitaMedica citaMedica){
+        int id = citaMedica.getId();
         if(dataCitasMedicas.set( (id-1), citaMedica)!=null){
             return true;
         }
@@ -57,12 +58,12 @@ public class FakeDataBase {
         return true;
     }
     
-    //Metodos para Turnos
-    public ArrayList<Turnos> AllTurnos(){
+    //Metodos para Turno
+    public ArrayList<Turno> AllTurnos(){
         return dataTurnos;
     }
     
-    public boolean EnviarTurno(Turnos turno){
+    public boolean EnviarTurno(Turno turno){
         dataTurnos.add(turno);
         return true;
     }
