@@ -79,14 +79,39 @@ public class FakeDataBase {
         return true;
     }
     
-    //Metodos para paciente
+    //----------------Metodos para paciente
     public ArrayList<Paciente> AllPacientes(){
         return dataPaciente;
     }
     
-    public void AddPaciente(Paciente paciente){
+    public boolean AddPaciente(Paciente paciente){
         int idPaciente = dataPaciente.size()+1;
         paciente.setId(idPaciente);
         dataPaciente.add(paciente);
+        return true;
     }
+    
+    public boolean UpdatePaciente(Paciente paciente){
+        int idPaciente = paciente.getId();
+        if(dataPaciente.set(idPaciente, paciente)!= null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean DeletePaciente(int idPaciente) {
+        for (int i = 0; i < dataPaciente.size(); i++) {
+            if (dataPaciente.get(i).getId() == idPaciente) {
+                dataPaciente.remove(i);
+
+                // Actualizar todos los IDs
+                for (int j = 0; j < dataPaciente.size(); j++) {
+                    dataPaciente.get(j).setId(j + 1);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+   
 }

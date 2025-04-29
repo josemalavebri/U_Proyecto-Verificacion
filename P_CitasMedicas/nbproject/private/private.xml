@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/Pnl_CitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/Pnl_NuevaCitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/JF_NuevaCitaMedica.java</file>
@@ -13,6 +14,13 @@
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Factura.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/CitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/DatosTemporales.java</file>
+=======
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/Pnl_GestorPaciente.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Proyecto_Verificacion/P_CitasMedicas/src/controladores/PacienteController.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Proyecto_Verificacion/P_CitasMedicas/src/Data/FakeDataBase.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/Pnl_FormularioPaciente.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Paciente.java</file>
+>>>>>>> 9360b6c67b4cdb002a47495dda6e0a2aa6183608
         </group>
     </open-files>
 </project-private>

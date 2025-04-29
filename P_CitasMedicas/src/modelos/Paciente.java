@@ -37,6 +37,9 @@ public class Paciente {
         this.telefono = telefono;
     }
 
+    public Paciente() {
+    }
+
     // Getters y Setters
     public int getId(){
         return id;
