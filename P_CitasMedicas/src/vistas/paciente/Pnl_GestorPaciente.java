@@ -8,12 +8,20 @@ import Data.DatosTemporales;
 import Data.FakeDataBase;
 import controladores.PacienteController;
 import java.awt.Dimension;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.Paciente;
+import utilidades.ButtonEditor;
+import utilidades.ButtonRenderer;
 import utilidades.TableColumns;
 import utilidades.TableColumns;
 
@@ -26,9 +34,15 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     /**
      * Creates new form GestorPaciente
      */
+    
+    private PacienteController pacienteController;
+    private Paciente paciente;
+    
     public Pnl_GestorPaciente() {
         initComponents();
         TablaPacienteLlenado();
+        pacienteController = new PacienteController();
+        paciente = new Paciente();
     }
 
     /**
@@ -143,28 +157,95 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         // TODO add your handling code here:
-        Pnl_FormularioPaciente panelFormularioPaciente = new Pnl_FormularioPaciente(this);
-        JDialog dialogo = new JDialog();
-        dialogo.add(panelFormularioPaciente);
-        dialogo.pack();
-        dialogo.setLocationRelativeTo(this);
-        dialogo.setVisible(true);
+        
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     public void TablaPacienteLlenado(){
         FakeDataBase dataBase = FakeDataBase.getInstancia();
         ArrayList<Paciente> listaPaciente = dataBase.AllPacientes();
+        String[] campos = {"id","cedula","nombre", "apellido"};
+        DefaultTableModel modelo = CrearColumnasModeloPersonalizado(listaPaciente.get(1), campos);
         
-        DefaultTableModel modelo = TableColumns.CrearColumnasModelo(listaPaciente.get(1));
+        modelo.addColumn("Modificar");
+        modelo.addColumn("Eliminar");
         
         for (Paciente p : listaPaciente){
-            Object[] fila = {p.getId(), p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getCorreo(), p.getTelefono()};
+            Object[] fila = {p.getId(), p.getCedula(), p.getNombre(), p.getApellido(), "Modificar", "Eliminar"};
             modelo.addRow(fila);
         }
-        
-        JTable tabla = new JTable(modelo);
+       
         tb_paciente.setModel(modelo);
+        
+       
+
+        // Crear un ActionListener para manejar la acción de "Modificar"
+        ActionListener modificarAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                btn_nuevoActionPerformed(e);
+                int filaSeleccionada = tb_paciente.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    // Obtener los valores de la fila seleccionada
+
+                    //int id = (int) tb_paciente.getValueAt(filaSeleccionada, 0);
+                    System.out.println("Tipo de dato en celda: " + tb_paciente.getValueAt(filaSeleccionada, 0).getClass());
+                    String cedula = (String) tb_paciente.getValueAt(filaSeleccionada, 1);
+                    String nombre = (String) tb_paciente.getValueAt(filaSeleccionada, 2);
+                    String apellido = (String) tb_paciente.getValueAt(filaSeleccionada, 3);
+                    //int edad = (int) tb_paciente.getValueAt(filaSeleccionada, 4);
+                    System.out.println("Tipo de dato en celda: " + tb_paciente.getValueAt(filaSeleccionada, 0).getClass());
+                    String correo = (String) tb_paciente.getValueAt(filaSeleccionada, 5);
+                    String telefono = (String) tb_paciente.getValueAt(filaSeleccionada, 6);
+                    
+                    //Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
+                    
+                    pacienteController.PutPaciente(paciente);
+
+                    //JOptionPane.showMessageDialog(null, "Modificar paciente con ID: " + id);
+                }
+            }
+        };
+
+        // Crear un ActionListener para manejar la acción de "Eliminar"
+            ActionListener eliminarAction = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int filaSeleccionada = tb_paciente.getSelectedRow();
+                
+                int idTablaPaciente = (int) tb_paciente.getValueAt(filaSeleccionada, 0);
+
+                boolean eliminado = pacienteController.DeletePaciente(idTablaPaciente);
+                    
+                JOptionPane.showMessageDialog(null, "Se eliminó el paciente con ID: " + idTablaPaciente);
+                TablaPacienteLlenado();
+            }
+        };
+
+        // En la tabla, al configurar los botones:
+        tb_paciente.getColumn("Modificar").setCellRenderer(new ButtonRenderer());
+        tb_paciente.getColumn("Modificar").setCellEditor(new ButtonEditor(new JCheckBox(), "Modificar", modificarAction));
+
+        tb_paciente.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
+        tb_paciente.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), "Eliminar", eliminarAction));
     }
+    
+    public static DefaultTableModel CrearColumnasModeloPersonalizado(Object objeto, String[] camposDeseados){
+    Field[] campos = objeto.getClass().getDeclaredFields();
+    ArrayList<String> columnas = new ArrayList<>();
+
+    for (String campoDeseado : camposDeseados) {
+        for (Field campo : campos) {
+            if (campo.getName().equals(campoDeseado)) {
+                columnas.add(campoDeseado);
+                break;
+            }
+        }
+    }
+
+    String[] nombresDeColumnas = columnas.toArray(new String[0]);
+    return new DefaultTableModel(nombresDeColumnas, 0);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_borrar;

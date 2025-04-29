@@ -5,9 +5,13 @@
 package vistas.paciente;
 
 import Data.FakeDataBase;
+import controladores.PacienteController;
 import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 import modelos.Paciente;
+import utilidades.Verificador.TipoValidacion;
+import utilidades.Verificador.Verificador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,9 +24,11 @@ public class Pnl_FormularioPaciente extends javax.swing.JPanel {
      */
     
     private Pnl_GestorPaciente panelPadre;
+    private Verificador verificador;
     
     public Pnl_FormularioPaciente(Pnl_GestorPaciente panelPadre) {
         this.panelPadre = panelPadre;
+        verificador = new Verificador();
         initComponents();
     }
 
@@ -172,24 +178,41 @@ public class Pnl_FormularioPaciente extends javax.swing.JPanel {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        String cedula = txtCedula.getText();
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        int edad = Integer.parseInt(txtEdad.getText());
-        String correo = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        
-        Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
-        
-        FakeDataBase dataBase = FakeDataBase.getInstancia();
-        dataBase.AddPaciente(paciente);
+        String cedula = txtCedula.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String apellido = txtApellido.getText().trim();
+        String edadTexto = txtEdad.getText().trim();
+        String correo = txtCorreo.getText().trim();
+        String telefono = txtTelefono.getText().trim();
 
-        panelPadre.TablaPacienteLlenado();
+        // Validación
+        boolean cedulaValidacion = verificador.verificar(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean nombreValidacion = verificador.verificar(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean apellidoValidacion = verificador.verificar(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean edadValidacion = verificador.verificar(edadTexto, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean telefonoValidacion = verificador.verificar(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
 
-        JDialog dialogo = (JDialog) SwingUtilities.getWindowAncestor(this);
-        dialogo.dispose();
+        // Si todos son válidos
+        if (cedulaValidacion && nombreValidacion && apellidoValidacion && edadValidacion && telefonoValidacion) {
+            int edad = Integer.parseInt(edadTexto);
+            
+            Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
+        
+            PacienteController pacienteController = new PacienteController();
+            pacienteController.PostPaciente(paciente);
+            
+            panelPadre.TablaPacienteLlenado();
+
+            JDialog dialogo = (JDialog) SwingUtilities.getWindowAncestor(this);
+            dialogo.dispose();
+            
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Hay campos inválidos o vacíos.\nPor favor, revise e intente nuevamente.");
+        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
-
+    
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         JDialog dialogo = (JDialog) SwingUtilities.getWindowAncestor(this);
