@@ -21,7 +21,6 @@ public class DatosTemporales {
         listaTurnos.add(new Turno(8, fechaFija, "15", "00"));
         listaTurnos.add(new Turno(9, fechaFija, "16", "00"));
         listaTurnos.add(new Turno(10, fechaFija, "17", "00"));
-        Turno turno = new Turno();
         return listaTurnos;
     }
     

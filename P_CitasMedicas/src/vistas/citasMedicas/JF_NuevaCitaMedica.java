@@ -37,11 +37,11 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     public JF_NuevaCitaMedica() {
         initComponents();
         turnoSeleccionadoActual = new Turno();
+        data = FakeDataBase.getInstancia();
         cargarDatosTurnos();
         MauseList();
         verificador = new Verificador();
         turnos = new TurnosController();
-        data = FakeDataBase.getInstancia();
     }
 
    

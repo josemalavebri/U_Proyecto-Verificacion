@@ -30,7 +30,7 @@ public class FakeDataBase {
     
     private void crearCitasTemporales(){
         dataCitasMedicas = new ArrayList();
-        for(int i=0; i>=10; i++){
+        for(int i=0; i<10; i++){
             CitaMedica citaMedica = new CitaMedica();
             citaMedica.setId(i+1);
             citaMedica.setMedico(dataMedico.get(1));
@@ -39,6 +39,20 @@ public class FakeDataBase {
             citaMedica.setDescripcion("cita medica falsa");
             dataCitasMedicas.add(citaMedica);
         }
+        int contador = 0;
+        
+        while(contador>=10){
+            CitaMedica citaMedica = new CitaMedica();
+            citaMedica.setId(contador+1);
+            citaMedica.setMedico(dataMedico.get(1));
+            citaMedica.setPaciente(dataPaciente.get(contador));
+            citaMedica.setTurno(dataTurnos.get(contador));
+            citaMedica.setDescripcion("cita medica falsa");
+            dataCitasMedicas.add(citaMedica);
+            contador++;
+        }
+        
+        
     }
     
     public static synchronized FakeDataBase getInstancia() {

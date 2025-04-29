@@ -19,7 +19,7 @@ import vistas.paciente.Pnl_GestorPaciente;
 public class Pnl_CitaMedica extends javax.swing.JPanel {
 
     private CitaMedicaController citaMedicaController;
-    private ArrayList<CitaMedica> citasMedicas;
+    private ArrayList<CitaMedica> citasMedicas = new ArrayList<>();
 
     public Pnl_CitaMedica() {
         initComponents();
