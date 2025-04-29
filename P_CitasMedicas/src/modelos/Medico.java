@@ -3,10 +3,10 @@ package modelos;
 
 public class Medico {
     
-    public int id;
-    public String nombre;
-    public String apellido;
-    public String especialidad;
+    private int id;
+    private String nombre;
+    private String apellido;
+    private String especialidad;
     
     
     public Medico(int id, String nombre, String apellido, String especialidad) {

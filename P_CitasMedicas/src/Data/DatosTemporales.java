@@ -6,13 +6,6 @@ import modelos.*;
 
 public class DatosTemporales {
     
-    public ArrayList<CitaMedica>  CrearCitasMedicas(){
-    
-        ArrayList<CitaMedica> citas = new ArrayList<>();
-
-        return citas;
-    }
-    
     public ArrayList<Turno> CrearTurnosTemporales(){
         String fechaFija = "11/04/2025";
         // Crear lista de turnos
@@ -31,6 +24,7 @@ public class DatosTemporales {
         Turno turno = new Turno();
         return listaTurnos;
     }
+    
     
     public ArrayList<Paciente> CrearPacienteTemporales(){
         ArrayList<Paciente> listaPacientes = new ArrayList<>();

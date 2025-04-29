@@ -14,17 +14,17 @@ import modelos.CitaMedica;
  */
 public class CitaMedicaController {
     private FakeDataBase dataBase;
-    
+    ArrayList<CitaMedica> citasMedicas = new ArrayList<CitaMedica>();
+
     public CitaMedicaController(){
         dataBase = FakeDataBase.getInstancia();
     }
 
     
     public ArrayList<CitaMedica> getCitasMedicas(){
-        ArrayList<CitaMedica> citasMedicas = new ArrayList<CitaMedica>();
         try {
             citasMedicas = dataBase.AllCitasMedicas();
-            return new ArrayList<CitaMedica>();
+            return citasMedicas;
         } catch(Exception ex){
             System.out.print(ex);
             return null;

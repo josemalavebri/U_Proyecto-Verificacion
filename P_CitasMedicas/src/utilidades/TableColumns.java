@@ -14,6 +14,8 @@ public class TableColumns {
         DefaultTableModel modelo = new DefaultTableModel(nombreDeColumnas, 0);
         return modelo;
     }
+
+
     
     //Retorna los nombres de los campos del objeto
     private static String[] NombresColumnasGet(Object objeto){
@@ -30,5 +32,27 @@ public class TableColumns {
     }
     
     
+    public static DefaultTableModel CrearColumnasModelo(Object objeto,boolean eliminarDescripcion){
+        String[] nombreDeColumnas= NombresColumnasGet(objeto,eliminarDescripcion);
+        DefaultTableModel modelo = new DefaultTableModel(nombreDeColumnas, 0);
+        return modelo;
+    }
+    
+    
+     private static String[] NombresColumnasGet(Object objeto,boolean eliminarDescripcion){
+        Field[] campos = objeto.getClass().getDeclaredFields();
+        ArrayList<String> columnas = new ArrayList();
+        for (Field campo : campos) {
+            
+            if(!(eliminarDescripcion&&"descripcion".equals(campo.getName()))){
+                columnas.add(campo.toString());
+            }
+        }
+        String[] nombresDeColumnas = new String[campos.length];
+        for(int i=0; i<campos.length;i++ ){
+            nombresDeColumnas[i]= campos[i].getName();
+        }
+        return nombresDeColumnas;
+    }
     
 }

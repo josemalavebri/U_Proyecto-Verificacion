@@ -29,16 +29,19 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
 
     private Turno turnoSeleccionadoActual;
     private ArrayList<Turno>  turnosTemporales;
-    private CitaMedicaController citaMedicaController;
     private Verificador verificador;
+    private TurnosController turnos ;
+    private FakeDataBase data ;
+
 
     public JF_NuevaCitaMedica() {
         initComponents();
         turnoSeleccionadoActual = new Turno();
         cargarDatosTurnos();
         MauseList();
-        citaMedicaController = new CitaMedicaController();
         verificador = new Verificador();
+        turnos = new TurnosController();
+        data = FakeDataBase.getInstancia();
     }
 
    
@@ -242,8 +245,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }
     
     private void cargarDatosTurnos() {
-        TurnosController turnos = new TurnosController();
-        FakeDataBase data = new FakeDataBase();
         turnosTemporales = data.AllTurnos();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
         for (Turno t : turnosTemporales) {

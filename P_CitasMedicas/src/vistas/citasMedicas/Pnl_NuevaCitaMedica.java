@@ -5,7 +5,7 @@
 package vistas.citasMedicas;
 
 import Data.DatosTemporales;
-import Data.FakeDataBase;
+
 import controladores.CitaMedicaController;
 import controladores.TurnosController;
 import java.awt.event.MouseAdapter;
@@ -17,6 +17,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.*;
 
+import Data.FakeDataBase;
+
+
 
 public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
     private Paciente paciente;
@@ -25,6 +28,8 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
     private ArrayList<Turno>  turnosTemporales;
     private Turno turnoSeleccionadoActual;
     private CitaMedicaController citaMedicaController;
+    private TurnosController turnos;
+    private FakeDataBase data;
 
     
     public Pnl_NuevaCitaMedica() {
@@ -32,11 +37,12 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
         cargarDatosTurnos();
         MauseList();
         citaMedicaController = new CitaMedicaController();
+        turnos = new TurnosController();
+        data = FakeDataBase.getInstancia();
     }
     
     private void cargarDatosTurnos() {
-        TurnosController turnos = new TurnosController();
-        FakeDataBase data = new FakeDataBase();
+        
         turnosTemporales = data.AllTurnos();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
         for (Turno t : turnosTemporales) {
@@ -221,6 +227,7 @@ public class Pnl_NuevaCitaMedica extends javax.swing.JPanel {
         String descripcion = txta_descripcion.getText();
         Turno turno = turnoSeleccionadoActual;
         CitaMedica citaMedica = new CitaMedica(paciente,medico,descripcion,turno);
+        
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private void MauseList(){

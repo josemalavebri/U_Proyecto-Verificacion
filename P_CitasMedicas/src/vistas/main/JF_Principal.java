@@ -99,7 +99,6 @@ public class JF_Principal extends javax.swing.JFrame {
         pnl_principal.revalidate();
         pnl_principal.repaint();
         setVisible(true);
-
     }//GEN-LAST:event_btn_citasMedicasActionPerformed
 
     private void btn_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pacienteActionPerformed

@@ -6,6 +6,7 @@ package Data;
 
 import java.util.ArrayList;
 import modelos.CitaMedica;
+import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
 
@@ -13,14 +14,31 @@ import modelos.Turno;
 public class FakeDataBase {
     
     private static FakeDataBase instancia;
-    private ArrayList<CitaMedica> dataCitasMedicas = new ArrayList();
-    private ArrayList<Turno> dataTurnos = new ArrayList();
-    private DatosTemporales datosTemporales = new DatosTemporales();
-    private ArrayList<Paciente> dataPaciente = new ArrayList();
-
-    public FakeDataBase() {
+    private ArrayList<CitaMedica> dataCitasMedicas;
+    private ArrayList<Turno> dataTurnos ;
+    private ArrayList<Paciente> dataPaciente;
+    private ArrayList<Medico> dataMedico;
+    private DatosTemporales datosTemporales;
+    
+    private FakeDataBase() {
+        datosTemporales = new DatosTemporales();
         this.dataTurnos = datosTemporales.CrearTurnosTemporales();
         this.dataPaciente = datosTemporales.CrearPacienteTemporales();
+        this.dataMedico = datosTemporales.CrearMedicosTemporales();
+        crearCitasTemporales();
+    }
+    
+    private void crearCitasTemporales(){
+        dataCitasMedicas = new ArrayList();
+        for(int i=0; i>=10; i++){
+            CitaMedica citaMedica = new CitaMedica();
+            citaMedica.setId(i+1);
+            citaMedica.setMedico(dataMedico.get(1));
+            citaMedica.setPaciente(dataPaciente.get(i));
+            citaMedica.setTurno(dataTurnos.get(i));
+            citaMedica.setDescripcion("cita medica falsa");
+            dataCitasMedicas.add(citaMedica);
+        }
     }
     
     public static synchronized FakeDataBase getInstancia() {
@@ -31,24 +49,17 @@ public class FakeDataBase {
   
     }
     
-    //------------- Metodos para CITA MEDICA -------------
     public ArrayList<CitaMedica> AllCitasMedicas(){
          return dataCitasMedicas;
     }
     
     public boolean RemoveCitaMedica(int indice){
-        if(dataCitasMedicas.remove(indice)!= null){
-            return true;
-        }
-        return false;
+        return dataCitasMedicas.remove(indice)!= null;
     }
     
     public boolean UpdateCitaMedica(CitaMedica citaMedica){
         int id = citaMedica.getId();
-        if(dataCitasMedicas.set( (id-1), citaMedica)!=null){
-            return true;
-        }
-        return false;
+        return dataCitasMedicas.set( (id-1), citaMedica)!=null;
     }
     
     public boolean AddDataCitaMedica(CitaMedica citaMedica){
