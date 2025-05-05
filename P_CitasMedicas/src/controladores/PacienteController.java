@@ -22,11 +22,9 @@ public class PacienteController {
     
     public ArrayList<Paciente> GetPacientes(){
         try{
-            ArrayList<Paciente> pacientes = dataBase.AllPacientes();
-            return pacientes;
+            return dataBase.AllPacientes();
         }catch(Exception ex){
-            System.out.println(ex);
-            return null;
+            return new ArrayList<>();
         }
     }
     
@@ -56,6 +54,19 @@ public class PacienteController {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    public boolean SearchId(int id){
+        try {
+            dataBase.BuscarPacienteId(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public Paciente ObtenerPacienteId(int id){
+        return dataBase.BuscarPacienteId(id);
     }
     
 }

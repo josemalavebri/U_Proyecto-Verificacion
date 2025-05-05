@@ -110,15 +110,18 @@ public class FakeDataBase {
         for (int i = 0; i < dataPaciente.size(); i++) {
             if (dataPaciente.get(i).getId() == idPaciente) {
                 dataPaciente.remove(i);
-
-                // Actualizar todos los IDs
-                for (int j = 0; j < dataPaciente.size(); j++) {
-                    dataPaciente.get(j).setId(j + 1);
-                }
-                return true;
             }
         }
         return false;
+    }
+    
+    public Paciente BuscarPacienteId(int id){
+        for (Paciente pacienteTemporal : dataPaciente) {
+            if(id == pacienteTemporal.getId()){
+                return pacienteTemporal;
+            }
+        }
+        return null;
     }
    
 }
