@@ -6,7 +6,6 @@ package vistas.main;
 
 import java.awt.BorderLayout;
 import vistas.citasMedicas.Pnl_CitaMedica;
-import vistas.citasMedicas.Pnl_NuevaCitaMedica;
 import vistas.paciente.Pnl_GestorPaciente;
 
 /**
@@ -142,7 +141,10 @@ public class JF_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JF_Principal().setVisible(true);
+            JF_Principal frame = new JF_Principal();
+            frame.setVisible(true);
+            // Centrar la ventana
+            frame.setLocationRelativeTo(null);
             }
         });
     }

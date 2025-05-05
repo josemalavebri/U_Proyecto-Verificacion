@@ -55,8 +55,9 @@ public class CitaMedicaController {
     }
     
     
-    public boolean removeCitaMedica(int indice){
-       return dataBase.RemoveCitaMedica(indice);
+    public boolean removeCitaMedica(int id){
+       return dataBase.RemoveCitaMedica(id);
+       
     }
     
     

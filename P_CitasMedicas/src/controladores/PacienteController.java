@@ -22,11 +22,10 @@ public class PacienteController {
     
     public ArrayList<Paciente> GetPacientes(){
         try{
-            dataBase.AllPacientes();
-            return new ArrayList<Paciente>();
+            ArrayList<Paciente> pacientes = dataBase.AllPacientes();
+            return pacientes;
         }catch(Exception ex){
             System.out.println(ex);
-        }finally{
             return null;
         }
     }

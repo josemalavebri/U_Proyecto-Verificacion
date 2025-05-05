@@ -39,20 +39,6 @@ public class FakeDataBase {
             citaMedica.setDescripcion("cita medica falsa");
             dataCitasMedicas.add(citaMedica);
         }
-        int contador = 0;
-        
-        while(contador>=10){
-            CitaMedica citaMedica = new CitaMedica();
-            citaMedica.setId(contador+1);
-            citaMedica.setMedico(dataMedico.get(1));
-            citaMedica.setPaciente(dataPaciente.get(contador));
-            citaMedica.setTurno(dataTurnos.get(contador));
-            citaMedica.setDescripcion("cita medica falsa");
-            dataCitasMedicas.add(citaMedica);
-            contador++;
-        }
-        
-        
     }
     
     public static synchronized FakeDataBase getInstancia() {
@@ -67,8 +53,15 @@ public class FakeDataBase {
          return dataCitasMedicas;
     }
     
-    public boolean RemoveCitaMedica(int indice){
-        return dataCitasMedicas.remove(indice)!= null;
+    public boolean RemoveCitaMedica(int id){
+        
+        for(CitaMedica citaMedica : dataCitasMedicas){
+            if(citaMedica.getId() == id){
+               return dataCitasMedicas.remove(citaMedica);
+            }
+            
+        }
+        return false;
     }
     
     public boolean UpdateCitaMedica(CitaMedica citaMedica){
