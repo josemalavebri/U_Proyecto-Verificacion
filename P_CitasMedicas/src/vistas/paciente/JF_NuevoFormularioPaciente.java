@@ -183,9 +183,9 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
     
     private Paciente obtenerDatos(){
         String cedula = paciente.getCedula();
+        int edad = paciente.getEdad();
         String nombre = paciente.getNombre();
         String apellido = paciente.getApellido();
-        int edad = paciente.getEdad();
         String correo = paciente.getCorreo();
         String telefono = paciente.getTelefono();
         

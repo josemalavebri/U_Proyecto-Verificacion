@@ -49,9 +49,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         cargarDatosTurnos();
         cargarDatosMedicos();
         cargarDatosPacientes();
-
-        verificador = new Verificador();
-        turnos = new TurnosController();
     }
     
     private void instanciarRecursos(){
@@ -59,8 +56,9 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         pacienteController = new PacienteController();
         citaMedicaController = new CitaMedicaController();
         turnosController = new TurnosController();
+        verificador = new Verificador();
+        turnos = new TurnosController();
         MauseList();
-
     }
     
     private void cargarDatosMedicos(){
@@ -158,10 +156,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(75, 75, 75)
-                                .addComponent(cbx_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -173,7 +168,9 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cbx_medicos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cbx_paciente, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(btn_resetear, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
@@ -247,25 +244,21 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private boolean verificarObjetos(){
-              
         if( !VerificarComboBox(cbx_medicos)){
             JOptionPane.showMessageDialog(null, "Campo Medico Vacio o no valido");
             return false;
         }
-        
         if(!VerificarComboBox(cbx_paciente)){
             JOptionPane.showMessageDialog(null, "Campo Paciente Vacio o no valido");
             return false;
         }
-        
         if(!verificador.verificar(txta_descripcion.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA)){
             JOptionPane.showMessageDialog(null, "Descripcion no valida");
             return false;
         }
-        
         return true;
-        
     }
+    
     private boolean VerificarComboBox(JComboBox<String> combo){
         return verificador.verificar(combo.getSelectedItem(), TipoValidacion.CADENA_TEXTO_VALIDA,TipoValidacion.NO_NULO);
     }

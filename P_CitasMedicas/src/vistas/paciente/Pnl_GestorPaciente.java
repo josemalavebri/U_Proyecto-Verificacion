@@ -180,8 +180,10 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     public void TablaPacienteLlenado(){
+        
         FakeDataBase dataBase = FakeDataBase.getInstancia();
         ArrayList<Paciente> listaPaciente = dataBase.AllPacientes();
+        
         String[] campos = {"id","cedula","nombre", "apellido"};
         DefaultTableModel modelo = CrearColumnasModeloPersonalizado(listaPaciente.get(1), campos);
         
@@ -204,11 +206,10 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                     
                     String idTexto = tb_paciente.getValueAt(filaSeleccionada, 0).toString(); // columna 0 = ID
                     int idPaciente = Integer.parseInt(idTexto);
-
+                    
                         JF_NuevoFormularioPaciente formularioModificar = new JF_NuevoFormularioPaciente(Pnl_GestorPaciente.this);
 
                         Paciente paciente = pacienteController.ObtenerPacienteId(idPaciente);
-                        
                         String cedula = paciente.getCedula();
                         String nombre = paciente.getNombre();
                         String apellido = paciente.getApellido();

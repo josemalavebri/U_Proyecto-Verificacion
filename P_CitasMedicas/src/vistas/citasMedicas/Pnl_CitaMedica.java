@@ -46,10 +46,12 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         modeloTabla.addColumn("Modificar");
         modeloTabla.addColumn("Eliminar");
     }
+    
     public void asignarEventoEliminar(ActionListener eliminarAction){
         /*tb_citasMedicas.getColumn("Modificar").setCellRenderer(new ButtonRenderer());
         tb_citasMedicas.getColumn("Modificar").setCellEditor(new ButtonEditor(new JCheckBox(), "Modificar", modificarAction));
         */
+        
         tb_citasMedicas.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
         tb_citasMedicas.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), "Eliminar", eliminarAction));
   
@@ -62,7 +64,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }
     
     private ActionListener crearEventoEliminar(){
-        
         
         ActionListener eventoEliminar = new ActionListener() {
             @Override
