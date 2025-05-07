@@ -229,7 +229,6 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
             pacienteController.PostPaciente(paciente);
 
             panelPadre.TablaPacienteLlenado();
-            
             this.dispose();
 
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");

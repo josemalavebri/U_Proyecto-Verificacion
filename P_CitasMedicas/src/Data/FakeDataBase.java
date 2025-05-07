@@ -6,6 +6,7 @@ package Data;
 
 import java.util.ArrayList;
 import modelos.CitaMedica;
+import modelos.Factura;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
@@ -19,12 +20,14 @@ public class FakeDataBase {
     private ArrayList<Paciente> dataPaciente;
     private ArrayList<Medico> dataMedico;
     private DatosTemporales datosTemporales;
+    private ArrayList<Factura> dataFactura;
     
     private FakeDataBase() {
         datosTemporales = new DatosTemporales();
         this.dataTurnos = datosTemporales.CrearTurnosTemporales();
         this.dataPaciente = datosTemporales.CrearPacienteTemporales();
         this.dataMedico = datosTemporales.CrearMedicosTemporales();
+        this.dataFactura = new ArrayList<>();
         crearCitasTemporales();
     }
     
@@ -46,11 +49,22 @@ public class FakeDataBase {
             instancia = new FakeDataBase();
         }
         return instancia;
-  
     }
     
     public ArrayList<CitaMedica> AllCitasMedicas(){
          return dataCitasMedicas;
+    }
+    
+    public boolean AddDataCitaMedica(CitaMedica citaMedica){
+         int idUltimaCita = 0;
+        for(int i = 0; i < dataTurnos.size(); i++){
+            if(i==dataTurnos.size() -1){
+                idUltimaCita = dataTurnos.get(i).getId();
+            }
+        }
+        citaMedica.setId(idUltimaCita);
+        dataCitasMedicas.add(citaMedica);
+        return true;
     }
     
     public boolean RemoveCitaMedica(int id){
@@ -69,22 +83,41 @@ public class FakeDataBase {
         return dataCitasMedicas.set( (id-1), citaMedica)!=null;
     }
     
-    public boolean AddDataCitaMedica(CitaMedica citaMedica){
-        int idCitaMedica = dataCitasMedicas.size()+1;
-        citaMedica.setId(idCitaMedica);
-        dataCitasMedicas.add(citaMedica);
-        return true;
-    }
     
     //Metodos para Turno
     public ArrayList<Turno> AllTurnos(){
         return dataTurnos;
     }
     
-    public boolean EnviarTurno(Turno turno){
+    public boolean addTurno(Turno turno){
+        int idUltimoTurno = 0;
+        for(int i = 0; i < dataTurnos.size(); i++){
+            if(i==dataTurnos.size() -1){
+                idUltimoTurno = dataTurnos.get(i).getId();
+            }
+        }
+        turno.setId(idUltimoTurno);
         dataTurnos.add(turno);
         return true;
     }
+    
+     public boolean UpdateTurno(Paciente paciente){
+        int idPaciente = paciente.getId();
+        if(dataPaciente.set(idPaciente, paciente)!= null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean DeleteTurno(int idPaciente) {
+        for (int i = 0; i < dataPaciente.size(); i++) {
+            if (dataPaciente.get(i).getId() == idPaciente) {
+                dataPaciente.remove(i);
+            }
+        }
+        return false;
+    }
+
     
     //----------------Metodos para paciente
     public ArrayList<Paciente> AllPacientes(){
@@ -97,6 +130,8 @@ public class FakeDataBase {
         dataPaciente.add(paciente);
         return true;
     }
+    
+    
     
     public boolean UpdatePaciente(Paciente paciente){
         int idPaciente = paciente.getId();
@@ -122,6 +157,40 @@ public class FakeDataBase {
             }
         }
         return null;
+    }
+    
+    //Metodos para facturas
+     public ArrayList<Factura> allFacturas(){
+        return dataFactura;
+    }
+    
+    public boolean addFactura(Factura factura){
+        int idUltimoTurno = 0;
+        for(int i = 0; i < dataFactura.size(); i++){
+            if(i==dataFactura.size() -1){
+                idUltimoTurno = dataFactura.get(i).getId();
+            }
+        }
+        factura.setId(idUltimoTurno);
+        dataFactura.add(factura);
+        return true;
+    }
+    
+     public boolean updateFactura(Factura factura){
+        int idFactura = factura.getId();
+        if(dataFactura.set(idFactura, factura)!= null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean deleteFactura(int idFactura) {
+        for (int i = 0; i < dataFactura.size(); i++) {
+            if (dataFactura.get(i).getId() == idFactura) {
+                dataFactura.remove(i);
+            }
+        }
+        return false;
     }
    
 }

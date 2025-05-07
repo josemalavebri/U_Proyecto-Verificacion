@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistas.citasMedicas;
-
 import Data.FakeDataBase;
 import controladores.CitaMedicaController;
 import controladores.PacienteController;
@@ -49,8 +44,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         cargarDatosTurnos();
         cargarDatosMedicos();
         cargarDatosPacientes();
-    }
-    
+    } 
     private void instanciarRecursos(){
         turnoSeleccionadoActual = new Turno();
         pacienteController = new PacienteController();
@@ -152,7 +146,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +170,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(113, 113, 113)
                                         .addComponent(txt_turnoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_guardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -206,7 +200,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_guardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
+                        .addGap(31, 31, 31)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txt_turnoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,7 +213,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_resetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetearActionPerformed
-
         cbx_paciente.setSelectedIndex(0);
         cbx_medicos.setSelectedIndex(0);
         txta_descripcion.setText("");
@@ -237,6 +230,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
             CitaMedica citaMedica = new CitaMedica(paciente, medico, descripcion, turnoSeleccionadoActual);
             if(citaMedicaController.postCitaMedica(citaMedica)){
                 JOptionPane.showMessageDialog(null, "Cita Medica Guardada con exito");
+                generarFactura(citaMedica);
             }
         } else{
             JOptionPane.showMessageDialog(null, "Verifique los campos");
@@ -244,11 +238,11 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private boolean verificarObjetos(){
-        if( !VerificarComboBox(cbx_medicos)){
+        if( !verificarComboBox(cbx_medicos)){
             JOptionPane.showMessageDialog(null, "Campo Medico Vacio o no valido");
             return false;
         }
-        if(!VerificarComboBox(cbx_paciente)){
+        if(!verificarComboBox(cbx_paciente)){
             JOptionPane.showMessageDialog(null, "Campo Paciente Vacio o no valido");
             return false;
         }
@@ -259,8 +253,12 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         return true;
     }
     
-    private boolean VerificarComboBox(JComboBox<String> combo){
+    private boolean verificarComboBox(JComboBox<String> combo){
         return verificador.verificar(combo.getSelectedItem(), TipoValidacion.CADENA_TEXTO_VALIDA,TipoValidacion.NO_NULO);
+    }
+    
+    private void generarFactura(CitaMedica citaMedica){
+        
     }
     
     private void MauseList(){
@@ -325,10 +323,17 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         });
     }
     
+    public void setCitaMedicaModificar(CitaMedica citaMedica){
+        llenarFormularioCitaMedica(citaMedica);
+    }
+    
+    private void llenarFormularioCitaMedica(CitaMedica citaMedica){
+        cbx_paciente.setSelectedIndex(0);
+        cbx_medicos.setSelectedIndex(0);
+        txta_descripcion.setText(citaMedica.getDescripcion());
+    }
     
     
-    
-     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

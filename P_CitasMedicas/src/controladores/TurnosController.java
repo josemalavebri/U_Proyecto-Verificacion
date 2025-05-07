@@ -1,5 +1,4 @@
 package controladores;
-
 import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.CitaMedica;
@@ -8,7 +7,7 @@ import modelos.Turno;
 public class TurnosController {
 
     private FakeDataBase dataBase;
-            ArrayList<Turno> turnos = new ArrayList<>();
+    private ArrayList<Turno> turnos = new ArrayList<>();
 
     public TurnosController(){
         dataBase = FakeDataBase.getInstancia();

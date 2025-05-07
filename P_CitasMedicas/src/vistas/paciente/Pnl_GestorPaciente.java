@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelos.Paciente;
 import utilidades.ButtonEditor;
@@ -168,17 +169,25 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         
         DefaultTableModel modelo = (DefaultTableModel) tb_paciente.getModel();
         modelo.setRowCount(0);
+
+        Paciente paciente = pacienteBuscado(campoCedulaNombre);
+        //Resto de la ejecucion
         
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    
+    private Paciente pacienteBuscado(String campoCedulaNombre){
         for (Paciente pacienteTemporal : datosPaciente){
             boolean isCedula = campoCedulaNombre.equals(pacienteTemporal.getCedula());
             boolean isNombre = campoCedulaNombre.equals(pacienteTemporal.getNombre());
             boolean isApellido = campoCedulaNombre.equals(pacienteTemporal.getApellido());
             if(isCedula||isNombre||isApellido){
-                
+                return paciente;
             }
         }
-    }//GEN-LAST:event_btn_buscarActionPerformed
-
+        return new Paciente();
+    }
+    
     public void TablaPacienteLlenado(){
         
         FakeDataBase dataBase = FakeDataBase.getInstancia();

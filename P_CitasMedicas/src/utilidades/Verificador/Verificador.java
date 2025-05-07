@@ -2,7 +2,7 @@ package utilidades.Verificador;
 
 public class Verificador {
 
-     public boolean verificar(Object valor, TipoValidacion... validaciones) {
+    public boolean verificar(Object valor, TipoValidacion... validaciones) {
         for (TipoValidacion validacion : validaciones) {
             switch (validacion) {
                 case NO_NULO:
@@ -28,7 +28,7 @@ public class Verificador {
     private boolean esNumerico(Object valor) {
         if (valor == null) return false;
         try {
-            Double.parseDouble(valor.toString());
+            Double.valueOf(valor.toString());
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -40,5 +40,6 @@ public class Verificador {
         String texto = valor.toString().trim();
         return !texto.isEmpty();
     }
+    
     
 }
