@@ -7,13 +7,19 @@ public class Medico {
     private String nombre;
     private String apellido;
     private String especialidad;
+    private int telefono;
+    private int cedula;
+    private String genero;
     
     
-    public Medico(int id, String nombre, String apellido, String especialidad) {
+    public Medico(int id, int cedula, String nombre, String apellido, String especialidad, String genero, int telefono  ) {
         this.id = id;
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.especialidad = especialidad;
+        this.genero = genero;
+        this.telefono = telefono;
     }
     
     public int getId() {
@@ -48,11 +54,32 @@ public class Medico {
         this.especialidad = especialidad;
     }
 
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     @Override
     public String toString() {
         return nombre + " "+apellido;
     }
-    
-     
-    
 }
