@@ -211,17 +211,17 @@ public class JF_Factura extends javax.swing.JFrame {
     
     
     public void setCitaMedica(CitaMedica citaMedica){
+        setearTextosFormulario(citaMedica);
+        Factura facturaCreada = crearObjetoFactura(citaMedica);
+        guardarFactura(facturaCreada);
+    }
+    
+    private void setearTextosFormulario(CitaMedica citaMedica){
         txtIva.setText("14%");
         txtMedico.setText(citaMedica.getMedico().getNombre()+" "+citaMedica.getMedico().getApellido());
         txtPaciente.setText(citaMedica.getPaciente().getNombre()+" "+citaMedica.getPaciente().getApellido());
         txtSubtotal.setText("200$");
         txtTurno.setText(citaMedica.getTurno().getFecha()+" "+citaMedica.getTurno().getHora());
-       
-        g
-        
-        Factura facturaCreada = crearObjetoFactura(citaMedica);
-        guardarFactura(facturaCreada);
-               
     }
     
     private void guardarFactura(Factura factura){
@@ -229,7 +229,6 @@ public class JF_Factura extends javax.swing.JFrame {
     }
     
     private Factura crearObjetoFactura(CitaMedica citaMedica){
-        
         Factura factura = new Factura();
         factura.setCitaMedica(citaMedica);
         factura.setTotalPagar(200);

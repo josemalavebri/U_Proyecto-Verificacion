@@ -29,9 +29,9 @@ public class DatosTemporales {
        
         ArrayList<Paciente> listaPacientes = new ArrayList<>();
         listaPacientes.add(new Paciente(1, 00203405,  "Ana", "Pérez", 28, "ana.perez@mail.com", 09934567));
-        listaPacientes.add(new Paciente(2, 0203040506, "Luis", "Gómez", 35, "luis.gomez@mail.com", 0987654321));
-        listaPacientes.add(new Paciente(3, 0304050607, "Marta", "Ramírez", 22, "marta.r@mail.com", 0971122334));
-        listaPacientes.add(new Paciente(4, 0405060708, "Carlos", "López", 40, "carlos.l@mail.com", 0965566778));
+        listaPacientes.add(new Paciente(2, 0203040506, "Luis", "Gómez", 35, "luis.gomez@mail.com", 098654321));
+        listaPacientes.add(new Paciente(3, 0304050607, "Marta", "Ramírez", 22, "marta.r@mail.com", 097122334));
+        listaPacientes.add(new Paciente(4, 0405060708, "Carlos", "López", 40, "carlos.l@mail.com", 096556678));
         listaPacientes.add(new Paciente(5, 0506070809, "Lucía", "Fernández", 30, "lucia.f@mail.com", "0999988776"));
         listaPacientes.add(new Paciente(6, 0607080910, "Pedro", "Suárez", 45, "pedro.suarez@mail.com", "0954433221"));
         listaPacientes.add(new Paciente(7, 0708091011, "Elena", "Cruz", 27, "elena.cruz@mail.com", "0945678901"));
@@ -43,13 +43,13 @@ public class DatosTemporales {
     
     public ArrayList<Medico> CrearMedicosTemporales(){
         ArrayList<Medico> listaMedicos = new ArrayList<>();
-        listaMedicos.add(new Medico(1, 123456789, "Carlos", "López", "Cardiología", "Masculino", 987654321));
-        listaMedicos.add(new Medico(2, 987654321, "Ana", "Gómez", "Pediatría", "Femenino", 123456789));
-        listaMedicos.add(new Medico(3, 112233445, "Javier", "Pérez", "Neurología", "Masculino", 555123456));
-        listaMedicos.add(new Medico(5, 445566778, "Mateo", "Díaz", "Traumatología", "Masculino", 111222333));
-        listaMedicos.add(new Medico(4, 667788990, "Sofía", "Vargas", "Ginecología", "Femenino", 999888777));
-        listaMedicos.add(new Medico(6, 223344556, "Isabela", "Ruiz", "Dermatología", "Femenino", 444555666));
-        listaMedicos.add(new Medico(7, 778899001, "Sebastián", "Flores", "Oftalmología", "Masculino", 666777888));
+        listaMedicos.add(new Medico(1, 12345689, 20,"Carlos", "López", "Cardiología", "Masculino", 9876521));
+        listaMedicos.add(new Medico(2, 987654321, 20,"Ana", "Gómez", "Pediatría", "Femenino", 123456789));
+        listaMedicos.add(new Medico(3, 112233445, 20,"Javier", "Pérez", "Neurología", "Masculino", 555123456));
+        listaMedicos.add(new Medico(5, 445566778, 20,"Mateo", "Díaz", "Traumatología", "Masculino", 111222333));
+        listaMedicos.add(new Medico(4, 667788990, 20,"Sofía", "Vargas", "Ginecología", "Femenino", 999888777));
+        listaMedicos.add(new Medico(6, 223344556, 20,"Isabela", "Ruiz", "Dermatología", "Femenino", 444555666));
+        listaMedicos.add(new Medico(7, 778899001, 20,"Sebastián", "Flores", "Oftalmología", "Masculino", 666777888));
         return listaMedicos;
     }
     
