@@ -11,7 +11,12 @@ public class Persona {
     protected String apellido;
     protected int telefono;
 
-    public Persona(int id, int cedula, int edad,String nombre, String apellido, int telefono) {
+    public Persona(int id, int cedula, int edad, String nombre, String apellido, int telefono) {
+        this.id = id;
+        this.cedula = cedula;
+        this.edad = edad;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.telefono = telefono;
     }
     

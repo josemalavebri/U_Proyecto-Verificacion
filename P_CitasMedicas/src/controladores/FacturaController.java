@@ -12,12 +12,12 @@ public class FacturaController implements GeneralController<Factura>{
     public FacturaController(){
         dataBase = FakeDataBase.getInstancia();
     }
- 
+
     @Override
     public ArrayList<Factura> get() {
-         try{
+        try{
             return dataBase.allFacturas();
-        }catch(Exception ex){
+        } catch(Exception ex){
             return new ArrayList<>();
         }
     }
