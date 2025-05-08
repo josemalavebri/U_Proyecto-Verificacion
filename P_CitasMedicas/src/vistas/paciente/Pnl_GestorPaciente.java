@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Paciente;
+import utilidades.AccesoController;
 import utilidades.ButtonEditor;
 import utilidades.ButtonRenderer;
 
@@ -16,8 +17,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     
     private static final String MODIFICAR = "Modificar";
     private static final String ELIMINAR = "Eliminar";
-    private PacienteController pacienteController;
-    private Paciente paciente;
+    private AccesoController accesoController;
     private ArrayList<Paciente> datosPaciente;
     private JF_NuevoFormularioPaciente formularioPaciente;
     
@@ -131,7 +131,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializarDatos(){
-        pacienteController = new PacienteController();
+        accesoController = new AccesoController();
         datosPaciente = new ArrayList<>();
     }
     
@@ -140,7 +140,6 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         formularioPaciente.setLocationRelativeTo(null);
         formularioPaciente.setVisible(true);
         return formularioPaciente;
-        
     }
     
     private void btn_resetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetearActionPerformed
@@ -150,14 +149,13 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_resetearActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
-        // TODO add your handling code here:
         abrirFormulario();
+        
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        // TODO add your handling code here:
         String campoCedulaTexto = txtCedula.getText().toLowerCase().trim();
-        datosPaciente = pacienteController.GetPacientes();
+        datosPaciente = accesoController.pacienteController().get();
         DefaultTableModel modelo = (DefaultTableModel) tb_paciente.getModel();
         modelo.setRowCount(0);
         for (Paciente pacienteTemporal : datosPaciente){
@@ -178,7 +176,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     public void TablaPacienteLlenado(){
-        datosPaciente = pacienteController.GetPacientes();
+        datosPaciente = accesoController.pacienteController().get();
         String[] campos = {"id","cedula","nombre", "apellido"};
         DefaultTableModel modelo = CrearColumnasModeloPersonalizado(datosPaciente.get(1), campos);
         modelo.addColumn(MODIFICAR);
@@ -196,6 +194,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         tb_paciente.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), ELIMINAR, eventoEliminar()));
     }
     
+    
     private ActionListener eventoEliminar(){
         ActionListener eliminarAction = new ActionListener() {
             @Override
@@ -204,7 +203,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
                 int idTablaPaciente = (int) tb_paciente.getValueAt(filaSeleccionada, 0);
 
-                boolean eliminado = pacienteController.DeletePaciente(idTablaPaciente);
+                boolean eliminado = accesoController.pacienteController().delete(idTablaPaciente);
                 
                 if(eliminado){
                     JOptionPane.showMessageDialog(null, "Se eliminó el paciente con ID: " + idTablaPaciente);
@@ -223,7 +222,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                 if (filaSeleccionada >= 0) {
                     String idTexto = tb_paciente.getValueAt(filaSeleccionada, 0).toString(); // columna 0 = ID
                     int idPaciente = Integer.parseInt(idTexto);
-                    Paciente paciente = pacienteController.ObtenerPacienteId(idPaciente);
+                    Paciente paciente = accesoController.ObtenerPacienteId(idPaciente);
                     int cedula = paciente.getCedula();
                     String nombre = paciente.getNombre();
                     String apellido = paciente.getApellido();
@@ -233,7 +232,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                     paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
                     JF_NuevoFormularioPaciente formularioModificar = abrirFormulario();
                     formularioModificar.setPaciente(paciente);
-                    pacienteController.PutPaciente(paciente);
+                    accesoController.pacienteController().put(paciente);
                     TablaPacienteLlenado();
                 }
             }

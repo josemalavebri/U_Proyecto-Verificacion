@@ -12,52 +12,48 @@ import modelos.CitaMedica;
  *
  * @author josem
  */
-public class CitaMedicaController {
+public class CitaMedicaController implements  GeneralController<CitaMedica>{
     private FakeDataBase dataBase;
-    ArrayList<CitaMedica> citasMedicas ;
 
     public CitaMedicaController(){
         dataBase = FakeDataBase.getInstancia();
-        citasMedicas = new ArrayList<>();
     }
 
-    
-    public ArrayList<CitaMedica> getCitasMedicas(){
+    @Override
+    public ArrayList<CitaMedica> get() {
         try {
-            citasMedicas = dataBase.AllCitasMedicas();
-            return citasMedicas;
+            return dataBase.AllCitasMedicas();
         } catch(Exception ex){
             System.out.print(ex);
             return null;
-        } 
+        }     
     }
-    
-    public boolean postCitaMedica(CitaMedica citaMedica){
+
+    @Override
+    public boolean post(CitaMedica objeto) {
         try {
-            dataBase.AddDataCitaMedica(citaMedica);
+            dataBase.AddDataCitaMedica(objeto);
             return true;
         } catch(Exception ex){
             System.out.print(ex);
             return false;
         }
-        
     }
-    
-    public boolean putCitaMedica(CitaMedica citaMedica){
+
+    @Override
+    public boolean put(CitaMedica objeto) {
         try {
-            dataBase.UpdateCitaMedica(citaMedica);
+            dataBase.UpdateCitaMedica(objeto);
             return true;
         } catch(Exception ex){
             System.out.print(ex);
             return false;
-        }
-        
+        }    
     }
-    
-    
-    public boolean removeCitaMedica(int id){
+
+    @Override
+    public boolean delete(int id) {
        return dataBase.RemoveCitaMedica(id);
-       
     }
     
     

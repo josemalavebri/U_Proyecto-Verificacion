@@ -7,7 +7,6 @@ import modelos.Turno;
 public class TurnoController implements GeneralController<Turno> {
 
     private FakeDataBase dataBase;
-    private ArrayList<Turno> turnos = new ArrayList<>();
 
     public TurnoController(){
         dataBase = FakeDataBase.getInstancia();
@@ -16,8 +15,7 @@ public class TurnoController implements GeneralController<Turno> {
     @Override
     public ArrayList<Turno> get() {
         try {
-            turnos = dataBase.AllTurnos();
-            return turnos;
+            return dataBase.AllTurnos();
         } catch(Exception ex){
             System.out.print(ex);
             return null;

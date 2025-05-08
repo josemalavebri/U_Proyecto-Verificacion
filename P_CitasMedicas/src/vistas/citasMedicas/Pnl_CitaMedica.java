@@ -1,7 +1,6 @@
 package vistas.citasMedicas;
 
 import controladores.CitaMedicaController;
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,18 +10,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.CitaMedica;
+import utilidades.AccesoController;
 import utilidades.ButtonEditor;
 import utilidades.ButtonRenderer;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
 
-    private CitaMedicaController citaMedicaController;
+    private AccesoController accesoController;
     private ArrayList<CitaMedica> citasMedicas ;
     private DefaultTableModel modeloTabla;
 
     public Pnl_CitaMedica() {
         initComponents();
-        citaMedicaController = new CitaMedicaController();
+        accesoController = new AccesoController();
         crearModeloTablaCitaMedica();
         cargarDatosCitaMedica();
         asignarEventosBotones();
@@ -61,7 +61,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tb_citasMedicas.getSelectedRow();
                 int idTablaCitaMedica = (int) tb_citasMedicas.getValueAt(filaSeleccionada, 0);
-                boolean eliminado = citaMedicaController.removeCitaMedica(idTablaCitaMedica);
+                boolean eliminado = accesoController.citaMedicaController().delete(idTablaCitaMedica);
                 if(eliminado){
                     JOptionPane.showMessageDialog(null, "Se eliminó el paciente con ID: " + idTablaCitaMedica);
                     cargarDatosCitaMedica();
@@ -164,7 +164,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private void cargarDatosCitaMedica() {
         DefaultTableModel modelo = (DefaultTableModel) tb_citasMedicas.getModel();
         modelo.setRowCount(0);
-        citasMedicas = citaMedicaController.getCitasMedicas();
+        citasMedicas = accesoController.citaMedicaController().get();
         for (CitaMedica c : citasMedicas) {
             Object[] fila = {c.getId(), c.getPaciente().getNombre(), c.getMedico().getNombre(),c.getTurno().getFecha()};
             

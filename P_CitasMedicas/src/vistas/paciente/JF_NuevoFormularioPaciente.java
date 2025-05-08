@@ -6,13 +6,14 @@ import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import utilidades.AccesoController;
 
 public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
     private Pnl_GestorPaciente panelPadre;
     private Verificador verificador;
     private Paciente paciente;
-    private PacienteController pacienteController;
+    private AccesoController accesoController;
     
     public JF_NuevoFormularioPaciente(Pnl_GestorPaciente panelPadre) {
         this.panelPadre = panelPadre;
@@ -25,7 +26,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
     private void inicializarDatos(){
         verificador = new Verificador();
-        pacienteController = new PacienteController();
+        accesoController = new AccesoController();
 
     }
     
@@ -206,7 +207,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
         int telefono = Integer.parseInt(telefonoTexto);
         if(validarEntrada()){
             Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
-            if(pacienteController.PostPaciente(paciente)){
+            if(accesoController.pacienteController().post(paciente)){
                 panelPadre.TablaPacienteLlenado();
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");

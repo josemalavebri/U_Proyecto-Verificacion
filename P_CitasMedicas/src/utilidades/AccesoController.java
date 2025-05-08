@@ -6,13 +6,18 @@ import controladores.*;
 public class AccesoController {
     
     private FacturaController facturaController;
-    private PacienteController medicoController;
+    private PacienteController pacienteController;
     private TurnoController turnosController;
     private CitaMedicaController citaMedicaController;
+    private MedicoController medicoController;
     
     
     public AccesoController(){
         facturaController = new FacturaController();
+        pacienteController = new PacienteController();
+        turnosController = new TurnoController();
+        citaMedicaController = new CitaMedicaController();
+        medicoController = new MedicoController();
     }
     
     public FacturaController facturaController(){
@@ -25,6 +30,14 @@ public class AccesoController {
     
     public CitaMedicaController citaMedicaController(){
         return citaMedicaController;
+    }
+    
+    public PacienteController pacienteController(){
+        return pacienteController;
+    }
+    
+    public MedicoController medicoController(){
+        return medicoController;
     }
     
     

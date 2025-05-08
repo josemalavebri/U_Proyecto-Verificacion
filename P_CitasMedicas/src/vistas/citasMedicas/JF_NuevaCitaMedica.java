@@ -15,6 +15,7 @@ import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
+import utilidades.AccesoController;
 import utilidades.TableColumns;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
@@ -29,10 +30,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     private Turno turnoSeleccionadoActual;
     private Verificador verificador;
     
-    private TurnoController turnos;
-    private PacienteController pacienteController;
-    private CitaMedicaController citaMedicaController;
-    private TurnoController turnosController;
+    private AccesoController accesoController;
 
     private ArrayList<Paciente> dataPacientes;
     private ArrayList<Medico> dataMedicos;
@@ -47,18 +45,15 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         cargarDatosPacientes();
     } 
     private void instanciarRecursos(){
+        accesoController = new AccesoController();
         turnoSeleccionadoActual = new Turno();
-        pacienteController = new PacienteController();
-        citaMedicaController = new CitaMedicaController();
-        turnosController = new TurnoController();
         verificador = new Verificador();
-        turnos = new TurnoController();
         MauseList();
     }
     
     private void cargarDatosMedicos(){
         dataMedicos = new ArrayList<>();
-        Medico medico = new Medico(1,1212,25,"jose","briones","psicologia");
+        Medico medico = new Medico(1,1212,25,"jose","briones","psicologia","masculino",1);
         dataMedicos.add(medico);
         
         String nombresMedico = medico.getNombre()+" "+medico.getApellido();
@@ -69,7 +64,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     
     private void cargarDatosPacientes(){
         cbx_paciente.removeAllItems();
-        dataPacientes = pacienteController.GetPacientes();
+        dataPacientes = accesoController.pacienteController().get();
         for(Paciente paciente : dataPacientes ){
             cbx_paciente.addItem(paciente.toString());
         }
@@ -229,7 +224,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
             String descripcion = txta_descripcion.getText();
             int turnoId = turnoSeleccionadoActual.getId();
             CitaMedica citaMedica = new CitaMedica(paciente, medico, descripcion, turnoSeleccionadoActual);
-            if(citaMedicaController.postCitaMedica(citaMedica)){
+            if(accesoController.citaMedicaController().post(citaMedica)){
                 JOptionPane.showMessageDialog(null, "Cita Medica Guardada con exito");
                 generarFactura(citaMedica);
             }
@@ -285,7 +280,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }
     
     private void cargarDatosTurnos() {
-        turnosTemporales = turnosController.GetTurnos();
+        turnosTemporales = accesoController.turnosController().get();
         DefaultTableModel modeloTabla = TableColumns.CrearColumnasModelo(turnosTemporales.get(1));
         for (Turno t : turnosTemporales) {
             Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};

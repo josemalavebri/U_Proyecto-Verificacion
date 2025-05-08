@@ -13,9 +13,12 @@ public class Medico extends Persona{
         this.genero = genero;
         this.telefono = telefono;
     }
-    
-    
 
+    public String getEspecialidad() {
+        return especialidad;
+    }
+    
+    
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
@@ -23,19 +26,9 @@ public class Medico extends Persona{
     public int getTelefono() {
         return telefono;
     }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
-    public int getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
-    }
-
+    
+  
+   
     public String getGenero() {
         return genero;
     }

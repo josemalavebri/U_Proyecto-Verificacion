@@ -6,6 +6,7 @@ package Data;
 
 import java.util.ArrayList;
 import modelos.CitaMedica;
+import modelos.Factura;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
@@ -18,6 +19,8 @@ public class FakeDataBase {
     private ArrayList<Turno> dataTurnos ;
     private ArrayList<Paciente> dataPaciente;
     private ArrayList<Medico> dataMedico;
+    private ArrayList<Factura> dataFacturas;
+
     private DatosTemporales datosTemporales;
     
     private FakeDataBase() {
@@ -162,5 +165,35 @@ public class FakeDataBase {
         }
         return null;
     }
+    
+    
+    public ArrayList<Factura> allFacturas(){
+        return dataFacturas;
+    }
+    
+    public boolean addFactura(Factura factura){
+        int idPaciente = dataPaciente.size()+1;
+        factura.setId(idPaciente);
+        dataFacturas.add(factura);
+        return true;
+    }
+    
+    public boolean updateFactura(Factura factura){
+        int idfactura = factura.getId();
+        if(dataFacturas.set(idfactura, factura)!= null){
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean deleteFactura(int idFactura) {
+        for (int i = 0; i < dataPaciente.size(); i++) {
+            if (dataFacturas.get(i).getId() == idFactura) {
+                dataFacturas.remove(i);
+            }
+        }
+        return false;
+    }
+    
 }
 
