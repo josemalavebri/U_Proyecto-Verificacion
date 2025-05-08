@@ -1,12 +1,12 @@
 package vistas.paciente;
 
-import controladores.PacienteController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.Paciente;
 import utilidades.AccesoController;
@@ -177,14 +177,23 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
     public void TablaPacienteLlenado(){
         datosPaciente = accesoController.pacienteController().get();
-        String[] campos = {"id","cedula","nombre", "apellido"};
-        DefaultTableModel modelo = CrearColumnasModeloPersonalizado(datosPaciente.get(1), campos);
+
+        //modelo = CrearColumnasModeloPersonalizado(datosPaciente.get(1), campos);
+        //String[] campos = {"Id","Cedula","Nombre", "Apellido"};
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Id");
+        modelo.addColumn("Cedula");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        
         modelo.addColumn(MODIFICAR);
         modelo.addColumn(ELIMINAR);
         for (Paciente p : datosPaciente){
             Object[] fila = {p.getId(), p.getCedula(), p.getNombre(), p.getApellido(), MODIFICAR, ELIMINAR};
             modelo.addRow(fila);
         }
+        
         tb_paciente.setModel(modelo);
         
         tb_paciente.getColumn("Modificar").setCellRenderer(new ButtonRenderer());
@@ -193,7 +202,6 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
         tb_paciente.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
         tb_paciente.getColumn("Eliminar").setCellEditor(new ButtonEditor(new JCheckBox(), ELIMINAR, eventoEliminar()));
     }
-    
     
     private ActionListener eventoEliminar(){
         ActionListener eliminarAction = new ActionListener() {
@@ -221,15 +229,8 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
                 int filaSeleccionada = tb_paciente.getSelectedRow();
                 if (filaSeleccionada >= 0) {
                     String idTexto = tb_paciente.getValueAt(filaSeleccionada, 0).toString(); // columna 0 = ID
-                    int idPaciente = Integer.parseInt(idTexto);
-                    Paciente paciente = accesoController.ObtenerPacienteId(idPaciente);
-                    int cedula = paciente.getCedula();
-                    String nombre = paciente.getNombre();
-                    String apellido = paciente.getApellido();
-                    int edad = paciente.getEdad();
-                    String correo = paciente.getCorreo();
-                    long telefono = paciente.getTelefono();
-                    paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
+                    int id = Integer.parseInt(idTexto);
+                    Paciente paciente = buscarPaciente(id, tb_paciente);
                     JF_NuevoFormularioPaciente formularioModificar = abrirFormulario();
                     formularioModificar.setPaciente(paciente);
                     accesoController.pacienteController().put(paciente);
@@ -238,6 +239,22 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
             }
         };
         return modificarAction;
+    }
+    private Paciente buscarPaciente(int id, JTable tabla){
+        for(Paciente paciente: datosPaciente){
+            if(id == paciente.getId()){
+                String cedulaTexto = tb_paciente.getValueAt(tabla.getSelectedRow(), 1).toString();
+                int cedula = Integer.parseInt(cedulaTexto);
+                String nombre = tb_paciente.getValueAt(tabla.getSelectedRow(), 2).toString();
+                String apellido = tb_paciente.getValueAt(tabla.getSelectedRow(), 3).toString();
+                datosPaciente = accesoController.pacienteController().get();
+                int edad = paciente.getEdad();
+                String correo = paciente.getCorreo();
+                int telefono = paciente.getTelefono();
+                return paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
+            }
+        }
+        return null;
     }
     
     public static DefaultTableModel CrearColumnasModeloPersonalizado(Object objeto, String[] camposDeseados){

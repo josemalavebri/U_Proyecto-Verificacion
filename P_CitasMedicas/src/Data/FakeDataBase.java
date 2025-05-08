@@ -118,14 +118,7 @@ public class FakeDataBase {
         return false;
     }
     
-    public Paciente BuscarPacienteId(int id){
-        for (Paciente pacienteTemporal : dataPaciente) {
-            if(id == pacienteTemporal.getId()){
-                return pacienteTemporal;
-            }
-        }
-        return null;
-    }
+    
    
     
     //------------------ Metodo del Medico
