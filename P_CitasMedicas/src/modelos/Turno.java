@@ -18,7 +18,6 @@ public class Turno {
         this.minuto = minuto;
     }
     
-    
     public Turno(int id, String fecha, String hora, String minuto) {
         this.id = id;
         this.fecha = fecha;

@@ -2,7 +2,7 @@ package vistas.citasMedicas;
 import Data.FakeDataBase;
 import controladores.CitaMedicaController;
 import controladores.PacienteController;
-import controladores.TurnosController;
+import controladores.TurnoController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -29,10 +29,10 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     private Turno turnoSeleccionadoActual;
     private Verificador verificador;
     
-    private TurnosController turnos;
+    private TurnoController turnos;
     private PacienteController pacienteController;
     private CitaMedicaController citaMedicaController;
-    private TurnosController turnosController;
+    private TurnoController turnosController;
 
     private ArrayList<Paciente> dataPacientes;
     private ArrayList<Medico> dataMedicos;
@@ -50,15 +50,15 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
         turnoSeleccionadoActual = new Turno();
         pacienteController = new PacienteController();
         citaMedicaController = new CitaMedicaController();
-        turnosController = new TurnosController();
+        turnosController = new TurnoController();
         verificador = new Verificador();
-        turnos = new TurnosController();
+        turnos = new TurnoController();
         MauseList();
     }
     
     private void cargarDatosMedicos(){
         dataMedicos = new ArrayList<>();
-        Medico medico = new Medico(1,"jose","briones","psicologia");
+        Medico medico = new Medico(1,1212,25,"jose","briones","psicologia");
         dataMedicos.add(medico);
         
         String nombresMedico = medico.getNombre()+" "+medico.getApellido();

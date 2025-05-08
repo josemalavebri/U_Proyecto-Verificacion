@@ -25,31 +25,40 @@ public class DatosTemporales {
     }
     
     
+
     public ArrayList<Paciente> CrearPacienteTemporales() {
         ArrayList<Paciente> listaPacientes = new ArrayList<>();
-            listaPacientes.add(new Paciente(1, 102030405, "Ana", "Pérez", 28, "ana.perez@mail.com", 991234567L));
-            listaPacientes.add(new Paciente(2, 203040506, "Luis", "Gómez", 35, "luis.gomez@mail.com", 987654321L));
-            listaPacientes.add(new Paciente(3, 304050607, "Marta", "Ramírez", 22, "marta.r@mail.com", 971122334L));
-            listaPacientes.add(new Paciente(4, 405060708, "Carlos", "López", 40, "carlos.l@mail.com", 965566778L));
-            listaPacientes.add(new Paciente(5, 506070809, "Lucía", "Fernández", 30, "lucia.f@mail.com", 999988776L));
-            listaPacientes.add(new Paciente(6, 607080910, "Pedro", "Suárez", 45, "pedro.suarez@mail.com", 954433221L));
-            listaPacientes.add(new Paciente(7, 708091011, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901L));
-            listaPacientes.add(new Paciente(8, 809101112, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334L));
-            listaPacientes.add(new Paciente(9, 910111213, "Camila", "Ríos", 29, "camila.rios@mail.com", 979988776L));
-            listaPacientes.add(new Paciente(10, 1011121314, "Andrés", "Navarro", 38, "andres.n@mail.com", 966677889L));
+            listaPacientes.add(new Paciente(1, 102030405, "Ana", "Pérez", 28, "ana.perez@mail.com", 991234567));
+            listaPacientes.add(new Paciente(2, 203040506, "Luis", "Gómez", 35, "luis.gomez@mail.com", 987654321));
+            listaPacientes.add(new Paciente(3, 304050607, "Marta", "Ramírez", 22, "marta.r@mail.com", 971122334));
+            listaPacientes.add(new Paciente(4, 405060708, "Carlos", "López", 40, "carlos.l@mail.com", 965566778));
+            listaPacientes.add(new Paciente(5, 506070809, "Lucía", "Fernández", 30, "lucia.f@mail.com", 999988776));
+            listaPacientes.add(new Paciente(6, 607080910, "Pedro", "Suárez", 45, "pedro.suarez@mail.com", 954433221));
+            listaPacientes.add(new Paciente(7, 708091011, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901));
+            listaPacientes.add(new Paciente(8, 809101112, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334));
+            listaPacientes.add(new Paciente(9, 910111213, "Camila", "Ríos", 29, "camila.rios@mail.com", 979988776));
+            listaPacientes.add(new Paciente(10, 1011121314, "Andrés", "Navarro", 38, "andres.n@mail.com", 966677889));
         return listaPacientes;
+
     }
 
     
     public ArrayList<Medico> CrearMedicosTemporales(){
         ArrayList<Medico> listaMedicos = new ArrayList<>();
-        listaMedicos.add(new Medico(1, "Carlos", "Pérez", "Cardiología"));
-        listaMedicos.add(new Medico(2, "Ana", "Gómez", "Pediatría"));
-        listaMedicos.add(new Medico(3, "Luis", "Martínez", "Neurología"));
+        listaMedicos.add(new Medico(1, 12345689, 20,"Carlos", "López", "Cardiología", "Masculino", 9876521));
+        listaMedicos.add(new Medico(2, 987654321, 20,"Ana", "Gómez", "Pediatría", "Femenino", 123456789));
+        listaMedicos.add(new Medico(3, 112233445, 20,"Javier", "Pérez", "Neurología", "Masculino", 555123456));
+        listaMedicos.add(new Medico(5, 445566778, 20,"Mateo", "Díaz", "Traumatología", "Masculino", 111222333));
+        listaMedicos.add(new Medico(4, 667788990, 20,"Sofía", "Vargas", "Ginecología", "Femenino", 999888777));
+        listaMedicos.add(new Medico(6, 223344556, 20,"Isabela", "Ruiz", "Dermatología", "Femenino", 444555666));
+        listaMedicos.add(new Medico(7, 778899001, 20,"Sebastián", "Flores", "Oftalmología", "Masculino", 666777888));
         return listaMedicos;
     }
     
     
+    
+        
+        
     
     
 }

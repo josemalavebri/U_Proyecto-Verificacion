@@ -6,59 +6,63 @@ package controladores;
 
 import Data.FakeDataBase;
 import java.util.ArrayList;
-import modelos.Paciente;
+import modelos.Medico;
 
 /**
  *
- * @author HP
+ * @author Falquez Steven
  */
-
-public class PacienteController implements GeneralController<Paciente>{
+public class MedicoController {
     
-    private FakeDataBase dataBase;
+      private FakeDataBase dataBase;
     
-    public PacienteController(){
+    public MedicoController(){
         dataBase = FakeDataBase.getInstancia();
     }
     
-    @Override
-    public ArrayList<Paciente> get() {
+    public ArrayList<Medico> GetMedico(){
         try{
-            return dataBase.AllPacientes();
+            return dataBase.AllMedico();
         }catch(Exception ex){
             return new ArrayList<>();
         }
     }
-
-    @Override
-    public boolean post(Paciente objeto) {
+    
+    public boolean PostMedico(Medico medico){
         try {
-            dataBase.AddPaciente(objeto);
+            dataBase.AddMedico(medico);
             return true;
         } catch (Exception e) {
             System.out.print(e);
             return false;
         }
     }
-
-    @Override
-    public boolean put(Paciente objeto) {
+    
+    public boolean PutMedico(Medico medico){
         try {
-            dataBase.UpdatePaciente(objeto);
+            dataBase.UpdateMedico (medico);
             return true;
         } catch (Exception e) {
             return false;
-        }    
-    }
-
-    @Override
-    public boolean delete(int id) {
-        try {
-            dataBase.DeletePaciente(id);
-            return true;
-        } catch (Exception e) {
-              return false;
-        }    
+        }
     }
     
+    public boolean DeleteMedico(int idMedico){
+        try {
+            dataBase.DeleteMedico(idMedico);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean SearchId(int id){
+        try {
+            dataBase.BuscarMedicoId(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }    
 }
+

@@ -8,6 +8,11 @@
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/FakeDataBase.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/JF_NuevaCitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/Pnl_CitaMedica.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Medico.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Persona.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Paciente.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/JF_NuevoFormularioPaciente.java</file>
+            <file>file:/C:/Users/josem/Downloads/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Factura.java</file>
         </group>
     </open-files>
 </project-private>
