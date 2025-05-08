@@ -18,6 +18,7 @@ import modelos.Turno;
 import utilidades.TableColumns;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
+import vista.Factura.JF_Factura;
 
 /**
  *
@@ -258,6 +259,11 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }
     
     private void generarFactura(CitaMedica citaMedica){
+        JF_Factura factura = new JF_Factura();
+        
+        factura.setCitaMedica(citaMedica);
+        factura.setLocationRelativeTo(null);
+        factura.setVisible(true);
         
     }
     

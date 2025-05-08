@@ -85,6 +85,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                             JF_NuevaCitaMedica citaMedicaModificar = new JF_NuevaCitaMedica();
                             citaMedicaModificar.setCitaMedicaModificar(citaMedica);
                             citaMedicaModificar.setVisible(true);
+                            citaMedicaModificar.setLocationRelativeTo(null);
                             break;
                         }
                     }

@@ -56,15 +56,16 @@ public class FakeDataBase {
     }
     
     public boolean AddDataCitaMedica(CitaMedica citaMedica){
-         int idUltimaCita = 0;
+        int idUltimaCita = 0;
         for(int i = 0; i < dataTurnos.size(); i++){
             if(i==dataTurnos.size() -1){
-                idUltimaCita = dataTurnos.get(i).getId();
+                idUltimaCita = dataTurnos.get(i).getId()+1;
             }
         }
         citaMedica.setId(idUltimaCita);
         dataCitasMedicas.add(citaMedica);
         return true;
+        
     }
     
     public boolean RemoveCitaMedica(int id){
@@ -93,7 +94,7 @@ public class FakeDataBase {
         int idUltimoTurno = 0;
         for(int i = 0; i < dataTurnos.size(); i++){
             if(i==dataTurnos.size() -1){
-                idUltimoTurno = dataTurnos.get(i).getId();
+                idUltimoTurno = dataTurnos.get(i).getId()+1;
             }
         }
         turno.setId(idUltimoTurno);
