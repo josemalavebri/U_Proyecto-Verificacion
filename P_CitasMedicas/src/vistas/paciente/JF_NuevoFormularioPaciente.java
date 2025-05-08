@@ -1,38 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistas.paciente;
 
-import Data.FakeDataBase;
 import controladores.PacienteController;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import modelos.Paciente;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
-/**
- *
- * @author HP
- */
 public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
     private Pnl_GestorPaciente panelPadre;
     private Verificador verificador;
     private Paciente paciente;
+    private PacienteController pacienteController;
     
     public JF_NuevoFormularioPaciente(Pnl_GestorPaciente panelPadre) {
         this.panelPadre = panelPadre;
-        verificador = new Verificador();
         initComponents();
+        inicializarDatos();
     }
 
     public JF_NuevoFormularioPaciente() {
     }
 
+    private void inicializarDatos(){
+        verificador = new Verificador();
+        pacienteController = new PacienteController();
+
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,7 +71,12 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
         lblApellido.setText("Apellido");
 
-        btnResetear.setText("Resetea");
+        btnResetear.setText("Resetear");
+        btnResetear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetearActionPerformed(evt);
+            }
+        });
 
         lblEdad.setText("Edad");
 
@@ -109,7 +110,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTelefono)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,67 +181,87 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
         this.paciente = paciente;
         llenarFormulario();
     }
-    
-    private Paciente obtenerDatos(){
-        String cedula = paciente.getCedula();
-        int edad = paciente.getEdad();
-        String nombre = paciente.getNombre();
-        String apellido = paciente.getApellido();
-        String correo = paciente.getCorreo();
-        String telefono = paciente.getTelefono();
-        
-        return new Paciente(cedula, nombre, apellido, edad, correo, telefono);
-    }
 
     private void llenarFormulario() {
         if (paciente != null) {
-            txtCedula.setText(paciente.getCedula());
+            txtCedula.setText(String.valueOf(paciente.getCedula()));
             txtNombre.setText(paciente.getNombre());
             txtApellido.setText(paciente.getApellido());
             txtEdad.setText(String.valueOf(paciente.getEdad()));
             txtCorreo.setText(paciente.getCorreo());
-            txtTelefono.setText(paciente.getTelefono());
+            txtTelefono.setText(String.valueOf(paciente.getTelefono()));
         }
     }
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        String cedula = txtCedula.getText().trim();
+        String cedulaTexto = txtCedula.getText().trim();
+        int cedula = Integer.parseInt(cedulaTexto);
         String nombre = txtNombre.getText().trim();
         String apellido = txtApellido.getText().trim();
         String edadTexto = txtEdad.getText().trim();
+        int edad = Integer.parseInt(edadTexto);
         String correo = txtCorreo.getText().trim();
-        String telefono = txtTelefono.getText().trim();
-
-        // Validación
-        boolean cedulaValidacion = verificador.verificar(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
-        boolean nombreValidacion = verificador.verificar(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean apellidoValidacion = verificador.verificar(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean edadValidacion = verificador.verificar(edadTexto, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
-        boolean telefonoValidacion = verificador.verificar(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
-
-        // Si todos son válidos
-        if (cedulaValidacion && nombreValidacion && apellidoValidacion && edadValidacion && telefonoValidacion) {
-            int edad = Integer.parseInt(edadTexto);
-
+        String telefonoTexto = txtTelefono.getText().trim();
+        int telefono = Integer.parseInt(telefonoTexto);
+        if(validarEntrada()){
             Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
-
-            PacienteController pacienteController = new PacienteController();
-            pacienteController.PostPaciente(paciente);
-
-            panelPadre.TablaPacienteLlenado();
-            this.dispose();
-
-            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Hay campos inválidos o vacíos.\nPor favor, revise e intente nuevamente.");
+            if(pacienteController.PostPaciente(paciente)){
+                panelPadre.TablaPacienteLlenado();
+                this.dispose();
+                JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Campos vacios, llene todos los campos");
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    private boolean validarEntrada(){
+        if(!validarNumero(txtCedula)){
+            JOptionPane.showMessageDialog(null, "Campo cedula es un dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarLetra(txtNombre)){
+            JOptionPane.showMessageDialog(null, "Campo nombre es un dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarLetra(txtApellido)){
+            JOptionPane.showMessageDialog(null, "Campo apellido es dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarNumero(txtEdad)){
+            JOptionPane.showMessageDialog(null, "Campo edad es dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarNumero(txtTelefono)){
+            JOptionPane.showMessageDialog(null, "Campo telefono es dato incorrecto o vacio");
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarLetra(JTextField texto){
+        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+    }
+    
+    private boolean validarNumero(JTextField texto){
+        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+    }
+    
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
+        // TODO add your handling code here:
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEdad.setText("");
+        txtCorreo.setText("");
+        txtTelefono.setText("");
+    }//GEN-LAST:event_btnResetearActionPerformed
 
     /**
      * @param args the command line arguments

@@ -29,7 +29,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblTelefono" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCorreo" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -174,8 +174,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnResetear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Resetea"/>
+        <Property name="text" type="java.lang.String" value="Resetear"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEdad">
       <Properties>
