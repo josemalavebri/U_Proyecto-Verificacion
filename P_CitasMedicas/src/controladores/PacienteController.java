@@ -13,7 +13,7 @@ import modelos.Paciente;
  * @author HP
  */
 
-public class PacienteController {
+public class PacienteController implements GeneralController<Paciente>{
     
     private FakeDataBase dataBase;
     
@@ -21,53 +21,44 @@ public class PacienteController {
         dataBase = FakeDataBase.getInstancia();
     }
     
-    public ArrayList<Paciente> GetPacientes(){
+    @Override
+    public ArrayList<Paciente> get() {
         try{
             return dataBase.AllPacientes();
         }catch(Exception ex){
             return new ArrayList<>();
         }
     }
-    
-    public boolean PostPaciente(Paciente paciente){
+
+    @Override
+    public boolean post(Paciente objeto) {
         try {
-            dataBase.AddPaciente(paciente);
+            dataBase.AddPaciente(objeto);
             return true;
         } catch (Exception e) {
             System.out.print(e);
             return false;
         }
     }
-    
-    public boolean PutPaciente(Paciente paciente){
+
+    @Override
+    public boolean put(Paciente objeto) {
         try {
-            dataBase.UpdatePaciente(paciente);
+            dataBase.UpdatePaciente(objeto);
             return true;
         } catch (Exception e) {
             return false;
-        }
+        }    
     }
-    
-    public boolean DeletePaciente(int idPaciente){
+
+    @Override
+    public boolean delete(int id) {
         try {
-            dataBase.DeletePaciente(idPaciente);
+            dataBase.DeletePaciente(id);
             return true;
         } catch (Exception e) {
-            return false;
-        }
-    }
-    
-    public boolean SearchId(int id){
-        try {
-            dataBase.BuscarPacienteId(id);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-    
-    public Paciente ObtenerPacienteId(int id){
-        return dataBase.BuscarPacienteId(id);
+              return false;
+        }    
     }
     
 }

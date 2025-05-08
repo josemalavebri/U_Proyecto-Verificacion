@@ -4,7 +4,10 @@
  */
 package vista.Factura;
 
+import controladores.GeneralController;
 import modelos.CitaMedica;
+import modelos.Factura;
+import utilidades.AccesoController;
 
 /**
  *
@@ -12,11 +15,11 @@ import modelos.CitaMedica;
  */
 public class JF_Factura extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JF_factura
-     */
+    private AccesoController  accesoController;
+    
     public JF_Factura() {
         initComponents();
+        accesoController.facturaController();
     }
 
     /**
@@ -165,6 +168,9 @@ public class JF_Factura extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -210,6 +216,24 @@ public class JF_Factura extends javax.swing.JFrame {
         txtPaciente.setText(citaMedica.getPaciente().getNombre()+" "+citaMedica.getPaciente().getApellido());
         txtSubtotal.setText("200$");
         txtTurno.setText(citaMedica.getTurno().getFecha()+" "+citaMedica.getTurno().getHora());
+       
+        g
+        
+        Factura facturaCreada = crearObjetoFactura(citaMedica);
+        guardarFactura(facturaCreada);
+               
+    }
+    
+    private void guardarFactura(Factura factura){
+        accesoController.facturaController().post(factura);
+    }
+    
+    private Factura crearObjetoFactura(CitaMedica citaMedica){
+        
+        Factura factura = new Factura();
+        factura.setCitaMedica(citaMedica);
+        factura.setTotalPagar(200);
+        return factura;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
