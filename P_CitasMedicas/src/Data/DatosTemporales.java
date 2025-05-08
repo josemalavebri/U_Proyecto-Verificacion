@@ -43,13 +43,20 @@ public class DatosTemporales {
     
     public ArrayList<Medico> CrearMedicosTemporales(){
         ArrayList<Medico> listaMedicos = new ArrayList<>();
-        listaMedicos.add(new Medico(1, "Carlos", "Pérez", "Cardiología"));
-        listaMedicos.add(new Medico(2, "Ana", "Gómez", "Pediatría"));
-        listaMedicos.add(new Medico(3, "Luis", "Martínez", "Neurología"));
+        listaMedicos.add(new Medico(1, 123456789, "Carlos", "López", "Cardiología", "Masculino", 987654321));
+        listaMedicos.add(new Medico(2, 987654321, "Ana", "Gómez", "Pediatría", "Femenino", 123456789));
+        listaMedicos.add(new Medico(3, 112233445, "Javier", "Pérez", "Neurología", "Masculino", 555123456));
+        listaMedicos.add(new Medico(5, 445566778, "Mateo", "Díaz", "Traumatología", "Masculino", 111222333));
+        listaMedicos.add(new Medico(4, 667788990, "Sofía", "Vargas", "Ginecología", "Femenino", 999888777));
+        listaMedicos.add(new Medico(6, 223344556, "Isabela", "Ruiz", "Dermatología", "Femenino", 444555666));
+        listaMedicos.add(new Medico(7, 778899001, "Sebastián", "Flores", "Oftalmología", "Masculino", 666777888));
         return listaMedicos;
     }
     
     
+    
+        
+        
     
     
 }
