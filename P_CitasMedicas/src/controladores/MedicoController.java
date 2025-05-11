@@ -20,7 +20,7 @@ public class MedicoController {
         dataBase = FakeDataBase.getInstancia();
     }
     
-    public ArrayList<Medico> GetMedico(){
+    public ArrayList<Medico> getMedico(){
         try{
             return dataBase.AllMedico();
         }catch(Exception ex){
