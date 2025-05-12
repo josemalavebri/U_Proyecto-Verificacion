@@ -11,7 +11,6 @@ public class Medico extends Persona{
         super(id,cedula,edad,nombre,apellido,telefono);
         this.especialidad = especialidad;
         this.genero = genero;
-        this.telefono = telefono;
     }
 
     public String getEspecialidad() {
@@ -22,11 +21,6 @@ public class Medico extends Persona{
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
-    public int getTelefono() {
-        return telefono;
-    }
-    
   
    
     public String getGenero() {
@@ -41,4 +35,5 @@ public class Medico extends Persona{
     public String toString() {
         return nombre + " "+apellido;
     }
+    
 }

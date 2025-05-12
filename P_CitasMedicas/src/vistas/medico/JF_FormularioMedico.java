@@ -284,12 +284,12 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
             int telefono1 = Integer.parseInt(telefono);
 
 
-            Medico medico = new Medico(0, cedula1, nombre, apellido, especialidad, genero, telefono1);
+            //Medico medico = new Medico(0, cedula1, nombre, apellido, especialidad, genero, telefono1);
 
             MedicoController medicoController = new MedicoController();
             medicoController.PostMedico(medico);
 
-            panelPadre.TablaMedicoLlenado();
+            //panelPadre.TablaMedicoLlenado();
 
             this.dispose();
 

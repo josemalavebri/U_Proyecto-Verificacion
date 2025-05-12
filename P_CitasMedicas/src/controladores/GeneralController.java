@@ -1,8 +1,6 @@
 package controladores;
 
-import Data.FakeDataBase;
 import java.util.ArrayList;
-import modelos.Paciente;
 
 public interface GeneralController <T>{
     

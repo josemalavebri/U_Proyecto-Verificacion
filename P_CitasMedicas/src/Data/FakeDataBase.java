@@ -20,8 +20,9 @@ public class FakeDataBase {
     private ArrayList<Paciente> dataPaciente;
     private ArrayList<Medico> dataMedico;
     private ArrayList<Factura> dataFacturas;
-
     private DatosTemporales datosTemporales;
+    
+    
     
     private FakeDataBase() {
         datosTemporales = new DatosTemporales();
@@ -44,12 +45,13 @@ public class FakeDataBase {
         }
     }
     
+    
+    
     public static synchronized FakeDataBase getInstancia() {
         if (instancia == null) {
             instancia = new FakeDataBase();
         }
         return instancia;
-  
     }
     
     public ArrayList<CitaMedica> AllCitasMedicas(){
@@ -118,14 +120,7 @@ public class FakeDataBase {
         return false;
     }
     
-    public Paciente BuscarPacienteId(int id){
-        for (Paciente pacienteTemporal : dataPaciente) {
-            if(id == pacienteTemporal.getId()){
-                return pacienteTemporal;
-            }
-        }
-        return null;
-    }
+    
    
     
     //------------------ Metodo del Medico

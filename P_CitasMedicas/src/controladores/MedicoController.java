@@ -14,7 +14,7 @@ import modelos.Medico;
  */
 public class MedicoController {
     
-      private FakeDataBase dataBase;
+    private FakeDataBase dataBase;
     
     public MedicoController(){
         dataBase = FakeDataBase.getInstancia();
