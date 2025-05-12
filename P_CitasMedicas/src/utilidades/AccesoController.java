@@ -1,6 +1,7 @@
 
 package utilidades;
 
+import Data.FakeDataBase;
 import controladores.*;
 
 public class AccesoController {
@@ -10,14 +11,16 @@ public class AccesoController {
     private TurnoController turnosController;
     private CitaMedicaController citaMedicaController;
     private MedicoController medicoController;
+    private FakeDataBase dataBase;
     
     
     public AccesoController(){
-        facturaController = new FacturaController();
-        pacienteController = new PacienteController();
-        turnosController = new TurnoController();
-        citaMedicaController = new CitaMedicaController();
-        medicoController = new MedicoController();
+        dataBase = new FakeDataBase();
+        facturaController = new FacturaController(dataBase);
+        pacienteController = new PacienteController(dataBase);
+        turnosController = new TurnoController(dataBase);
+        citaMedicaController = new CitaMedicaController(dataBase);
+        medicoController = new MedicoController(dataBase);
     }
     
     public FacturaController facturaController(){

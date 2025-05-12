@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
 package vistas.medico;
 
-import controladores.MedicoController;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import modelos.Medico;
+import utilidades.AccesoController;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
 import vistas.paciente.JF_NuevoFormularioPaciente;
@@ -21,12 +17,8 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
     private Pnl_GestionMedico panelPadre;
     private Verificador verificador;
     private Medico medico;
-
-    /** Creates new form JF_FormularioMedico */
-    public JF_FormularioMedico() {
-        initComponents();
-    }
-
+    private AccesoController accesoController;
+    
     public JF_FormularioMedico(Pnl_GestionMedico panelPadre) {
         this.panelPadre = panelPadre;
         verificador = new Verificador();
@@ -49,7 +41,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
         String especialidad = medico.getEspecialidad();
         String genero = medico.getGenero();
         int telefono = medico.getTelefono();
-        return new Medico(id,cedula,edad, nombre, apellido, especialidad, genero, telefono );
+        return new Medico(id, cedula, edad, nombre, apellido, especialidad, genero, telefono );
     }
 
     private void llenarFormulario() {
@@ -57,13 +49,20 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
             String cedula = ""+medico.getCedula();
             String telefono = ""+medico.getTelefono();
             
-            txtCedula.setText(cedula);
+            txt_Cedula.setText(cedula);
+            txt_Edad.setText(cedula);
             txtNombre.setText(medico.getNombre());
             txtApellido.setText(medico.getApellido());
             txtEspecialidad.setText(medico.getEspecialidad());
+            cbx_Genero.setSelectedItem(cedula);
             txtTelefono.setText(telefono);
         }
-    }                           
+        if (medico.getGenero().equalsIgnoreCase("Masculino")) {
+            cbx_Genero.setSelectedItem("Masculino");
+        } else if (medico.getGenero().equalsIgnoreCase("Femenino")) {
+            cbx_Genero.setSelectedItem("Femenino");
+}
+    }                     
 
     /**
      * @param args the command line arguments
@@ -92,14 +91,12 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new JF_NuevoFormularioPaciente().setVisible(true);
         });
     }
-    
-  
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -107,7 +104,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
+        txt_Cedula = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
@@ -133,7 +130,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
 
         lblCedula.setText("Cedula");
 
-        txtCedula.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
+        txt_Cedula.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
 
         txtTelefono.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
 
@@ -181,14 +178,9 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
                 .addContainerGap(170, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCedula)
-                                .addGap(93, 93, 93)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblCedula)
+                        .addGap(93, 93, 93)
+                        .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(185, 185, 185))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,10 +191,10 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalir))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblCedula2)
-                                        .addGap(93, 93, 93)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,22 +211,30 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
                                             .addComponent(cbx_Genero, javax.swing.GroupLayout.Alignment.TRAILING, 0, 93, Short.MAX_VALUE)
                                             .addComponent(txtNombre))))
                                 .addGap(18, 18, 18)))
-                        .addGap(166, 166, 166))))
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(217, 217, 217))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(17, 17, 17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblCedula)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCedula2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblCedula2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
@@ -265,12 +265,15 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        String cedula = txtCedula.getText().trim();
+  
+        String cedula = txt_Cedula.getText().trim();
+        String edad = txt_Edad.getText().trim();
         String nombre = txtNombre.getText().trim();
         String apellido = txtApellido.getText().trim();
         String especialidad = txtEspecialidad.getText().trim();
         String genero = cbx_Genero.getSelectedItem().toString();
         String telefono = txtTelefono.getText().trim();
+
 
         // Validación
         boolean cedulaValidacion = verificador.verificar(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
@@ -286,8 +289,8 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
 
             //Medico medico = new Medico(0, cedula1, nombre, apellido, especialidad, genero, telefono1);
 
-            MedicoController medicoController = new MedicoController();
-            medicoController.PostMedico(medico);
+            //MedicoController medicoController = new MedicoController();
+            //medicoController.PostMedico(medico);
 
             //panelPadre.TablaMedicoLlenado();
 
@@ -296,12 +299,50 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
         } else {
             JOptionPane.showMessageDialog(null, "Hay campos inválidos o vacíos.\nPor favor, revise e intente nuevamente.");
+
         }
+    }       
+
+    private boolean validarEntrada(){
+        if(!validarNumero(txt_Cedula)){
+            JOptionPane.showMessageDialog(null, "La cedula es un dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarLetra(txtNombre)){
+            JOptionPane.showMessageDialog(null, "El nombre es un dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarLetra(txtApellido)){
+            JOptionPane.showMessageDialog(null, "EL apellido es dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarNumero(txt_Edad)){
+            JOptionPane.showMessageDialog(null, "La edad es dato incorrecto o vacio");
+            return false;
+        }
+        if(!validarNumero(txtTelefono)){
+            JOptionPane.showMessageDialog(null, "Campo telefono es dato incorrecto o vacio");
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarLetra(JTextField texto){
+        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+    }
+    
+    private boolean validarNumero(JTextField texto){
+        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        txt_Cedula.setText("");
+        txt_Edad.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEspecialidad.setText("");
+        cbx_Genero.setSelectedIndex(-1); 
+        txtTelefono.setText("");      
     }//GEN-LAST:event_btnSalirActionPerformed
 
 
@@ -319,11 +360,10 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTelefono1;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txt_Cedula;
     private javax.swing.JTextField txt_Edad;
     // End of variables declaration//GEN-END:variables
-
 }

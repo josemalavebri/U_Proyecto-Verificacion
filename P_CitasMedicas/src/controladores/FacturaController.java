@@ -9,8 +9,8 @@ public class FacturaController implements GeneralController<Factura>{
     
     private FakeDataBase dataBase;
 
-    public FacturaController(){
-        dataBase = FakeDataBase.getInstancia();
+    public FacturaController(FakeDataBase dataBase){
+        this.dataBase = dataBase;
     }
 
     @Override

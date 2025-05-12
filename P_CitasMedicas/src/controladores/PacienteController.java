@@ -17,8 +17,8 @@ public class PacienteController implements GeneralController<Paciente>{
     
     private FakeDataBase dataBase;
     
-    public PacienteController(){
-        dataBase = FakeDataBase.getInstancia();
+    public PacienteController(FakeDataBase dataBase){
+        this.dataBase = dataBase;
     }
     
     @Override

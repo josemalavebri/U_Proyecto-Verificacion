@@ -15,8 +15,8 @@ import modelos.CitaMedica;
 public class CitaMedicaController implements  GeneralController<CitaMedica>{
     private FakeDataBase dataBase;
 
-    public CitaMedicaController(){
-        dataBase = FakeDataBase.getInstancia();
+    public CitaMedicaController(FakeDataBase dataBase){
+        this.dataBase = dataBase;
     }
 
     @Override

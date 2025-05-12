@@ -22,9 +22,7 @@ public class FakeDataBase {
     private ArrayList<Factura> dataFacturas;
     private DatosTemporales datosTemporales;
     
-    
-    
-    private FakeDataBase() {
+    public FakeDataBase() {
         datosTemporales = new DatosTemporales();
         this.dataTurnos = datosTemporales.CrearTurnosTemporales();
         this.dataPaciente = datosTemporales.CrearPacienteTemporales();
@@ -44,16 +42,9 @@ public class FakeDataBase {
             dataCitasMedicas.add(citaMedica);
         }
     }
+
     
-    
-    
-    public static synchronized FakeDataBase getInstancia() {
-        if (instancia == null) {
-            instancia = new FakeDataBase();
-        }
-        return instancia;
-    }
-    
+
     public ArrayList<CitaMedica> AllCitasMedicas(){
          return dataCitasMedicas;
     }

@@ -21,7 +21,8 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     private ArrayList<Paciente> datosPaciente;
     private JF_NuevoFormularioPaciente formularioPaciente;
     
-    public Pnl_GestorPaciente() {
+    public Pnl_GestorPaciente(AccesoController accesoController) {
+        this.accesoController = accesoController;
         initComponents();
         inicializarDatos();
         TablaPacienteLlenado();
@@ -131,12 +132,11 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void inicializarDatos(){
-        accesoController = new AccesoController();
         datosPaciente = new ArrayList<>();
     }
     
     private JF_NuevoFormularioPaciente abrirFormulario(){
-        formularioPaciente = new JF_NuevoFormularioPaciente(this);
+        formularioPaciente = new JF_NuevoFormularioPaciente(this, accesoController);
         formularioPaciente.setLocationRelativeTo(null);
         formularioPaciente.setVisible(true);
         return formularioPaciente;

@@ -20,9 +20,9 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private ArrayList<CitaMedica> citasMedicas ;
     private DefaultTableModel modeloTabla;
 
-    public Pnl_CitaMedica() {
+    public Pnl_CitaMedica(AccesoController accesoController) {
+        this.accesoController = accesoController;
         initComponents();
-        accesoController = new AccesoController();
         crearModeloTablaCitaMedica();
         cargarDatosCitaMedica();
         asignarEventosBotones();
@@ -82,7 +82,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                     int id = (int) tb_citasMedicas.getValueAt(filaSeleccionada, 0);
                     for(CitaMedica citaMedica : citasMedicas){
                         if(citaMedica.getId() == id){
-                            JF_NuevaCitaMedica citaMedicaModificar = new JF_NuevaCitaMedica();
+                            JF_NuevaCitaMedica citaMedicaModificar = new JF_NuevaCitaMedica(accesoController);
                             citaMedicaModificar.setCitaMedicaModificar(citaMedica);
                             citaMedicaModificar.setVisible(true);
                             citaMedicaModificar.setLocationRelativeTo(null);
@@ -156,7 +156,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       JFrame jframe = new JF_NuevaCitaMedica();
+       JFrame jframe = new JF_NuevaCitaMedica(accesoController);
        jframe.setLocationRelativeTo(null);
        jframe.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

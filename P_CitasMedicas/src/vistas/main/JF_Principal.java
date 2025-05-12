@@ -5,6 +5,7 @@
 package vistas.main;
 
 import java.awt.BorderLayout;
+import utilidades.AccesoController;
 import vistas.citasMedicas.Pnl_CitaMedica;
 import vistas.paciente.Pnl_GestorPaciente;
 
@@ -17,7 +18,11 @@ public class JF_Principal extends javax.swing.JFrame {
     /**
      * Creates new form JFrame_Principal
      */
+    
+    private AccesoController accesoController;
+    
     public JF_Principal() {
+        this.accesoController = new AccesoController();
         initComponents();
     }
 
@@ -92,7 +97,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btn_citasMedicasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_citasMedicasActionPerformed
         pnl_principal.removeAll();
-        Pnl_CitaMedica panelCitasMedica = new Pnl_CitaMedica();
+        Pnl_CitaMedica panelCitasMedica = new Pnl_CitaMedica(accesoController);
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelCitasMedica, BorderLayout.CENTER);
         pnl_principal.revalidate();
@@ -102,7 +107,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btn_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pacienteActionPerformed
         pnl_principal.removeAll();
-        Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente();
+        Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente(accesoController);
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelGestorPaciente, BorderLayout.CENTER);
         pnl_principal.revalidate();
