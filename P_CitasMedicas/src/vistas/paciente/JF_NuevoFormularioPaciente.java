@@ -1,6 +1,5 @@
 package vistas.paciente;
 
-import controladores.PacienteController;
 import modelos.Paciente;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
@@ -15,7 +14,8 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
     private Paciente paciente;
     private AccesoController accesoController;
     
-    public JF_NuevoFormularioPaciente(Pnl_GestorPaciente panelPadre) {
+    public JF_NuevoFormularioPaciente(Pnl_GestorPaciente panelPadre, AccesoController accesoController) {
+        this.accesoController = accesoController;
         this.panelPadre = panelPadre;
         initComponents();
         inicializarDatos();
@@ -26,7 +26,6 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
     private void inicializarDatos(){
         verificador = new Verificador();
-        accesoController = new AccesoController();
 
     }
     

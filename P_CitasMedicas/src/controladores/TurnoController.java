@@ -8,8 +8,8 @@ public class TurnoController implements GeneralController<Turno> {
 
     private FakeDataBase dataBase;
 
-    public TurnoController(){
-        dataBase = FakeDataBase.getInstancia();
+    public TurnoController(FakeDataBase dataBase){
+        this.dataBase = dataBase;
     }
 
     @Override

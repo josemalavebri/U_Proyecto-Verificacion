@@ -16,8 +16,8 @@ public class MedicoController {
     
       private FakeDataBase dataBase;
     
-    public MedicoController(){
-        dataBase = FakeDataBase.getInstancia();
+    public MedicoController(FakeDataBase dataBase){
+        this.dataBase = dataBase;
     }
     
     public ArrayList<Medico> GetMedico(){

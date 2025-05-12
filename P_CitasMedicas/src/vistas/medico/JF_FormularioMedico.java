@@ -5,7 +5,6 @@
 
 package vistas.medico;
 
-import controladores.MedicoController;
 import javax.swing.JOptionPane;
 import modelos.Medico;
 import utilidades.Verificador.TipoValidacion;
@@ -286,8 +285,8 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
 
             //Medico medico = new Medico(0, cedula1, nombre, apellido, especialidad, genero, telefono1);
 
-            MedicoController medicoController = new MedicoController();
-            medicoController.PostMedico(medico);
+            //MedicoController medicoController = new MedicoController();
+            //medicoController.PostMedico(medico);
 
             //panelPadre.TablaMedicoLlenado();
 
