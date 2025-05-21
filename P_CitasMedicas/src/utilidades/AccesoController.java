@@ -1,8 +1,11 @@
 
 package utilidades;
 
-import Data.FakeDataBase;
+import Data.FakeDB.MedicoFakeDB;
+import Data.SQLite.ExternalRepository;
 import controladores.*;
+import Data.Repository;
+import Data.FakeDB.InternalRepository;
 
 public class AccesoController {
     
@@ -11,17 +14,21 @@ public class AccesoController {
     private TurnoController turnosController;
     private CitaMedicaController citaMedicaController;
     private MedicoController medicoController;
-    private FakeDataBase dataBase;
+    private InternalRepository dataBase;
+    
+    
     
     
     public AccesoController(){
-        dataBase = new FakeDataBase();
-        facturaController = new FacturaController(dataBase);
+        facturaController = new FacturaController(new ExternalRepository());
         pacienteController = new PacienteController(dataBase);
         turnosController = new TurnoController(dataBase);
         citaMedicaController = new CitaMedicaController(dataBase);
-        medicoController = new MedicoController(dataBase);
+        medicoController = new MedicoController(new MedicoFakeDB());
     }
+  
+    
+   
     
     public FacturaController facturaController(){
         return facturaController;

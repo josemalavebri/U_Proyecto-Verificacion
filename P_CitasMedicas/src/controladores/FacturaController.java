@@ -1,22 +1,22 @@
 
 package controladores;
 
-import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.Factura;
+import Data.Repository;
+import Data.FakeDB.InternalRepository;
 
-public class FacturaController implements GeneralController<Factura>{
+public class FacturaController extends GeneralController<Factura>{
     
-    private FakeDataBase dataBase;
-
-    public FacturaController(FakeDataBase dataBase){
-        this.dataBase = dataBase;
+    public FacturaController(Repository<InternalRepository> db) {
+         super(db);
     }
+    
 
     @Override
     public ArrayList<Factura> get() {
         try{
-            return dataBase.allFacturas();
+            return db.all();
         } catch(Exception ex){
             return new ArrayList<>();
         }
@@ -25,7 +25,7 @@ public class FacturaController implements GeneralController<Factura>{
     @Override
     public boolean post(Factura objeto) {
         try {
-            return dataBase.addFactura(objeto);
+            return db.add(objeto);
         } catch (Exception e) {
             System.out.print(e);
             return false;
@@ -35,7 +35,7 @@ public class FacturaController implements GeneralController<Factura>{
     @Override
     public boolean put(Factura objeto) {
         try {
-            dataBase.updateFactura(objeto);
+            db.update(objeto);
             return true;
         } catch (Exception e) {
             return false;
@@ -45,7 +45,7 @@ public class FacturaController implements GeneralController<Factura>{
     @Override
     public boolean delete(int id) {
         try {
-            dataBase.deleteFactura(id);
+            db.remove(id);
             return true;
         } catch (Exception e) {
             return false;

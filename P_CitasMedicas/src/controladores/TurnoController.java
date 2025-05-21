@@ -1,21 +1,21 @@
 package controladores;
-import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.CitaMedica;
 import modelos.Turno;
+import Data.FakeDB.InternalRepository;
 
 public class TurnoController implements GeneralController<Turno> {
 
-    private FakeDataBase dataBase;
+    private InternalRepository dataBase;
 
-    public TurnoController(FakeDataBase dataBase){
+    public TurnoController(InternalRepository dataBase){
         this.dataBase = dataBase;
     }
 
     @Override
     public ArrayList<Turno> get() {
         try {
-            return dataBase.AllTurnos();
+            return dataBase.all();
         } catch(Exception ex){
             System.out.print(ex);
             return null;

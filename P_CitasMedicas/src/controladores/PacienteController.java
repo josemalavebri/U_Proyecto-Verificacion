@@ -4,9 +4,9 @@
  */
 package controladores;
 
-import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.Paciente;
+import Data.FakeDB.InternalRepository;
 
 /**
  *
@@ -15,16 +15,16 @@ import modelos.Paciente;
 
 public class PacienteController implements GeneralController<Paciente>{
     
-    private FakeDataBase dataBase;
+    private InternalRepository dataBase;
     
-    public PacienteController(FakeDataBase dataBase){
+    public PacienteController(InternalRepository dataBase){
         this.dataBase = dataBase;
     }
     
     @Override
     public ArrayList<Paciente> get() {
         try{
-            return dataBase.AllPacientes();
+            return dataBase.all();
         }catch(Exception ex){
             return new ArrayList<>();
         }
@@ -33,7 +33,7 @@ public class PacienteController implements GeneralController<Paciente>{
     @Override
     public boolean post(Paciente objeto) {
         try {
-            dataBase.AddPaciente(objeto);
+            dataBase.add(objeto);
             return true;
         } catch (Exception e) {
             System.out.print(e);
@@ -44,7 +44,7 @@ public class PacienteController implements GeneralController<Paciente>{
     @Override
     public boolean put(Paciente objeto) {
         try {
-            dataBase.UpdatePaciente(objeto);
+            dataBase.update(objeto);
             return true;
         } catch (Exception e) {
             return false;
@@ -54,7 +54,7 @@ public class PacienteController implements GeneralController<Paciente>{
     @Override
     public boolean delete(int id) {
         try {
-            dataBase.DeletePaciente(id);
+            dataBase.remove(id);
             return true;
         } catch (Exception e) {
               return false;

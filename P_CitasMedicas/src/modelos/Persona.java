@@ -10,6 +10,15 @@ public class Persona {
     protected String nombre;
     protected String apellido;
     protected int telefono;
+    
+    public Persona() {
+        this.id = 0;
+        this.cedula = 0;
+        this.edad = 0;
+        this.nombre = "";
+        this.apellido = "";
+        this.telefono = 0;
+    }
 
     public Persona(int id, int cedula, int edad,String nombre, String apellido, int telefono) {
         this.id = id;

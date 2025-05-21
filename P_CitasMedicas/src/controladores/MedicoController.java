@@ -4,9 +4,9 @@
  */
 package controladores;
 
-import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.Medico;
+import Data.FakeDB.InternalRepository;
 
 /**
  *
@@ -14,15 +14,15 @@ import modelos.Medico;
  */
 public class MedicoController {
     
-    private FakeDataBase dataBase;
+    private InternalRepository dataBase;
     
-    public MedicoController(FakeDataBase dataBase){
+    public MedicoController(InternalRepository dataBase){
         this.dataBase = dataBase;
     }
     
     public ArrayList<Medico> getMedico(){
         try{
-            return dataBase.AllMedico();
+            return dataBase.all();
         }catch(Exception ex){
             return new ArrayList<>();
         }
@@ -30,7 +30,7 @@ public class MedicoController {
     
     public boolean PostMedico(Medico medico){
         try {
-            dataBase.AddMedico(medico);
+            dataBase.add(medico);
             return true;
         } catch (Exception e) {
             System.out.print(e);
@@ -40,7 +40,7 @@ public class MedicoController {
     
     public boolean PutMedico(Medico medico){
         try {
-            dataBase.UpdateMedico (medico);
+            dataBase.update(medico);
             return true;
         } catch (Exception e) {
             return false;
@@ -49,16 +49,16 @@ public class MedicoController {
     
     public boolean DeleteMedico(int idMedico){
         try {
-            dataBase.DeleteMedico(idMedico);
+            dataBase.remove(idMedico);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
     
-    public boolean SearchId(int id){
+    public boolean buscarPorCedula(int id){
         try {
-            dataBase.BuscarMedicoId(id);
+            dataBase.buscarPorCedula(id);
             return true;
         } catch (Exception e) {
             return false;

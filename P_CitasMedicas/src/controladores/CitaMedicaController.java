@@ -4,25 +4,25 @@
  */
 package controladores;
 
-import Data.FakeDataBase;
 import java.util.ArrayList;
 import modelos.CitaMedica;
+import Data.FakeDB.InternalRepository;
 
 /**
  *
  * @author josem
  */
 public class CitaMedicaController implements  GeneralController<CitaMedica>{
-    private FakeDataBase dataBase;
+    private InternalRepository dataBase;
 
-    public CitaMedicaController(FakeDataBase dataBase){
+    public CitaMedicaController(InternalRepository dataBase){
         this.dataBase = dataBase;
     }
 
     @Override
     public ArrayList<CitaMedica> get() {
         try {
-            return dataBase.AllCitasMedicas();
+            return dataBase.all();
         } catch(Exception ex){
             System.out.print(ex);
             return null;
@@ -32,7 +32,7 @@ public class CitaMedicaController implements  GeneralController<CitaMedica>{
     @Override
     public boolean post(CitaMedica objeto) {
         try {
-            dataBase.AddDataCitaMedica(objeto);
+            dataBase.add(objeto);
             return true;
         } catch(Exception ex){
             System.out.print(ex);
@@ -43,7 +43,7 @@ public class CitaMedicaController implements  GeneralController<CitaMedica>{
     @Override
     public boolean put(CitaMedica objeto) {
         try {
-            dataBase.UpdateCitaMedica(objeto);
+            dataBase.update(objeto);
             return true;
         } catch(Exception ex){
             System.out.print(ex);
@@ -53,7 +53,7 @@ public class CitaMedicaController implements  GeneralController<CitaMedica>{
 
     @Override
     public boolean delete(int id) {
-       return dataBase.RemoveCitaMedica(id);
+       return dataBase.remove(id);
     }
     
     
