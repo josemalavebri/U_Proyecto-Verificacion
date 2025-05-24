@@ -20,6 +20,8 @@ public class Paciente extends Persona {
 
     public String getCorreo() {
         return correo;
+        
+        
     }
 
     public void setCorreo(String correo) {
