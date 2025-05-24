@@ -4,10 +4,10 @@
  */
 package vista.Factura;
 
-import controladores.GeneralController;
 import modelos.CitaMedica;
 import modelos.Factura;
 import utilidades.AccesoController;
+import controladores.IGeneralController;
 
 /**
  *

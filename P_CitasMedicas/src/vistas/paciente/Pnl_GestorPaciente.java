@@ -12,12 +12,14 @@ import modelos.Paciente;
 import utilidades.AccesoController;
 import utilidades.ButtonEditor;
 import utilidades.ButtonRenderer;
+import utilidades.ManagerController;
 
 public class Pnl_GestorPaciente extends javax.swing.JPanel {
     
     private static final String MODIFICAR = "Modificar";
     private static final String ELIMINAR = "Eliminar";
     private AccesoController accesoController;
+    private ManagerController managerController;
     private ArrayList<Paciente> datosPaciente;
     private JF_NuevoFormularioPaciente formularioPaciente;
     
@@ -211,7 +213,7 @@ public class Pnl_GestorPaciente extends javax.swing.JPanel {
 
                 int idTablaPaciente = (int) tb_paciente.getValueAt(filaSeleccionada, 0);
 
-                boolean eliminado = accesoController.pacienteController().delete(idTablaPaciente);
+                boolean eliminado = accesoController.pacienteController().remove(idTablaPaciente);
                 
                 if(eliminado){
                     JOptionPane.showMessageDialog(null, "Se eliminó el paciente con ID: " + idTablaPaciente);

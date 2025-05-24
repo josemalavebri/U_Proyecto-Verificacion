@@ -1,54 +1,52 @@
 
 package utilidades;
 
-import Data.FakeDB.MedicoFakeDB;
-import Data.SQLite.ExternalRepository;
+import Data.InternalDB.Repository.MedicoInternalRepository;
+import Data.InternalDB.Repository.PacienteInternalRepository;
+    import Data.IRepository;
 import controladores.*;
-import Data.Repository;
-import Data.FakeDB.InternalRepository;
+
+
+
+
 
 public class AccesoController {
-    
-    private FacturaController facturaController;
-    private PacienteController pacienteController;
-    private TurnoController turnosController;
-    private CitaMedicaController citaMedicaController;
-    private MedicoController medicoController;
-    private InternalRepository dataBase;
-    
-    
-    
+  
+    private IGeneralController medicoController;
+    private IGeneralController pacienteController;
+    private IGeneralController turnoController;
+    private IGeneralController citaMedicaController;
+    private IGeneralController facturaController;
+    private IRepository repository;
     
     public AccesoController(){
-        facturaController = new FacturaController(new ExternalRepository());
-        pacienteController = new PacienteController(dataBase);
-        turnosController = new TurnoController(dataBase);
-        citaMedicaController = new CitaMedicaController(dataBase);
-        medicoController = new MedicoController(new MedicoFakeDB());
+        repository = new PacienteInternalRepository();
+        medicoController = new MedicoController(repository);
+        pacienteController = new PacienteController(repository);
     }
-  
     
-   
     
-    public FacturaController facturaController(){
+    public IGeneralController facturaController(){
         return facturaController;
     }
    
-    public TurnoController turnosController(){
-        return turnosController;
+    public IGeneralController turnosController(){
+        return turnoController;
     }
     
-    public CitaMedicaController citaMedicaController(){
+    public IGeneralController citaMedicaController(){
         return citaMedicaController;
     }
     
-    public PacienteController pacienteController(){
+    public IGeneralController pacienteController(){
         return pacienteController;
     }
     
-    public MedicoController medicoController(){
+    public IGeneralController medicoController(){
         return medicoController;
     }
+    
+    
     
     
 }

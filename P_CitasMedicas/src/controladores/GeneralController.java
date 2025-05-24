@@ -1,21 +1,41 @@
+
 package controladores;
 
+import Data.IRepository;
 import java.util.ArrayList;
-import Data.Repository;
 
-public abstract class GeneralController<T> {
-    
-    protected Repository<T> db;
+public abstract class GeneralController<T> implements IGeneralController<T>{
 
-    public GeneralController(Repository<T> db) {
+    protected IRepository<T> db;
+
+    public GeneralController(IRepository<T> db) {
         this.db = db;
     }
 
-    public abstract ArrayList<T> get();
+    @Override
+    public ArrayList<T> get() {
+       return db.all();
+    }
 
-    public abstract boolean post(T objeto);
+    @Override
+    public boolean post(T objeto) {
+        return db.add(objeto);
+    }
 
-    public abstract boolean put(T objeto);
+    @Override
+    public boolean put(T objeto) {
+        return db.update(objeto);
+    }
 
-    public abstract boolean delete(int id);
+    @Override
+    public boolean remove(T objecto) {
+        return db.remove(objecto);
+    }
+
+    @Override
+    public T buscarPorCedula(T objeto) {
+        return db.buscarPorCedula(objeto);
+    }
 }
+
+

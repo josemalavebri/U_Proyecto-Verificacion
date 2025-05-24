@@ -13,16 +13,17 @@ import modelos.CitaMedica;
 import utilidades.AccesoController;
 import utilidades.ButtonEditor;
 import utilidades.ButtonRenderer;
+import utilidades.ManagerController;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
 
-    private AccesoController accesoController;
+    private ManagerController managerController;
     private ArrayList<CitaMedica> citasMedicas ;
     private DefaultTableModel modeloTabla;
 
     public Pnl_CitaMedica(AccesoController accesoController) {
-        this.accesoController = accesoController;
         initComponents();
+        managerController = new ManagerController();
         crearModeloTablaCitaMedica();
         cargarDatosCitaMedica();
         asignarEventosBotones();
@@ -61,7 +62,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent e) {
                 int filaSeleccionada = tb_citasMedicas.getSelectedRow();
                 int idTablaCitaMedica = (int) tb_citasMedicas.getValueAt(filaSeleccionada, 0);
-                boolean eliminado = accesoController.citaMedicaController().delete(idTablaCitaMedica);
+                boolean eliminado = managerController.remove(idTablaCitaMedica);
                 if(eliminado){
                     JOptionPane.showMessageDialog(null, "Se eliminó el paciente con ID: " + idTablaCitaMedica);
                     cargarDatosCitaMedica();
@@ -82,7 +83,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                     int id = (int) tb_citasMedicas.getValueAt(filaSeleccionada, 0);
                     for(CitaMedica citaMedica : citasMedicas){
                         if(citaMedica.getId() == id){
-                            JF_NuevaCitaMedica citaMedicaModificar = new JF_NuevaCitaMedica(accesoController);
+                            JF_NuevaCitaMedica citaMedicaModificar = new JF_NuevaCitaMedica();
                             citaMedicaModificar.setCitaMedicaModificar(citaMedica);
                             citaMedicaModificar.setVisible(true);
                             citaMedicaModificar.setLocationRelativeTo(null);
@@ -156,7 +157,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       JFrame jframe = new JF_NuevaCitaMedica(accesoController);
+       JFrame jframe = new JF_NuevaCitaMedica();
        jframe.setLocationRelativeTo(null);
        jframe.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -164,14 +165,14 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private void cargarDatosCitaMedica() {
         DefaultTableModel modelo = (DefaultTableModel) tb_citasMedicas.getModel();
         modelo.setRowCount(0);
-        citasMedicas = accesoController.citaMedicaController().get();
+        citasMedicas = managerController.get(CitaMedica.class);
         for (CitaMedica c : citasMedicas) {
             Object[] fila = {c.getId(), c.getPaciente().getNombre(), c.getMedico().getNombre(),c.getTurno().getFecha()};
             
             modeloTabla.addRow(fila);
         }
         JTable tabla = new JTable(modeloTabla);
-        tb_citasMedicas.setModel(modeloTabla);
+        tb_citasMedicas.setModel(tabla.getModel());
     }
     
 

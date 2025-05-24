@@ -1,11 +1,10 @@
 
 package Data.SQLite;
 
-import java.util.ArrayList;
-import Data.Repository;
+import Data.IRepository;
 
 
-public interface ExternalRepository  extends Repository{
+public abstract class ExternalRepository  implements IRepository{
 
    
     

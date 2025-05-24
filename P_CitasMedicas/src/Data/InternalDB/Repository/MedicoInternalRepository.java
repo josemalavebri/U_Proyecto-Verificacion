@@ -1,5 +1,5 @@
 
-package Data.FakeDB.Repository;
+package Data.InternalDB.Repository;
 
 import java.util.ArrayList;
 import modelos.Medico;
@@ -7,10 +7,14 @@ import modelos.Medico;
 
 
 public class MedicoInternalRepository extends GenericInternalRepository<Medico>{
-
     
     public MedicoInternalRepository(){
-        
+        try {
+        internalBD = internalBD.getInstance();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -30,26 +34,14 @@ public class MedicoInternalRepository extends GenericInternalRepository<Medico>{
     }
 
     @Override
-    public boolean remove(int id) {
-        return internalBD.removeMedico(id);
+    public boolean remove(Medico entity) {
+        return internalBD.removeMedico(entity);
     }
 
     
-   
-    /*
     @Override
     public Medico buscarPorCedula(Medico medico) {
         
-        return buscarPorCedula(medico);
+        return internalBD.buscarMedicosByCedula(medico);
     }
-    */
-
-    @Override
-    public boolean buscarPorCedula(int cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-   
-
-
-
 }
