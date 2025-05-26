@@ -10,8 +10,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.Medico;
 import utilidades.AccesoController;
-import utilidades.ButtonEditor;
-import utilidades.ButtonRenderer;
+import utilidades.Table.ButtonTable.ButtonEditor;
+import utilidades.Table.ButtonTable.ButtonRenderer;
 
 /**
  *
@@ -141,7 +141,7 @@ import utilidades.ButtonRenderer;
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String campoCedulaTexto = txt_Cedula.getText().toLowerCase().trim();
-        datosMedico = accesoController.medicoController().getMedico();
+        datosMedico = accesoController.medicoController().get();
         DefaultTableModel modelo = (DefaultTableModel) tb_Medico.getModel();
         modelo.setRowCount(0);
         for (Medico medicoTemporal : datosMedico){
@@ -166,7 +166,7 @@ import utilidades.ButtonRenderer;
     }                                          
 
     public void TablaMedicoLlenado(){
-        datosMedico = accesoController.medicoController().getMedico();
+        datosMedico = accesoController.medicoController().get();
 
         //modelo = CrearColumnasModeloPersonalizado(Medico.get(1), campos);
         //String[] campos = {"Id","Cedula","edad","Nombre","Apellido","Especialidad","Genero","Telefono"};
@@ -205,7 +205,7 @@ import utilidades.ButtonRenderer;
 
                 int idTablaMedico = (int) tb_Medico.getValueAt(filaSeleccionada, 0);
 
-                boolean eliminado = accesoController.medicoController().DeleteMedico(idTablaMedico);
+                boolean eliminado = accesoController.medicoController().remove(idTablaMedico);
                 
                 if(eliminado){
                     JOptionPane.showMessageDialog(null, "Medico eliminado: " + idTablaMedico);
@@ -227,13 +227,15 @@ import utilidades.ButtonRenderer;
                     Medico medico = buscarMedico(id, tb_Medico);
                     JF_FormularioMedico formularioModificar = abrirFormulario();
                     formularioModificar.setMedico(medico);
-                    accesoController.medicoController().PutMedico(medico);
+                    accesoController.medicoController().put(medico);
                     TablaMedicoLlenado();
                 }
             }
         };
         return modificarAction;
     }
+    
+    
     private Medico buscarMedico(int id, JTable tabla){
         String especialidad = null; 
         String genero = null;
@@ -243,7 +245,7 @@ import utilidades.ButtonRenderer;
                 int cedula = Integer.parseInt(cedulaTexto);
                 String nombre = tb_Medico.getValueAt(tabla.getSelectedRow(), 2).toString();
                 String apellido = tb_Medico.getValueAt(tabla.getSelectedRow(), 3).toString();
-                datosMedico = accesoController.medicoController().getMedico();
+                datosMedico = accesoController.medicoController().get();
                 int edad = medico.getEdad();
                 int telefono = medico.getTelefono();
                 return medico = new Medico(id,cedula,edad,nombre,apellido,especialidad,genero,telefono);

@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package vista.Factura;
+package vistas.Factura;
 
-import controladores.GeneralController;
 import modelos.CitaMedica;
 import modelos.Factura;
 import utilidades.AccesoController;
+import controladores.IGeneralController;
 
 /**
  *

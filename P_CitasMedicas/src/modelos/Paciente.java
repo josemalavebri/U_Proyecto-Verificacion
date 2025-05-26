@@ -3,6 +3,11 @@ package modelos;
 public class Paciente extends Persona {
 
     private String correo;
+    
+    public Paciente(){
+        
+        
+    }
 
     public Paciente(int cedula, String nombre, String apellido, int edad, String correo, int telefono) {
         super(0,cedula,edad,nombre,apellido,telefono);
@@ -24,10 +29,7 @@ public class Paciente extends Persona {
 
 
 
-    @Override
-    public String toString() {
-        return nombre +" "+ apellido ;
-    }
+    
 
 
 
