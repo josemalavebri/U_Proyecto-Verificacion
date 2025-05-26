@@ -6,6 +6,7 @@ public class Paciente extends Persona {
     
     public Paciente(){
         
+        
     }
 
     public Paciente(int cedula, String nombre, String apellido, int edad, String correo, int telefono) {
@@ -20,8 +21,6 @@ public class Paciente extends Persona {
 
     public String getCorreo() {
         return correo;
-        
-        
     }
 
     public void setCorreo(String correo) {

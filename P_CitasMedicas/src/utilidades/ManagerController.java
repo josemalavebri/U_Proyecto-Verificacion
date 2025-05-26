@@ -17,14 +17,12 @@ import modelos.Paciente;
 
 
 public class ManagerController {
-    private Map<Class<?>, IGeneralController<?>> controllers = new HashMap<>();
+    private final Map<Class<?>, IGeneralController<?>> controllers = new HashMap<>();
 
     public ManagerController() {
         controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository()));
         controllers.put(Paciente.class, new PacienteController(new PacienteInternalRepository()));
         controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository()));
-
-        
     }
 
     
@@ -60,9 +58,9 @@ public class ManagerController {
     }
     
     @SuppressWarnings("unchecked")
-    public <T> boolean remove(T entidad){
-        IGeneralController<T> ctrl = tryGetController(entidad.getClass());
-        return ctrl.remove(entidad);
+    public <T> boolean remove(Class<?> c, int id){
+        IGeneralController<T> ctrl = tryGetController(c);
+        return ctrl.remove(id);
     }
     
     private <T> IGeneralController tryGetController(Class<?> c){
