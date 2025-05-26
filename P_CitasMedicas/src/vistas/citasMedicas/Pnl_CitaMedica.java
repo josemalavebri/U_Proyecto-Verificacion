@@ -1,15 +1,12 @@
 package vistas.citasMedicas;
 
-import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JTable;
 import modelos.CitaMedica;
 import utilidades.AccesoController;
 import utilidades.Table.CreateTableFinal;
 import utilidades.ManagerController;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
-
     private ManagerController managerController;
     private CreateTableFinal<CitaMedica> createTableFinal;
 
@@ -27,18 +24,18 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }
     
     private void crearModeloTablaCitaMedica(){
-        createTableFinal.tableModelTotal(tb_citasMedicas,CitaMedica.class);
+        createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas,CitaMedica.class);
     }
     
     private void crearTableConEventoEliminar(){
         createTableFinal.asignarEventoEliminarTabla(tb_citasMedicas, managerController,CitaMedica.class);
     }
     
-    
     private void crearTableConEventoModificar(){
         createTableFinal.asignarEventoModificar(tb_citasMedicas, CitaMedica.class, citaMedica -> {
             JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
-            panel.setCitaMedicaModificar(citaMedica); 
+            panel.setCitaMedicaModificar(citaMedica);
+            panel.setVisible(true);
         });
     }
     

@@ -10,8 +10,7 @@ import javax.swing.table.DefaultTableModel;
 public class CreateTableView {
     
 
-    public <T> void cargarDatosEnTabla(JTable tabla, List<T> objets) {
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+    public <T> void cargarDatosEnModelo(DefaultTableModel modelo, List<T> objets) {
         
         if (objets == null || objets.isEmpty()) return;
 
@@ -30,9 +29,25 @@ public class CreateTableView {
             modelo.addRow(fila);
         }
 
-        tabla.setModel(modelo);
-
     }
+    
+    
+    //FILA AGREGADA
+    
+    public <T> Object[] extraerFila(T objeto, DefaultTableModel modelo) {
+        Object[] fila = new Object[modelo.getColumnCount()];
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            try {
+                Field campo = objeto.getClass().getDeclaredField(modelo.getColumnName(i));
+                campo.setAccessible(true);
+                fila[i] = campo.get(objeto);
+            } catch (Exception e) {
+                fila[i] = "N/A";
+            }
+        }
+        return fila;
+    }
+     
     
 }
 

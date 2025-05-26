@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import utilidades.Table.GeneralTableModel;
 
 
 public class EventoModificar<T> implements ActionListener {
@@ -23,11 +25,14 @@ public class EventoModificar<T> implements ActionListener {
     
     private T obtenerObjetoDeFila(JTable tabla, int filaSeleccionada) {
         if (filaSeleccionada < 0) return null;
-        Object obj =  tabla.getValueAt(filaSeleccionada, 0);
+        GeneralTableModel generalTableModel =  (GeneralTableModel) tabla.getModel();
+        Object obj = generalTableModel.getObjetoAt(filaSeleccionada);
         System.out.println("Clase real: " + obj.getClass().getName());
+
         if (c.isInstance(obj)) {
             return c.cast(obj);
         }
+        
         return null;
     }
     

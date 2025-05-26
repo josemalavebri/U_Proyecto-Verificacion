@@ -4,16 +4,19 @@ package utilidades;
 import Data.InternalDB.Repository.CitaMedicaInternalRepository;
 import Data.InternalDB.Repository.MedicoInternalRepository;
 import Data.InternalDB.Repository.PacienteInternalRepository;
+import Data.InternalDB.Repository.TurnoInternalRepository;
 import controladores.CitaMedicaController;
 import controladores.IGeneralController;
 import controladores.MedicoController;
 import controladores.PacienteController;
+import controladores.TurnoController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
+import modelos.Turno;
 
 
 public class ManagerController {
@@ -23,6 +26,7 @@ public class ManagerController {
         controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository()));
         controllers.put(Paciente.class, new PacienteController(new PacienteInternalRepository()));
         controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository()));
+        controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository()));
     }
 
     

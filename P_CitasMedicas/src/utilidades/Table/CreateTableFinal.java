@@ -20,13 +20,26 @@ public class CreateTableFinal<T> {
         this.controller = controller;
     }
     
+    
+    public void newModelTotalConGeneralTable(JTable table, Class<?> c){
+        List<T> listaDatos = recuperarDatos(c);
+        TableColumns tableColumns = new TableColumns();
+        DefaultTableModel tableModel = tableColumns.CrearColumnasModelo(listaDatos.get(0));
+        CreateTableView tableView = new CreateTableView();
+        tableView.cargarDatosEnModelo(tableModel, listaDatos);
+        GeneralTableModel<T> general = new GeneralTableModel<>(tableModel,listaDatos);
+        table.setModel(general);
+    }
+    
+    
+    //METODO MODIFICADO 
     public void tableModelTotal(JTable table,Class<?> c ){
         List<T> listaDatos = recuperarDatos(c);
         TableColumns tableColumns = new TableColumns();
         DefaultTableModel tableModel = tableColumns.CrearColumnasModelo(listaDatos.get(0));
         table.setModel(tableModel);
         CreateTableView tableView = new CreateTableView();
-        tableView.cargarDatosEnTabla(table, listaDatos);
+        //tableView.cargarDatosEnTabla(table, listaDatos);
     }
 
     private List<T>  recuperarDatos(Class<?> c){
