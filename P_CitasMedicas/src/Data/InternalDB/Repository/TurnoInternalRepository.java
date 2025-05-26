@@ -2,7 +2,6 @@
 package Data.InternalDB.Repository;
 
 import java.util.ArrayList;
-import modelos.CitaMedica;
 import modelos.Turno;
 
 public class TurnoInternalRepository extends GenericInternalRepository<Turno>{
@@ -36,4 +35,5 @@ public class TurnoInternalRepository extends GenericInternalRepository<Turno>{
     public Turno buscarPorCedula(Turno entity) {
         return new Turno();
     }
+    
 }

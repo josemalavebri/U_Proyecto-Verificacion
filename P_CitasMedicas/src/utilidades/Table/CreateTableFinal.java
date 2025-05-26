@@ -46,7 +46,7 @@ public class CreateTableFinal<T> {
         return controller.get(c);
     }
     
-    public void asignarEventoEliminarTabla(JTable table, ManagerController manager, Class<?> c){
+    public void asignarEventoEliminarTabla(JTable table, ManagerController manager, Class<T> c){
         Runnable recargarDatoss = () -> recuperarDatos(c);
         ActionListener eventoEliminar = new EventoEliminar( table, manager, recargarDatoss, c);
         AsignarEventosTabla.EventoEliminarTabla(table, eventoEliminar);

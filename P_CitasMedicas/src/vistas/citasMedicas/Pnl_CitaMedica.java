@@ -20,7 +20,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private void crearTodaTablaConDatos(){
         crearModeloTablaCitaMedica();
         crearTableConEventoEliminar();
-        crearTableConEventoModificar();
     }
     
     private void crearModeloTablaCitaMedica(){

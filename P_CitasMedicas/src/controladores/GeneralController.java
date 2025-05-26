@@ -1,6 +1,5 @@
 
 package controladores;
-
 import Data.IRepository;
 import java.util.ArrayList;
 
@@ -36,6 +35,7 @@ public abstract class GeneralController<T> implements IGeneralController<T>{
     public T buscarPorCedula(T objeto) {
         return db.buscarPorCedula(objeto);
     }
+    
 }
 
 
