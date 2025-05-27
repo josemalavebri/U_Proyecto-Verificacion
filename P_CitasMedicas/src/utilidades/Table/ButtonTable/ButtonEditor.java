@@ -27,7 +27,6 @@ public class ButtonEditor extends DefaultCellEditor {
     private JTable table;
     private ActionListener actionListener;
 
-    // Constructor para definir acción y listener genérico
     public ButtonEditor(JCheckBox checkBox, String action, ActionListener actionListener) {
         super(checkBox);
         this.action = action;
@@ -37,6 +36,11 @@ public class ButtonEditor extends DefaultCellEditor {
         button.addActionListener(e -> {
             fireEditingStopped(); 
             actionListener.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, action));
+        });
+        
+        button.addActionListener(e -> {
+            e.setSource(row); 
+            actionListener.actionPerformed(e);
         });
     }
 

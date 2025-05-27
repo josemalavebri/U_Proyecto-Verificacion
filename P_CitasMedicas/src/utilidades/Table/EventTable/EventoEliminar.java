@@ -11,16 +11,15 @@ import utilidades.ManagerController;
 public class EventoEliminar implements ActionListener {
     
     private final JTable tabla;
-    private final ManagerController manager;
     private final Runnable recargarDatos;
     private final Class<?> c;
-    
+    private final ManagerController manager;
 
-    public EventoEliminar(JTable tabla, ManagerController manager, Runnable recargarDatos, Class<?> c) {
+    public EventoEliminar(JTable tabla, ManagerController manager,Runnable recargarDatos, Class<?> c) {
         this.tabla = tabla;
-        this.manager = manager;
         this.recargarDatos = recargarDatos;
         this.c = c;
+        this.manager = manager;
     }
     
     @Override
@@ -31,7 +30,7 @@ public class EventoEliminar implements ActionListener {
             boolean eliminado = manager.remove(c,id);
             if (eliminado) {
                 JOptionPane.showMessageDialog(null, "Se eliminó correctamente");
-                recargarDatos.run(); // recarga la tabla
+                recargarDatos.run();
             }
         }
     }

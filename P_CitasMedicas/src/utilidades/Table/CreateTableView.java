@@ -30,23 +30,7 @@ public class CreateTableView {
 
     }
     
-    
-    //FILA AGREGADA
-    
-    public <T> Object[] extraerFila(T objeto, DefaultTableModel modelo) {
-        Object[] fila = new Object[modelo.getColumnCount()];
-        for (int i = 0; i < modelo.getColumnCount(); i++) {
-            try {
-                Field campo = objeto.getClass().getDeclaredField(modelo.getColumnName(i));
-                campo.setAccessible(true);
-                fila[i] = campo.get(objeto);
-            } catch (Exception e) {
-                fila[i] = "N/A";
-            }
-        }
-        return fila;
-    }
-     
+   
     
 }
 

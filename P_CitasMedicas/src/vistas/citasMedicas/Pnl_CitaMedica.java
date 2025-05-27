@@ -1,10 +1,12 @@
 package vistas.citasMedicas;
 
+import java.util.function.Consumer;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
 import utilidades.AccesoController;
 import utilidades.Table.CreateTableFinal;
 import utilidades.ManagerController;
+import utilidades.Table.EventoTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
     private ManagerController managerController;
@@ -19,24 +21,28 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     
     private void crearTodaTablaConDatos(){
         crearModeloTablaCitaMedica();
-        crearTableConEventoEliminar();
     }
     
-    private void crearModeloTablaCitaMedica(){
+    private <T> void crearModeloTablaCitaMedica(){
         createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas,CitaMedica.class);
+        EventoTabla<CitaMedica> eventoTabla = new EventoTabla();
+        Runnable runna =()-> crearTodaTablaConDatos();
+        eventoTabla.metodoFactor(managerController, CitaMedica.class, tb_citasMedicas, citaMedica -> {
+            JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
+            panel.setCitaMedicaModificar(citaMedica);
+            panel.setVisible(true);
+        }, runna);
     }
     
+    /*
     private void crearTableConEventoEliminar(){
         createTableFinal.asignarEventoEliminarTabla(tb_citasMedicas, managerController,CitaMedica.class);
     }
     
     private void crearTableConEventoModificar(){
-        createTableFinal.asignarEventoModificar(tb_citasMedicas, CitaMedica.class, citaMedica -> {
-            JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
-            panel.setCitaMedicaModificar(citaMedica);
-            panel.setVisible(true);
-        });
+        createTableFinal.asignarEventoModificar(tb_citasMedicas, CitaMedica.class, 
     }
+    */
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
