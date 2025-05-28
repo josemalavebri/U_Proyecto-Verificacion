@@ -1,5 +1,5 @@
 
-package utilidades.Table.Command;
+package utilidades.Table.CommandTable;
 
 
 public interface Comando {

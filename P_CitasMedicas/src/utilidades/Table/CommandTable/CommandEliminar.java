@@ -1,7 +1,6 @@
 
-package utilidades.Table.Command;
+package utilidades.Table.CommandTable;
 
-import modelos.BaseEntity;
 import utilidades.Controller.ManagerController;
 
 
@@ -20,7 +19,6 @@ public class CommandEliminar implements Comando{
     @Override
     public void ejecutar() {
         controlador.remove(id, c); 
-
     }
     
 }

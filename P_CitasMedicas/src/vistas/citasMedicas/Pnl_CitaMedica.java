@@ -1,49 +1,28 @@
 package vistas.citasMedicas;
 
-import java.util.function.Consumer;
+import java.util.List;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
 import utilidades.Controller.AccesoController;
-import utilidades.Table.CreateTable.CreateTableFinal;
 import utilidades.Controller.ManagerController;
-import utilidades.Table.CreateTable.EventoTabla;
+import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
     private ManagerController<CitaMedica> managerController;
-    private CreateTableFinal<CitaMedica> createTableFinal;
+    private ConstructorModeloTabla<CitaMedica> createTableFinal;
 
     public Pnl_CitaMedica(AccesoController accesoController) {
         initComponents();
         managerController = ManagerController.getInstance();
-        createTableFinal = new CreateTableFinal(managerController);
-        crearTodaTablaConDatos();
+        createTableFinal = new ConstructorModeloTabla(managerController);
+        llenarDatosTabla();
     }
     
-    private void crearTodaTablaConDatos(){
-        crearModeloTablaCitaMedica();
+    private void llenarDatosTabla(){
+        List<CitaMedica> listaCitaMedica = managerController.get(CitaMedica.class);
+        createTableFinal.construirYAsignarModelo(tb_citasMedicas,listaCitaMedica);
+        createTableFinal.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
     }
-    
-    private <T> void crearModeloTablaCitaMedica(){
-        createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas);
-        EventoTabla<CitaMedica> eventoTabla = new EventoTabla();
-        Runnable runna =()-> crearTodaTablaConDatos();
-        
-        eventoTabla.metodoFactor(managerController, tb_citasMedicas, citaMedica -> {
-            JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
-            panel.setCitaMedicaModificar(citaMedica);
-            panel.setVisible(true);
-        }, runna);
-    }
-    
-    /*
-    private void crearTableConEventoEliminar(){
-        createTableFinal.asignarEventoEliminarTabla(tb_citasMedicas, managerController,CitaMedica.class);
-    }
-    
-    private void crearTableConEventoModificar(){
-        createTableFinal.asignarEventoModificar(tb_citasMedicas, CitaMedica.class, 
-    }
-    */
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -7,12 +7,12 @@ import javax.swing.table.DefaultTableModel;
 import modelos.BaseEntity;
 
 
-public class GeneralTableModel<T> extends DefaultTableModel {
+public class ObjectTableModel<T> extends DefaultTableModel {
   
     private List<BaseEntity> datos;
 
-    public GeneralTableModel(DefaultTableModel modeloBase, List<BaseEntity> datos) {
-         super(); // Llama al constructor base
+    public ObjectTableModel(DefaultTableModel modeloBase, List<BaseEntity> datos) {
+         super();
          this.datos = datos;
 
          int columnCount = modeloBase.getColumnCount();
@@ -22,7 +22,6 @@ public class GeneralTableModel<T> extends DefaultTableModel {
          }
          setColumnIdentifiers(columnas);
 
-         // Copiar las filas del modelo base
          Vector<?> filas = modeloBase.getDataVector();
          for (Object fila : filas) {
              addRow(((Vector<?>) fila).toArray());

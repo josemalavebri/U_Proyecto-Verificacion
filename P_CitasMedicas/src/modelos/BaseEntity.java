@@ -2,7 +2,7 @@
 package modelos;
 
 
-public class BaseEntity  {
+public abstract class BaseEntity  {
     private int id;
     
     public BaseEntity(int id) {

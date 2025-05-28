@@ -12,16 +12,17 @@ import modelos.Paciente;
 import modelos.Turno;
 
 import utilidades.Controller.ManagerController;
-import utilidades.Table.CreateTable.TableColumns;
+import utilidades.Table.CreateTable.GeneradorModeloTabla;
 import utilidades.Verificador.VerificadorDeFormato;
 
 import vistas.Factura.JF_Factura;
+import vistas.IReceptorEntityJFrame;
 
-public class JF_NuevaCitaMedica extends javax.swing.JFrame {
+public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorEntityJFrame<CitaMedica> {
     private Turno turnoSeleccionado;
     
     //CREAR DISTINTOS MANAGER CONTROLLER PARA PACIENTE Y PARA TURNO ETC
-    private ManagerController<Medico> managerController;
+    private ManagerController managerController;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Medico> listaMedicos;
     private ArrayList<Turno> turnosDisponibles;
@@ -40,17 +41,17 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     }
     
     private void cargarDatosComboBox(){
-        listaMedicos = managerController.get();
-        listaPacientes = managerController.get();
+        listaMedicos = managerController.get(Medico.class);
+        listaPacientes = managerController.get(Paciente.class);
         llenarComboBoxConDatos(cbx_medicos, listaMedicos);
         llenarComboBoxConDatos(cbx_paciente, listaPacientes);
     }
     
     private void mostrarTurnosEnTabla() {
-        turnosDisponibles = managerController.get();
+        turnosDisponibles = managerController.get(Turno.class);
         Turno turnoModelo = turnosDisponibles.get(1);
-        TableColumns tableColumns = new TableColumns();
-        DefaultTableModel modeloTabla = tableColumns.CrearColumnasModelo(turnoModelo);
+        GeneradorModeloTabla tableColumns = new GeneradorModeloTabla();
+        DefaultTableModel modeloTabla = tableColumns.generarModeloDesdeEntidad(turnoModelo);
         for (Turno t : turnosDisponibles) {
             Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
             modeloTabla.addRow(fila);
@@ -295,4 +296,10 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     private javax.swing.JTextField txt_turnoSeleccionado;
     private javax.swing.JTextArea txta_descripcion;
     // End of variables declaration//GEN-END:variables
+
+    
+    @Override
+    public void setEntidad(CitaMedica entidad) {
+        System.out.println("Entidad Recibida" + entidad.getId());
+    }
 }

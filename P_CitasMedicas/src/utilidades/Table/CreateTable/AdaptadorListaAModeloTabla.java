@@ -6,15 +6,13 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 
-public class CreateTableView {
+public class AdaptadorListaAModeloTabla {
     
 
     public <T> void cargarDatosEnModelo(DefaultTableModel modelo, List<T> objets) {
         
         if (objets == null || objets.isEmpty()) return;
-
         for (T objeto : objets) {
-            
             Object[] fila = new Object[modelo.getColumnCount()];
             for (int i = 0; i < modelo.getColumnCount(); i++) {
                 try {
