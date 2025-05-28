@@ -5,7 +5,7 @@
 package vistas.main;
 
 import java.awt.BorderLayout;
-import utilidades.AccesoController;
+import utilidades.Controller.AccesoController;
 import vistas.citasMedicas.Pnl_CitaMedica;
 import vistas.paciente.Pnl_GestorPaciente;
 

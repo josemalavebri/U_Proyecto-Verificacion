@@ -2,8 +2,6 @@
 package Data.InternalDB.Repository;
 
 import Data.InternalDB.InternalBD;
-import java.util.ArrayList;
-import modelos.Medico;
 import Data.IRepository;
 
 

@@ -6,7 +6,7 @@ package vistas.Factura;
 
 import modelos.CitaMedica;
 import modelos.Factura;
-import utilidades.AccesoController;
+import utilidades.Controller.AccesoController;
 import controladores.IGeneralController;
 
 /**

@@ -6,9 +6,9 @@
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/medico/Pnl_GestionMedico.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/Pnl_CitaMedica.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/citasMedicas/JF_NuevaCitaMedica.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTableFinal.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/CreateTableFinal.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/EventTable/EventoModificar.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/ManagerController.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Controller/ManagerController.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/IGeneralController.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/MedicoController.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/controladores/PacienteController.java</file>
@@ -23,17 +23,28 @@
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/JF_NuevoFormularioPaciente.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/paciente/Pnl_GestorPaciente.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/medico/JF_FormularioMedico.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/GeneralTableModel.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/GeneralTableModel.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/InternalDB/Repository/MedicoInternalRepository.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/TableColumns.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTableView.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/TableColumns.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/CreateTableView.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/ButtonTable/ButtonEditor.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/ButtonTable/ButtonRenderer.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/medico/GestionMedico.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/main/JF_Principal.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/EventTable/EventoEliminar.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/EventoTabla.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/EventoTabla.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/InternalDB/Repository/GenericInternalRepository.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/Command/Comando.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/Command/CommandEliminar.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/Command/ComandoListenerEliminar.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Table/Command/ColumnHelper.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/utilidades/Controller/AccesoController.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/BaseEntity.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/CitaMedica.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Factura.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Persona.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Paciente.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Turno.java</file>
         </group>
     </open-files>
 </project-private>

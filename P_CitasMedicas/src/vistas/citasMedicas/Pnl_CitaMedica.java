@@ -3,18 +3,18 @@ package vistas.citasMedicas;
 import java.util.function.Consumer;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
-import utilidades.AccesoController;
-import utilidades.Table.CreateTableFinal;
-import utilidades.ManagerController;
-import utilidades.Table.EventoTabla;
+import utilidades.Controller.AccesoController;
+import utilidades.Table.CreateTable.CreateTableFinal;
+import utilidades.Controller.ManagerController;
+import utilidades.Table.CreateTable.EventoTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
-    private ManagerController managerController;
+    private ManagerController<CitaMedica> managerController;
     private CreateTableFinal<CitaMedica> createTableFinal;
 
     public Pnl_CitaMedica(AccesoController accesoController) {
         initComponents();
-        managerController = new ManagerController();
+        managerController = ManagerController.getInstance();
         createTableFinal = new CreateTableFinal(managerController);
         crearTodaTablaConDatos();
     }
@@ -24,10 +24,11 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     }
     
     private <T> void crearModeloTablaCitaMedica(){
-        createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas,CitaMedica.class);
+        createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas);
         EventoTabla<CitaMedica> eventoTabla = new EventoTabla();
         Runnable runna =()-> crearTodaTablaConDatos();
-        eventoTabla.metodoFactor(managerController, CitaMedica.class, tb_citasMedicas, citaMedica -> {
+        
+        eventoTabla.metodoFactor(managerController, tb_citasMedicas, citaMedica -> {
             JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
             panel.setCitaMedicaModificar(citaMedica);
             panel.setVisible(true);

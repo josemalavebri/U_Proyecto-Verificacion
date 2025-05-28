@@ -11,16 +11,17 @@ import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
 
-import utilidades.AccesoController;
-import utilidades.ManagerController;
-import utilidades.Table.TableColumns;
+import utilidades.Controller.ManagerController;
+import utilidades.Table.CreateTable.TableColumns;
 import utilidades.Verificador.VerificadorDeFormato;
 
 import vistas.Factura.JF_Factura;
 
 public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     private Turno turnoSeleccionado;
-    private ManagerController managerController;
+    
+    //CREAR DISTINTOS MANAGER CONTROLLER PARA PACIENTE Y PARA TURNO ETC
+    private ManagerController<Medico> managerController;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Medico> listaMedicos;
     private ArrayList<Turno> turnosDisponibles;
@@ -34,19 +35,19 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame {
     
     private void inicializarComponentesLogicos(){
         turnoSeleccionado = new Turno();
-        managerController = new ManagerController();
+        managerController = ManagerController.getInstance();
         asignarEventoClickFilaTurno();
     }
     
     private void cargarDatosComboBox(){
-        listaMedicos = managerController.get(Medico.class);
-        listaPacientes = managerController.get(Paciente.class);
+        listaMedicos = managerController.get();
+        listaPacientes = managerController.get();
         llenarComboBoxConDatos(cbx_medicos, listaMedicos);
         llenarComboBoxConDatos(cbx_paciente, listaPacientes);
     }
     
     private void mostrarTurnosEnTabla() {
-        turnosDisponibles = managerController.get(Turno.class);
+        turnosDisponibles = managerController.get();
         Turno turnoModelo = turnosDisponibles.get(1);
         TableColumns tableColumns = new TableColumns();
         DefaultTableModel modeloTabla = tableColumns.CrearColumnasModelo(turnoModelo);

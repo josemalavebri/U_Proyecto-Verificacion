@@ -3,7 +3,7 @@ package vistas.medico;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelos.Medico;
-import utilidades.AccesoController;
+import utilidades.Controller.AccesoController;
 import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
 import vistas.paciente.JF_NuevoFormularioPaciente;

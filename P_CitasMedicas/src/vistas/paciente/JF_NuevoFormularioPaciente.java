@@ -5,7 +5,7 @@ import utilidades.Verificador.TipoValidacion;
 import utilidades.Verificador.Verificador;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import utilidades.AccesoController;
+import utilidades.Controller.AccesoController;
 
 public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 

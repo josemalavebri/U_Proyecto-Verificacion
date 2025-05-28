@@ -6,7 +6,6 @@ public class Medico extends Persona{
     private String especialidad;
     private String genero;
     
-    
     public Medico() {
         super(); 
         this.especialidad = "";

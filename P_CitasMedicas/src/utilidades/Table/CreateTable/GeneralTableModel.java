@@ -1,16 +1,17 @@
 
-package utilidades.Table;
+package utilidades.Table.CreateTable;
 
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
+import modelos.BaseEntity;
 
 
 public class GeneralTableModel<T> extends DefaultTableModel {
   
-    private List<T> datos;
+    private List<BaseEntity> datos;
 
-    public GeneralTableModel(DefaultTableModel modeloBase, List<T> datos) {
+    public GeneralTableModel(DefaultTableModel modeloBase, List<BaseEntity> datos) {
          super(); // Llama al constructor base
          this.datos = datos;
 
@@ -29,10 +30,13 @@ public class GeneralTableModel<T> extends DefaultTableModel {
      }
     
 
-    public T getObjetoAt(int row) {
+    public BaseEntity getObjetoAt(int row) {
         return datos.get(row);
     }
-
-
+    
+    public void removeById(int id) {
+        datos.removeIf(entity -> entity.getId() == id);
+    }
+        
      
 }

@@ -9,10 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelos.Paciente;
-import utilidades.AccesoController;
+import utilidades.Controller.AccesoController;
 import utilidades.Table.ButtonTable.ButtonEditor;
 import utilidades.Table.ButtonTable.ButtonRenderer;
-import utilidades.ManagerController;
+import utilidades.Controller.ManagerController;
 
 public class Pnl_GestorPaciente extends javax.swing.JPanel {
     

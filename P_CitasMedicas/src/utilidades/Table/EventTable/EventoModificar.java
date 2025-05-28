@@ -7,28 +7,25 @@ import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import utilidades.Table.GeneralTableModel;
+import utilidades.Table.CreateTable.GeneralTableModel;
 
 
 public class EventoModificar<T> implements ActionListener {
     
     private final JTable tabla;
     private final Consumer<T> abrirFormularioEditar;
-    private final Class<T> c;
-    
+    private Class<T> c;
 
-    public EventoModificar(JTable tabla, Consumer<T> abrirFormularioEditar, Class<T> c) {
+    public EventoModificar(JTable tabla, Consumer<T> abrirFormularioEditar) {
         this.tabla = tabla;
         this.abrirFormularioEditar = abrirFormularioEditar;
-        this.c = c;
     }
     
-    private T obtenerObjetoDeFila(JTable tabla, int filaSeleccionada) {
+    private T obtenerObjetoDeFila(JTable tabla, int filaSeleccionada, Class<T> c) {
         if (filaSeleccionada < 0) return null;
         GeneralTableModel generalTableModel =  (GeneralTableModel) tabla.getModel();
         Object obj = generalTableModel.getObjetoAt(filaSeleccionada);
         System.out.println("Clase real: " + obj.getClass().getName());
-
         if (c.isInstance(obj)) {
             return c.cast(obj);
         }

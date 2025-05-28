@@ -1,5 +1,5 @@
 
-package utilidades;
+package utilidades.Controller;
 
 import Data.InternalDB.Repository.CitaMedicaInternalRepository;
 import Data.InternalDB.Repository.MedicoInternalRepository;
@@ -19,14 +19,22 @@ import modelos.Paciente;
 import modelos.Turno;
 
 
-public class ManagerController {
+public class ManagerController<T>{
+    private static ManagerController managerControllerInstance;
     private final Map<Class<?>, IGeneralController<?>> controllers = new HashMap<>();
     
-    public ManagerController() {
+    private ManagerController() {
         controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository()));
         controllers.put(Paciente.class, new PacienteController(new PacienteInternalRepository()));
         controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository()));
         controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository()));
+    }
+    
+    public static ManagerController getInstance(){
+        if(managerControllerInstance == null ){
+            managerControllerInstance = new ManagerController();
+        }
+        return managerControllerInstance;
     }
     
     
@@ -62,7 +70,7 @@ public class ManagerController {
     }
     
     @SuppressWarnings("unchecked")
-    public boolean remove(Class<?> c, int id){
+    public boolean remove(int id, Class<?> c){
         IGeneralController ctrl = tryGetController(c);
         return ctrl.remove(id);
     }
