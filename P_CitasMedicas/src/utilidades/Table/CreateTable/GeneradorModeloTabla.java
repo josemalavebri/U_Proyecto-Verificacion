@@ -2,29 +2,31 @@ package utilidades.Table.CreateTable;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 
 public class GeneradorModeloTabla {
-    
-    public DefaultTableModel generarModeloDesdeEntidad(Object objeto){
-        String[] nombreDeColumnas= extraerNombresColumnas(objeto);
-        DefaultTableModel modelo = new DefaultTableModel(nombreDeColumnas, 0);
-        return modelo;
-    }
 
-    private String[] extraerNombresColumnas(Object objeto){
-        Field[] campos = objeto.getClass().getDeclaredFields();
-        ArrayList<String> columnas = new ArrayList();
-        for (Field campo : campos) {
-            columnas.add(campo.toString());
+    
+    public static String[] extraerNombresColumnas(Object objeto) {
+        List<String> columnas = new ArrayList<>();
+        List<Class<?>> clases = new ArrayList<>();
+        Class<?> clase = objeto.getClass();
+
+        // Guardar todas las clases en la jerarquía
+        while (clase != null && clase != Object.class) {
+            clases.add(clase);
+            clase = clase.getSuperclass();
         }
-        String[] nombresDeColumnas = new String[campos.length];
-        for(int i=0; i<campos.length;i++ ){
-            nombresDeColumnas[i]= campos[i].getName();
+
+        // Recorrer de la superclase a la subclase para mantener orden lógico
+        for (int i = clases.size() - 1; i >= 0; i--) {
+            Field[] campos = clases.get(i).getDeclaredFields();
+            for (Field campo : campos) {
+                columnas.add(campo.getName());
+            }
         }
-        return nombresDeColumnas;
+
+        return columnas.toArray(new String[0]);
     }
-    
-    
 }

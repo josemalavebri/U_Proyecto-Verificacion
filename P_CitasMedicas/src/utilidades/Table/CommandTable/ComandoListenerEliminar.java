@@ -20,7 +20,7 @@ public class ComandoListenerEliminar implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ButtonEditor editor = (ButtonEditor) e.getSource();  // ✅ casteamos correctamente
+        ButtonEditor editor = (ButtonEditor) e.getSource();
         int fila = editor.getRow();
         ObjectTableModel modelo = (ObjectTableModel) tabla.getModel();
         BaseEntity baseEntity = (BaseEntity) modelo.getObjetoAt(fila);

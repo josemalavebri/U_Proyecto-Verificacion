@@ -3,27 +3,25 @@ package vistas.citasMedicas;
 import java.util.List;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
-import utilidades.Controller.AccesoController;
 import utilidades.Controller.ManagerController;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
+    
     private ManagerController<CitaMedica> managerController;
-    private ConstructorModeloTabla<CitaMedica> createTableFinal;
 
-    public Pnl_CitaMedica(AccesoController accesoController) {
+    public Pnl_CitaMedica() {
         initComponents();
         managerController = ManagerController.getInstance();
-        createTableFinal = new ConstructorModeloTabla(managerController);
         llenarDatosTabla();
     }
     
     private void llenarDatosTabla(){
         List<CitaMedica> listaCitaMedica = managerController.get(CitaMedica.class);
-        createTableFinal.construirYAsignarModelo(tb_citasMedicas,listaCitaMedica);
-        createTableFinal.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
+        ConstructorModeloTabla.construirYAsignarModelo(tb_citasMedicas, listaCitaMedica);
+        ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,7 +80,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        JFrame jframe = new JF_NuevaCitaMedica();
        jframe.setLocationRelativeTo(null);

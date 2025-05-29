@@ -1,6 +1,8 @@
 
 package utilidades.Table.CreateTable;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
@@ -11,23 +13,16 @@ public class ObjectTableModel<T> extends DefaultTableModel {
   
     private List<BaseEntity> datos;
 
-    public ObjectTableModel(DefaultTableModel modeloBase, List<BaseEntity> datos) {
+    public ObjectTableModel(List<BaseEntity> datos) {
          super();
          this.datos = datos;
-
-         int columnCount = modeloBase.getColumnCount();
-         String[] columnas = new String[columnCount];
-         for (int i = 0; i < columnCount; i++) {
-             columnas[i] = modeloBase.getColumnName(i);
-         }
+         String[] columnas = GeneradorModeloTabla.extraerNombresColumnas(datos.get(0));
          setColumnIdentifiers(columnas);
+           for (BaseEntity fila : datos) {
+            addRow(AdaptadorObjetoArray.convertirAArray(fila));
+        }
+    }
 
-         Vector<?> filas = modeloBase.getDataVector();
-         for (Object fila : filas) {
-             addRow(((Vector<?>) fila).toArray());
-         }
-     }
-    
 
     public BaseEntity getObjetoAt(int row) {
         return datos.get(row);

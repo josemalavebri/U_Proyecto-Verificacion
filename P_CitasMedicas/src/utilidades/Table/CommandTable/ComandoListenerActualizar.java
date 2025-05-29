@@ -29,4 +29,5 @@ public class ComandoListenerActualizar implements ActionListener {
         JFrame framas = (JFrame) frame;
         framas.setVisible(true);
     }
+    
 }

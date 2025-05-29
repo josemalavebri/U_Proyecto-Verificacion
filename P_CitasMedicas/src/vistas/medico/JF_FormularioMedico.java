@@ -4,24 +4,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelos.Medico;
 import utilidades.Controller.AccesoController;
-import utilidades.Verificador.TipoValidacion;
-import utilidades.Verificador.Verificador;
+import utilidades.Validador.TipoValidacion;
+import utilidades.Validador.ValidadorDeCampos;
+import vistas.IReceptorEntityJFrame;
 import vistas.paciente.JF_NuevoFormularioPaciente;
 
 /**
  *
  * @author conta
  */
-public class JF_FormularioMedico extends javax.swing.JFrame {
+public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptorEntityJFrame<Medico>{
     
     private Pnl_GestionMedico panelPadre;
-    private Verificador verificador;
+    private ValidadorDeCampos verificador;
     private Medico medico;
-    private AccesoController accesoController;
     
-    public JF_FormularioMedico(Pnl_GestionMedico panelPadre) {
-        this.panelPadre = panelPadre;
-        verificador = new Verificador();
+    public JF_FormularioMedico() {
+        verificador = new ValidadorDeCampos();
         initComponents();
     }
     
@@ -276,10 +275,10 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
 
 
         // Validación
-        boolean cedulaValidacion = verificador.verificar(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
-        boolean nombreValidacion = verificador.verificar(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean apellidoValidacion = verificador.verificar(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean telefonoValidacion = verificador.verificar(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean cedulaValidacion = verificador.validarCampo(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean nombreValidacion = verificador.validarCampo(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean apellidoValidacion = verificador.validarCampo(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean telefonoValidacion = verificador.validarCampo(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
 
         // Si todos son válidos
         if (cedulaValidacion && nombreValidacion && apellidoValidacion && telefonoValidacion){
@@ -328,11 +327,11 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
     }
     
     private boolean validarLetra(JTextField texto){
-        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
     }
     
     private boolean validarNumero(JTextField texto){
-        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -366,4 +365,9 @@ public class JF_FormularioMedico extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Cedula;
     private javax.swing.JTextField txt_Edad;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setEntidad(Medico entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

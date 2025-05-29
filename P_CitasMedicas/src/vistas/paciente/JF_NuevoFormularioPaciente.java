@@ -1,8 +1,8 @@
 package vistas.paciente;
 
 import modelos.Paciente;
-import utilidades.Verificador.TipoValidacion;
-import utilidades.Verificador.Verificador;
+import utilidades.Validador.TipoValidacion;
+import utilidades.Validador.ValidadorDeCampos;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import utilidades.Controller.AccesoController;
@@ -10,7 +10,7 @@ import utilidades.Controller.AccesoController;
 public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
     private Pnl_GestorPaciente panelPadre;
-    private Verificador verificador;
+    private ValidadorDeCampos verificador;
     private Paciente paciente;
     private AccesoController accesoController;
     
@@ -25,7 +25,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
     }
 
     private void inicializarDatos(){
-        verificador = new Verificador();
+        verificador = new ValidadorDeCampos();
 
     }
     
@@ -241,11 +241,11 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
     }
     
     private boolean validarLetra(JTextField texto){
-        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
     }
     
     private boolean validarNumero(JTextField texto){
-        return verificador.verificar(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
     }
     
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

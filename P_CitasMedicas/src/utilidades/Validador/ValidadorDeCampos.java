@@ -1,8 +1,8 @@
-package utilidades.Verificador;
+package utilidades.Validador;
 
-public class Verificador {
+public class ValidadorDeCampos {
 
-    public boolean verificar(Object valor, TipoValidacion... validaciones) {
+    public  static boolean validarCampo(Object valor, TipoValidacion... validaciones) {
         for (TipoValidacion validacion : validaciones) {
             switch (validacion) {
                 case NO_NULO:
@@ -25,7 +25,7 @@ public class Verificador {
         return true;
     }
      
-    private boolean esNumerico(Object valor) {
+    private static boolean esNumerico(Object valor) {
         if (valor == null) return false;
         try {
             Double.valueOf(valor.toString());
@@ -35,7 +35,7 @@ public class Verificador {
         }
     }
 
-    private boolean esCadenaTextoValida(Object valor) {
+    private static boolean esCadenaTextoValida(Object valor) {
         if (valor == null) return false;
         String texto = valor.toString().trim();
         return !texto.isEmpty();

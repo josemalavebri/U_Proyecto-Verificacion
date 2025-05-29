@@ -1,5 +1,5 @@
 
-package utilidades.Verificador;
+package utilidades.Validador;
 
 
 public enum TipoValidacion {

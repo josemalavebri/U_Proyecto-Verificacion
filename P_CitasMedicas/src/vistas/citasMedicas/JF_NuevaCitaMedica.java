@@ -2,6 +2,7 @@ package vistas.citasMedicas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,20 +13,18 @@ import modelos.Paciente;
 import modelos.Turno;
 
 import utilidades.Controller.ManagerController;
-import utilidades.Table.CreateTable.GeneradorModeloTabla;
-import utilidades.Verificador.VerificadorDeFormato;
+import utilidades.Table.CreateTable.ConstructorModeloTabla;
+import utilidades.Validador.Validador;
 
 import vistas.Factura.JF_Factura;
 import vistas.IReceptorEntityJFrame;
 
 public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorEntityJFrame<CitaMedica> {
+
     private Turno turnoSeleccionado;
-    
-    //CREAR DISTINTOS MANAGER CONTROLLER PARA PACIENTE Y PARA TURNO ETC
     private ManagerController managerController;
     private ArrayList<Paciente> listaPacientes;
-    private ArrayList<Medico> listaMedicos;
-    private ArrayList<Turno> turnosDisponibles;
+    private ArrayList<Medico> listaMedicos;    
 
     public JF_NuevaCitaMedica() {
         initComponents();
@@ -34,10 +33,14 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         mostrarTurnosEnTabla();
     } 
     
+    private void mostrarTurnosEnTabla() {
+        List<Turno> turnosDisponibles = managerController.get(Turno.class);
+        ConstructorModeloTabla.construirYAsignarModelo(tb_turnos, turnosDisponibles);
+    }
+     
     private void inicializarComponentesLogicos(){
         turnoSeleccionado = new Turno();
         managerController = ManagerController.getInstance();
-        asignarEventoClickFilaTurno();
     }
     
     private void cargarDatosComboBox(){
@@ -47,18 +50,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         llenarComboBoxConDatos(cbx_paciente, listaPacientes);
     }
     
-    private void mostrarTurnosEnTabla() {
-        turnosDisponibles = managerController.get(Turno.class);
-        Turno turnoModelo = turnosDisponibles.get(1);
-        GeneradorModeloTabla tableColumns = new GeneradorModeloTabla();
-        DefaultTableModel modeloTabla = tableColumns.generarModeloDesdeEntidad(turnoModelo);
-        for (Turno t : turnosDisponibles) {
-            Object[] fila = {t.getId(), t.getFecha(), t.getHora(), t.getMinuto()};
-            modeloTabla.addRow(fila);
-        }
-        tb_turnos.setModel(modeloTabla);
-    }
-     
     private <T> void llenarComboBoxConDatos(JComboBox<String> comboBox, ArrayList<T> lista) {
         comboBox.removeAllItems();
         for (T item : lista) {
@@ -66,19 +57,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         }
     }
     
-    private void asignarEventoClickFilaTurno(){
-        tb_turnos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int filaSeleccionada = tb_turnos.getSelectedRow();
-                if (filaSeleccionada != -1) {
-                    turnoSeleccionado = turnosDisponibles.get(filaSeleccionada);
-                    TextBoxTurno(turnoSeleccionado);
-                }   
-            }
-        });
-    }
-
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,13 +219,17 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private boolean verificarCampos(){
-        if(! VerificadorDeFormato.verificarCampoTexto(cbx_medicos.getSelectedItem(), "Campo Medico Vacio o no valido")) 
+        final String  msjCampoMedicoNoValido = "Campo Medico Vacio o no valido";
+        final String msjCampoPacienteNoValido = "Campo Paciente Vacio o no valido";
+        final String msjCampoDescripcionNoValido = "Descripcion no valida";
+
+        if(! Validador.validarCampoTexto(cbx_medicos.getSelectedItem(), msjCampoMedicoNoValido)) 
             return false;
         
-        if(! VerificadorDeFormato.verificarCampoTexto(cbx_paciente.getSelectedItem(), "Campo Paciente Vacio o no valido")) 
+        if(! Validador.validarCampoTexto(cbx_paciente.getSelectedItem(), msjCampoPacienteNoValido )) 
             return false;
         
-        if(! VerificadorDeFormato.verificarCampoTexto(txta_descripcion.getText(), "Descripcion no valida")) 
+        if(! Validador.validarCampoTexto(txta_descripcion.getText(), msjCampoDescripcionNoValido)) 
             return false;
         
         return true;
