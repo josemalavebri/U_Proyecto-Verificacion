@@ -130,7 +130,7 @@ public class JF_Principal extends javax.swing.JFrame {
     private void btn_paciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_paciente1ActionPerformed
         // TODO add your handling code here:
         
-          pnl_principal.removeAll();
+        pnl_principal.removeAll();
         Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente(accesoController);
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelGestorPaciente, BorderLayout.CENTER);

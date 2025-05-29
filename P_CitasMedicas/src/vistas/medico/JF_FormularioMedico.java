@@ -174,46 +174,44 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(170, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblCedula)
                         .addGap(93, 93, 93)
                         .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))
+                        .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnAceptar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnResetear)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSalir))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAceptar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnResetear)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCedula2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblApellido)
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblTelefono)
+                                    .addComponent(lblCedula1)
+                                    .addComponent(lblTelefono1))
+                                .addGap(65, 65, 65)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblCedula2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblApellido)
-                                            .addComponent(lblNombre)
-                                            .addComponent(lblTelefono)
-                                            .addComponent(lblCedula1)
-                                            .addComponent(lblTelefono1))
-                                        .addGap(65, 65, 65)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtEspecialidad)
-                                            .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtTelefono)
-                                            .addComponent(cbx_Genero, javax.swing.GroupLayout.Alignment.TRAILING, 0, 93, Short.MAX_VALUE)
-                                            .addComponent(txtNombre))))
-                                .addGap(18, 18, 18)))
-                        .addGap(166, 166, 166))
+                                    .addComponent(txtEspecialidad)
+                                    .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(cbx_Genero, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(217, 217, 217))))
+                        .addGap(51, 51, 51)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,10 +273,10 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
 
         // Validación
-        boolean cedulaValidacion = verificador.validarCampo(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
-        boolean nombreValidacion = verificador.validarCampo(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean apellidoValidacion = verificador.validarCampo(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
-        boolean telefonoValidacion = verificador.validarCampo(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean cedulaValidacion = ValidadorDeCampos.validarCampo(cedula, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+        boolean nombreValidacion = ValidadorDeCampos.validarCampo(nombre, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean apellidoValidacion = ValidadorDeCampos.validarCampo(apellido, TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+        boolean telefonoValidacion = ValidadorDeCampos.validarCampo(telefono, TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
 
         // Si todos son válidos
         if (cedulaValidacion && nombreValidacion && apellidoValidacion && telefonoValidacion){

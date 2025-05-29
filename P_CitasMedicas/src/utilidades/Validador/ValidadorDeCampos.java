@@ -5,21 +5,21 @@ public class ValidadorDeCampos {
     public  static boolean validarCampo(Object valor, TipoValidacion... validaciones) {
         for (TipoValidacion validacion : validaciones) {
             switch (validacion) {
-                case NO_NULO:
+                case NO_NULO -> {
                     if (valor == null) {
                         return false;
                     }
-                    break;
-                case NUMERICO:
+                }
+                case NUMERICO -> {
                     if (!esNumerico(valor)) {
                         return false;
                     }
-                    break;
-                case CADENA_TEXTO_VALIDA:
+                }
+                case CADENA_TEXTO_VALIDA -> {
                     if (!esCadenaTextoValida(valor)) {
                         return false;
                     }
-                    break;
+                }
             }
         }
         return true;

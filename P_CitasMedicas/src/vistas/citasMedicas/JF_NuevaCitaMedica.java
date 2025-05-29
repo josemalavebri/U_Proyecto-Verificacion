@@ -3,17 +3,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
+import utilidades.ComboBox.ComboBoxFiller;
 
 import utilidades.Controller.ManagerController;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
+import utilidades.Table.CreateTable.ObjectTableModel;
 import utilidades.Validador.Validador;
 
 import vistas.Factura.JF_Factura;
@@ -23,14 +23,15 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
 
     private Turno turnoSeleccionado;
     private ManagerController managerController;
-    private ArrayList<Paciente> listaPacientes;
-    private ArrayList<Medico> listaMedicos;    
-
+    private ArrayList<Medico> listaMedicos;
+    private ArrayList<Paciente> listaPacientes ;
+    
     public JF_NuevaCitaMedica() {
         initComponents();
         inicializarComponentesLogicos();
         cargarDatosComboBox();
         mostrarTurnosEnTabla();
+        eventoClickFila();
     } 
     
     private void mostrarTurnosEnTabla() {
@@ -46,16 +47,29 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     private void cargarDatosComboBox(){
         listaMedicos = managerController.get(Medico.class);
         listaPacientes = managerController.get(Paciente.class);
-        llenarComboBoxConDatos(cbx_medicos, listaMedicos);
-        llenarComboBoxConDatos(cbx_paciente, listaPacientes);
+        ComboBoxFiller.llenarComboBox(cbx_medicos, listaMedicos);
+        ComboBoxFiller.llenarComboBox(cbx_paciente, listaPacientes);
+        
     }
     
-    private <T> void llenarComboBoxConDatos(JComboBox<String> comboBox, ArrayList<T> lista) {
-        comboBox.removeAllItems();
-        for (T item : lista) {
-            comboBox.addItem(item.toString());
-        }
+    
+    private void eventoClickFila(){
+        tb_turnos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int fila = tb_turnos.getSelectedRow();
+                if (fila != -1) { // -1 significa que no hay fila seleccionada
+                    ObjectTableModel modeloTablaTurno = (ObjectTableModel) tb_turnos.getModel();
+                    Turno turno = (Turno )modeloTablaTurno.getObjetoAt(fila);
+                    txt_turnoSeleccionado.setText(turno.getFecha() + " - " + turno.getHora());
+                    turnoSeleccionado = turno;
+                }
+            }
+        });
+
     }
+    
+   
     
    
     @SuppressWarnings("unchecked")
@@ -196,8 +210,8 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void btn_resetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetearActionPerformed
-        cbx_paciente.setSelectedIndex(0);
-        cbx_medicos.setSelectedIndex(0);
+        cbx_paciente.setSelectedIndex(-1);
+        cbx_medicos.setSelectedIndex(-1);
         txta_descripcion.setText("");
         txt_turnoSeleccionado.setText("Turno Seleccionado");
     }//GEN-LAST:event_btn_resetearActionPerformed
@@ -209,9 +223,10 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         
         CitaMedica citaMedica = crearCitaMedicaFormulario();
         boolean guadadoExitoso = managerController.post(citaMedica);
-        generarFactura(citaMedica);
         
         if (guadadoExitoso){
+                generarFactura(citaMedica);
+
             JOptionPane.showMessageDialog(null, "Cita Medica guadada con exito");
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar la cita médica");
@@ -219,17 +234,22 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private boolean verificarCampos(){
-        final String  msjCampoMedicoNoValido = "Campo Medico Vacio o no valido";
-        final String msjCampoPacienteNoValido = "Campo Paciente Vacio o no valido";
-        final String msjCampoDescripcionNoValido = "Descripcion no valida";
+        final String msjCampoPacienteNoValido = "Paciente vacio o no valido";
+        final String msjCampoMedicoNoValido = "Medico vacio o no valido";
+        final String msjCampoDescripcionNoValido = "Descripcion vacio o no valida";
+        final String msjCampoTurnoNoValido = "Turno vacio o no valida";
 
-        if(! Validador.validarCampoTexto(cbx_medicos.getSelectedItem(), msjCampoMedicoNoValido)) 
-            return false;
-        
+
         if(! Validador.validarCampoTexto(cbx_paciente.getSelectedItem(), msjCampoPacienteNoValido )) 
             return false;
         
+        if(! Validador.validarCampoTexto(cbx_medicos.getSelectedItem(), msjCampoMedicoNoValido)) 
+            return false;
+        
         if(! Validador.validarCampoTexto(txta_descripcion.getText(), msjCampoDescripcionNoValido)) 
+            return false;
+        
+        if(! Validador.validarCampoTexto(txt_turnoSeleccionado.getText(), msjCampoTurnoNoValido)) 
             return false;
         
         return true;
@@ -250,19 +270,15 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         factura.setVisible(true);
     }
     
-    private void TextBoxTurno(Turno turnoSeleccionadoActual){
-        txt_turnoSeleccionado.setText(turnoSeleccionadoActual.getFecha()+" - "+turnoSeleccionadoActual.getHora());
+  
+     @Override
+    public void setEntidad(CitaMedica entidad) {
+        cbx_medicos.setSelectedItem(entidad.getMedico());
+        cbx_paciente.setSelectedItem(entidad.getPaciente());
+        txta_descripcion.setText(entidad.getDescripcion());    
     }
     
-    public void setCitaMedicaModificar(CitaMedica citaMedica){
-        llenarFormularioCitaMedica(citaMedica);
-    }
     
-    private void llenarFormularioCitaMedica(CitaMedica citaMedica){
-        cbx_paciente.setSelectedIndex(0);
-        cbx_medicos.setSelectedIndex(0);
-        txta_descripcion.setText(citaMedica.getDescripcion());
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar1;
@@ -281,8 +297,5 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     // End of variables declaration//GEN-END:variables
 
     
-    @Override
-    public void setEntidad(CitaMedica entidad) {
-        System.out.println("Entidad Recibida" + entidad.getId());
-    }
+   
 }

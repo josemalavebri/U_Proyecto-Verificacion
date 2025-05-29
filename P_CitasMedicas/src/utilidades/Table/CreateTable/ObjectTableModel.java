@@ -1,17 +1,14 @@
 
 package utilidades.Table.CreateTable;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import modelos.BaseEntity;
 
 
 public class ObjectTableModel<T> extends DefaultTableModel {
   
-    private List<BaseEntity> datos;
+    private final List<BaseEntity> datos;
 
     public ObjectTableModel(List<BaseEntity> datos) {
          super();
@@ -19,8 +16,13 @@ public class ObjectTableModel<T> extends DefaultTableModel {
          String[] columnas = GeneradorModeloTabla.extraerNombresColumnas(datos.get(0));
          setColumnIdentifiers(columnas);
            for (BaseEntity fila : datos) {
-            addRow(AdaptadorObjetoArray.convertirAArray(fila));
+            addRow(AdaptadorObjetoArray.convertirArrayObjects(fila));
         }
+    }
+    
+    @Override
+    public boolean isCellEditable(int row, int column) {
+        return false; 
     }
 
 

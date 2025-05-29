@@ -3,7 +3,6 @@ package modelos;
 
 public class Turno extends BaseEntity{
 
-    private int id;
     private String fecha;
     private String hora;
     private String minuto;
@@ -21,7 +20,6 @@ public class Turno extends BaseEntity{
     
     public Turno(int id, String fecha, String hora, String minuto) {
         super(id);
-        this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.minuto = minuto;

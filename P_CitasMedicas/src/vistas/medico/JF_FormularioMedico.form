@@ -24,59 +24,55 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace pref="170" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="lblCedula" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                       <Component id="txt_Cedula" min="-2" pref="93" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnResetear" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAceptar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnResetear" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblCedula2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txt_Edad" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblCedula2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="txt_Edad" min="-2" pref="93" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblApellido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCedula1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTelefono1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtEspecialidad" max="32767" attributes="0"/>
-                                          <Component id="txtApellido" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="cbx_Genero" alignment="1" pref="93" max="32767" attributes="0"/>
-                                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblApellido" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCedula1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefono1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtEspecialidad" max="32767" attributes="0"/>
+                                  <Component id="txtApellido" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtTelefono" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbx_Genero" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtNombre" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" pref="143" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

@@ -126,6 +126,7 @@
         </Property>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="JF_NuevaCitaMedica_cbx_paciente"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -155,6 +156,9 @@
               </Table>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
