@@ -22,7 +22,8 @@ public class ObjectTableModel<T> extends DefaultTableModel {
     
     @Override
     public boolean isCellEditable(int row, int column) {
-        return false; 
+        String columnName = getColumnName(column);
+        return columnName.equals("Modificar") || columnName.equals("Eliminar");
     }
 
 

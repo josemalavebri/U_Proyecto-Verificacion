@@ -37,7 +37,6 @@ public class ManagerController<T>{
         return managerControllerInstance;
     }
     
-    
     @SuppressWarnings("unchecked")
     public ArrayList get(Class<?> c) {
         IGeneralController ctrl = tryGetController(c);
