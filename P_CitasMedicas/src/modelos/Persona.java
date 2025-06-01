@@ -2,7 +2,7 @@
 package modelos;
 
 
-public class Persona {
+public abstract class Persona {
     
     protected int id;
     protected int cedula;

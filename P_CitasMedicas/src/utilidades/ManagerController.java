@@ -5,6 +5,10 @@ import Data.InternalDB.Repository.CitaMedicaInternalRepository;
 import Data.InternalDB.Repository.MedicoInternalRepository;
 import Data.InternalDB.Repository.PacienteInternalRepository;
 import Data.InternalDB.Repository.TurnoInternalRepository;
+import Data.InternalDB.RepositoryInternalDB.CitaMedicaRepositorio;
+import Data.InternalDB.RepositoryInternalDB.MedicoRepositorio;
+import Data.InternalDB.RepositoryInternalDB.PacienteRepositorio;
+import Data.InternalDB.RepositoryInternalDB.TurnoRepositorio;
 import controladores.CitaMedicaController;
 import controladores.IGeneralController;
 import controladores.MedicoController;
@@ -23,10 +27,10 @@ public class ManagerController {
     private final Map<Class<?>, IGeneralController<?>> controllers = new HashMap<>();
     
     public ManagerController() {
-        controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository()));
-        controllers.put(Paciente.class, new PacienteController(new PacienteInternalRepository()));
-        controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository()));
-        controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository()));
+        controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository(new MedicoRepositorio())));
+        controllers.put(Paciente.class, new PacienteController(new PacienteInternalRepository(new PacienteRepositorio())));
+        controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository(new CitaMedicaRepositorio())));
+        controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository(new TurnoRepositorio())));
     }
     
     
