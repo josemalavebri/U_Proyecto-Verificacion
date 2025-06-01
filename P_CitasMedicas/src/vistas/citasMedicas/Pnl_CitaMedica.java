@@ -1,43 +1,27 @@
 package vistas.citasMedicas;
 
+import java.util.List;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
-import utilidades.AccesoController;
-import utilidades.Table.CreateTableFinal;
-import utilidades.ManagerController;
+import utilidades.Controller.ManagerController;
+import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
-    private ManagerController managerController;
-    private CreateTableFinal<CitaMedica> createTableFinal;
+    
+    private ManagerController<CitaMedica> managerController;
 
-    public Pnl_CitaMedica(AccesoController accesoController) {
+    public Pnl_CitaMedica() {
         initComponents();
-        managerController = new ManagerController();
-        createTableFinal = new CreateTableFinal(managerController);
-        crearTodaTablaConDatos();
+        managerController = ManagerController.getInstance();
+        llenarDatosTabla();
     }
     
-    private void crearTodaTablaConDatos(){
-        crearModeloTablaCitaMedica();
-        crearTableConEventoEliminar();
+    private void llenarDatosTabla(){
+        List<CitaMedica> listaCitaMedica = managerController.get(CitaMedica.class);
+        ConstructorModeloTabla.construirYAsignarModelo(tb_citasMedicas, listaCitaMedica);
+        ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
     }
-    
-    private void crearModeloTablaCitaMedica(){
-        createTableFinal.newModelTotalConGeneralTable(tb_citasMedicas,CitaMedica.class);
-    }
-    
-    private void crearTableConEventoEliminar(){
-        createTableFinal.asignarEventoEliminarTabla(tb_citasMedicas, managerController,CitaMedica.class);
-    }
-    
-    private void crearTableConEventoModificar(){
-        createTableFinal.asignarEventoModificar(tb_citasMedicas, CitaMedica.class, citaMedica -> {
-            JF_NuevaCitaMedica panel = new JF_NuevaCitaMedica();
-            panel.setCitaMedicaModificar(citaMedica);
-            panel.setVisible(true);
-        });
-    }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,7 +80,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        JFrame jframe = new JF_NuevaCitaMedica();
        jframe.setLocationRelativeTo(null);

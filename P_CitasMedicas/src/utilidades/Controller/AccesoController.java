@@ -1,5 +1,5 @@
 
-package utilidades;
+package utilidades.Controller;
 
 import Data.InternalDB.Repository.PacienteInternalRepository;
     import Data.IRepository;
