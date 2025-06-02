@@ -25,11 +25,7 @@ public class Paciente extends Persona {
         this.correo = correo;
     }
 
-    public int getId(){
-        return id;
-    }
-
-    
+ 
 
 
 

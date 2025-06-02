@@ -1,9 +1,5 @@
 package Data.InternalDB.Repository;
 
-<<<<<<< HEAD
-=======
-import Data.InternalDB.InternalBD;
->>>>>>> fa86a089742b961bb7dd5cb6974824fefeea7823
 import Data.IRepository;
 import Data.InternalDB.RepositoryInternalDB.IBaseRepositorio;
 import java.util.ArrayList;
