@@ -2,7 +2,7 @@ package utilidades.Validador;
 
 public class ValidadorDeCampos {
 
-    public  static boolean validarCampo(Object valor, TipoValidacion... validaciones) {
+    public static boolean validarCampo(Object valor, TipoValidacion... validaciones) {
         for (TipoValidacion validacion : validaciones) {
             switch (validacion) {
                 case NO_NULO -> {

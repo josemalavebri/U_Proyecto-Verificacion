@@ -13,15 +13,16 @@ import controladores.TurnoController;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import modelos.BaseEntity;
 import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
 
 
-public class ManagerController<T>{
+public class ManagerController{
     private static ManagerController managerControllerInstance;
-    private final Map<Class<?>, IGeneralController<?>> controllers = new HashMap<>();
+    private final Map<Class<? extends BaseEntity>, IGeneralController<?>> controllers = new HashMap<>();
     
     private ManagerController() {
         controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository()));
@@ -38,7 +39,7 @@ public class ManagerController<T>{
     }
     
     @SuppressWarnings("unchecked")
-    public ArrayList get(Class<?> c) {
+    public ArrayList get(Class<? extends BaseEntity> c) {
         IGeneralController ctrl = tryGetController(c);
         if (ctrl != null) {
             return ctrl.get();

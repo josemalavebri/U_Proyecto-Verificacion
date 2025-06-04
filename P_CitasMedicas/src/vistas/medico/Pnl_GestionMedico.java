@@ -1,19 +1,24 @@
 package vistas.medico;
 
 import java.util.List;
+import javax.swing.JFrame;
 import modelos.Medico;
 import utilidades.Controller.ManagerController;
+import utilidades.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 
 public class Pnl_GestionMedico extends javax.swing.JPanel {
    
     private final ManagerController managerController;
+    private final RefreshTable table;
+    
     public Pnl_GestionMedico() {
         managerController = ManagerController.getInstance();
         initComponents();
-        
         llenarDatosTabla();
+        table = RefreshTable.getInstance();
+        table.suscribir("tb_medico", tb_Medico);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +42,11 @@ public class Pnl_GestionMedico extends javax.swing.JPanel {
         btn_Resetear.setText("Resetear");
 
         btn_Nuevo.setText("Nuevo");
+        btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NuevoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Medicos Agregados");
 
@@ -98,15 +108,24 @@ public class Pnl_GestionMedico extends javax.swing.JPanel {
                         .addComponent(btn_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
+        JF_FormularioMedico formularioMedico = new JF_FormularioMedico();
+        formularioMedico.setLocationRelativeTo(null);
+        formularioMedico.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        formularioMedico.setVisible(true);
+    }//GEN-LAST:event_btn_NuevoActionPerformed
+    
     
     private void llenarDatosTabla(){
         List<Medico> listaMedicos = managerController.get(Medico.class);
         ConstructorModeloTabla.construirYAsignarModelo(tb_Medico, listaMedicos);
         ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_Medico, new JF_FormularioMedico());
     }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Buscar;

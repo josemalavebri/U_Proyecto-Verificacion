@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 
 public class Validador { 
     
-    HashMap<Object, String> hashMap = new HashMap<>();
+    private HashMap<Object, String> hashMap = new HashMap<>();
+    
     public void putCampo(Object valorObject, String mensajeError){
         hashMap.put(valorObject, mensajeError);
     }
@@ -39,7 +40,8 @@ public class Validador {
     }
     
     private boolean validarCampoTexto(Object campoPorVerificar, String mensaje){
-        if(!ValidadorDeCampos.validarCampo(campoPorVerificar,TipoValidacion.NO_NULO,TipoValidacion.CADENA_TEXTO_VALIDA)){
+        TipoValidacion[] validaciones = {TipoValidacion.NO_NULO,TipoValidacion.CADENA_TEXTO_VALIDA};
+        if(!ValidadorDeCampos.validarCampo(campoPorVerificar, validaciones)){
             JOptionPane.showMessageDialog(null, mensaje);
             return false;
         }

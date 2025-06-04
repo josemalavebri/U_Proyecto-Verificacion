@@ -27,6 +27,7 @@ public class ComandoListenerActualizar implements ActionListener {
         ObjectTableModel modelo = (ObjectTableModel) tabla.getModel();
         frame.setEntidad(modelo.getObjetoAt(fila));
         JFrame framas = (JFrame) frame;
+        framas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         framas.setVisible(true);
     }
     

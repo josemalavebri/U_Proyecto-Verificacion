@@ -8,7 +8,7 @@ import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
     
-    private ManagerController<CitaMedica> managerController;
+    private ManagerController managerController;
 
     public Pnl_CitaMedica() {
         initComponents();
@@ -29,7 +29,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_citasMedicas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_nuevaCita = new javax.swing.JButton();
 
         jLabel1.setText("Citas Registradas:");
 
@@ -46,10 +46,10 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tb_citasMedicas);
 
-        jButton1.setText("Nueva Cita");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_nuevaCita.setText("Nueva Cita");
+        btn_nuevaCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_nuevaCitaActionPerformed(evt);
             }
         });
 
@@ -65,14 +65,14 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(236, 236, 236))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -80,14 +80,15 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_nuevaCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaCitaActionPerformed
        JFrame jframe = new JF_NuevaCitaMedica();
        jframe.setLocationRelativeTo(null);
+       jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        jframe.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_nuevaCitaActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_nuevaCita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_citasMedicas;
