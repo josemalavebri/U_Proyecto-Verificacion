@@ -1,7 +1,6 @@
 
 package modelos;
 
-
 public abstract class Persona extends BaseEntity{
     
     protected int cedula;

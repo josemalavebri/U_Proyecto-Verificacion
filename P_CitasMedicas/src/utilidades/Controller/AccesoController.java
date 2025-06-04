@@ -3,7 +3,9 @@ package utilidades.Controller;
 
 import Data.InternalDB.Repository.PacienteInternalRepository;
     import Data.IRepository;
+import Data.InternalDB.RepositoryInternalDB.PacienteRepositorio;
 import controladores.*;
+import Data.InternalDB.RepositoryInternalDB.IBaseRepositorio;
 
 
 
@@ -17,9 +19,11 @@ public class AccesoController {
     private IGeneralController citaMedicaController;
     private IGeneralController facturaController;
     private final IRepository repository;
+    private final IBaseRepositorio actionEntidad;
     
     public AccesoController(){
-        repository = new PacienteInternalRepository();
+        actionEntidad = new PacienteRepositorio();
+        repository = new PacienteInternalRepository(actionEntidad);
         medicoController = new MedicoController(repository);
         pacienteController = new PacienteController(repository);
     }
