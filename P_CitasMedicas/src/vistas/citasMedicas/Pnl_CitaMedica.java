@@ -4,16 +4,21 @@ import java.util.List;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
 import utilidades.Controller.ManagerController;
+import utilidades.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
     
     private ManagerController managerController;
+    private RefreshTable refreshTable;
+
 
     public Pnl_CitaMedica() {
         initComponents();
         managerController = ManagerController.getInstance();
         llenarDatosTabla();
+        refreshTable = RefreshTable.getInstance();
+        refreshTable.suscribir("tb_citasMedicas", tb_citasMedicas);
     }
     
     private void llenarDatosTabla(){

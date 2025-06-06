@@ -23,7 +23,6 @@ public class GeneradorModeloTabla {
                 columnas.add(campo.getName());
             }
         }
-
         return columnas.toArray(new String[0]);
     }
 }

@@ -207,14 +207,15 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
         if(!verificarCampos()){
             return;
         }
+        
         Medico medico = getMedicoFormulario();
         boolean guadadoExitoso = managerController.post(medico);
         
         if (guadadoExitoso){
-            JOptionPane.showMessageDialog(null, "Cita Medica guadada con exitoss");
+            JOptionPane.showMessageDialog(null, "Medico guardado con exito");
             table.refrescar("tb_medico");
         } else {
-            JOptionPane.showMessageDialog(null, "Error al guardar la cita médica");
+            JOptionPane.showMessageDialog(null, "Error al guardar Medico");
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 

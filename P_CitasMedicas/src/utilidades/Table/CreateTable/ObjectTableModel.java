@@ -16,11 +16,10 @@ public class ObjectTableModel<T extends BaseEntity> extends DefaultTableModel {
         this.datos.addAll(datos);
         String[] columnas = GeneradorModeloTabla.extraerNombresColumnas(datos.get(0));
         setColumnIdentifiers(columnas);
-        
-         for (BaseEntity fila : datos) {
+
+        for (BaseEntity fila : datos) {
            addRow(AdaptadorObjetoArray.convertirArrayObjects(fila));
         }
-    
     }
     
     public void llenarDatosTabla(List<T> datos){

@@ -35,6 +35,7 @@ public class ManagerController{
         controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository(new TurnoRepositorio())));
 }
     
+    
     public static ManagerController getInstance(){
         if(managerControllerInstance == null ){
             managerControllerInstance = new ManagerController();

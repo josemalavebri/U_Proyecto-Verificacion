@@ -11,12 +11,5 @@ public class MedicoController extends GeneralController<Medico>{
         super(repository);
     }
 
-    @Override
-    public boolean post(Medico objeto) {
-        return true;
-    }
-
-    
-    
     
 }

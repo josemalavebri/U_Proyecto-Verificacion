@@ -10,11 +10,10 @@ import utilidades.Table.CommandTable.ComandoRefresh;
 public class RefreshTable  {
 
     private final HashMap<String, JTable> tables = new HashMap<>();
+    
     private static RefreshTable refreshTable;
     
-    private RefreshTable(){
-        
-    }
+    private RefreshTable(){ }
     
     public void suscribir(String identificador, JTable table){
         tables.put(identificador, table);
@@ -25,6 +24,7 @@ public class RefreshTable  {
         Comando comando = new ComandoRefresh(table);
         comando.ejecutar();
     }
+    
 
     public static RefreshTable getInstance(){
         if(refreshTable == null){
