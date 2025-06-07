@@ -11,8 +11,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     
     private ManagerController managerController;
     private RefreshTable refreshTable;
-
-
+    
     public Pnl_CitaMedica() {
         initComponents();
         managerController = ManagerController.getInstance();

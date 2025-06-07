@@ -1,23 +1,25 @@
 package vistas.citasMedicas;
+
+
+
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-
+import modelos.BaseEntity;
 import modelos.CitaMedica;
 import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
 import utilidades.ComboBox.ComboBoxFiller;
-
 import utilidades.Controller.ManagerController;
 import utilidades.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 import utilidades.Table.CreateTable.ObjectTableModel;
 import utilidades.Validador.MsgValidacion;
 import utilidades.Validador.Validador;
-
 import vistas.Factura.JF_Factura;
 import vistas.IReceptorEntityJFrame;
 
@@ -27,6 +29,8 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     private ManagerController managerController;
     private ArrayList<Medico> listaMedicos;
     private ArrayList<Paciente> listaPacientes;
+    private ArrayList<Paciente> listaTurnos;
+
     private boolean isEdit;
     private RefreshTable refreshTable;
     
@@ -41,8 +45,8 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     } 
     
     private void mostrarTurnosEnTabla() {
-        List<Turno> turnosDisponibles = managerController.get(Turno.class);
-        ConstructorModeloTabla.construirYAsignarModelo(tb_turnos, turnosDisponibles);
+        listaTurnos = managerController.get(Turno.class);
+        ConstructorModeloTabla.construirYAsignarModelo(tb_turnos, listaTurnos);
     }
      
     private void inicializarComponentesLogicos(){
@@ -221,7 +225,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         } else {
             guardarCitaMedica();
         }
-        
         refreshTable.refrescar("tb_citasMedicas");
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
@@ -275,13 +278,26 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         factura.setVisible(true);
     }
   
-     @Override
+    @Override
     public void setEntidad(CitaMedica entidad) {
-        cbx_medicos.setSelectedItem(entidad.getMedico());
-        cbx_paciente.setSelectedItem(entidad.getPaciente());
+        int idMedico = entidad.getMedico().getId();
+        int idPaciente = entidad.getPaciente().getId();
+        int indiceMedico = obtenerIndicePorId(idMedico, listaMedicos);
+        int indicePaciente = obtenerIndicePorId(idPaciente, listaPacientes);
+
+        cbx_medicos.setSelectedIndex(indiceMedico);
+        cbx_paciente.setSelectedIndex(indicePaciente);
         txta_descripcion.setText(entidad.getDescripcion());
         isEdit = true;
         btn_guardar1.setText("Actualizar");
+    }
+    
+    private <T extends BaseEntity> int obtenerIndicePorId(int idEntidad, List<T> entidadesLista){
+        for (int i = 0; i < entidadesLista.size(); i++) {
+             if(entidadesLista.get(i).getId() == idEntidad)
+                return i;
+        }
+        return -1;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

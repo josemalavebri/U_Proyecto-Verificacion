@@ -1,6 +1,5 @@
 
 package utilidades.Table.CommandTable;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -9,9 +8,7 @@ import utilidades.Table.ButtonTable.ButtonEditor;
 import utilidades.Table.CreateTable.ObjectTableModel;
 import vistas.IReceptorEntityJFrame;
 
-
 public class ComandoListenerActualizar implements ActionListener {
-    
     private JTable tabla;
     private IReceptorEntityJFrame frame;
 
@@ -30,5 +27,4 @@ public class ComandoListenerActualizar implements ActionListener {
         framas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         framas.setVisible(true);
     }
-    
 }

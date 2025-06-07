@@ -18,7 +18,7 @@ public class JF_Principal extends javax.swing.JFrame {
     
     private AccesoController accesoController;
     
-    public JF_Principal() {
+    public JF_Principal () {
         this.accesoController = new AccesoController();
         initComponents();
     }

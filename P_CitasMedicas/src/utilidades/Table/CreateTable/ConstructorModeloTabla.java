@@ -14,7 +14,7 @@ public class ConstructorModeloTabla {
 
     public static void construirYAsignarModelo(JTable table, List listaDatos){
         ObjectTableModel objectTableModel = new ObjectTableModel(listaDatos);
-        table.setModel(objectTableModel);
+        table.setModel (objectTableModel);
     }
    
     public static void AgregarEventosEditarYEliminar(JTable table, IReceptorEntityJFrame frame) {
