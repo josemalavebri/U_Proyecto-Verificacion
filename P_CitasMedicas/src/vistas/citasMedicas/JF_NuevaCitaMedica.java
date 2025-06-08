@@ -225,7 +225,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         } else {
             guardarCitaMedica();
         }
-        refreshTable.refrescar("tb_citasMedicas");
+        refreshTable.refrescar(tb_turnos);
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private void actualizarCitaMedica(){

@@ -3,7 +3,6 @@ package utilidades.Table.CreateTable;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import modelos.BaseEntity;
 import utilidades.Table.ButtonTable.ButtonEditor;
 import utilidades.Table.ButtonTable.ButtonRenderer;
 import utilidades.Table.CommandTable.ComandoListenerActualizar;
@@ -12,6 +11,7 @@ import vistas.IReceptorEntityJFrame;
 
 public class ConstructorModeloTabla {
 
+    
     public static void construirYAsignarModelo(JTable table, List listaDatos){
         ObjectTableModel objectTableModel = new ObjectTableModel(listaDatos);
         table.setModel (objectTableModel);

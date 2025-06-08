@@ -2,8 +2,9 @@ package controladores;
 
 import Data.IRepository;
 import java.util.ArrayList;
+import modelos.BaseEntity;
 
-public abstract class GeneralController<T> implements IGeneralController<T>{
+public abstract class GeneralController<T extends BaseEntity> implements IGeneralController<T>{
 
     protected IRepository<T> db;
 

@@ -2,7 +2,11 @@ package vistas.citasMedicas;
 
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import modelos.Casa;
 import modelos.CitaMedica;
+import modelos.Medico;
+import modelos.Paciente;
 import utilidades.Controller.ManagerController;
 import utilidades.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
@@ -18,13 +22,35 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         llenarDatosTabla();
         refreshTable = RefreshTable.getInstance();
         refreshTable.suscribir("tb_citasMedicas", tb_citasMedicas);
+        Casa casa = new Casa();
+
+        contratista(casa);
     }
+    
     
     private void llenarDatosTabla(){
         List<CitaMedica> listaCitaMedica = managerController.get(CitaMedica.class);
         ConstructorModeloTabla.construirYAsignarModelo(tb_citasMedicas, listaCitaMedica);
         ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
     }
+    
+    private void contratista(Casa casa) {
+
+        asignarNombre("Villa Sol", casa);
+        asignarColor("Azul", casa);
+
+        String datos = "Nombre: " + casa.getNombre() + ", Color: " + casa.getColor();
+        JOptionPane.showMessageDialog(null, datos);
+    }
+
+    private void asignarNombre(String nombre, Casa casa) {
+        casa.setNombre(nombre);
+    }
+
+    private void asignarColor(String color, Casa casa) {
+        casa.setColor(color);
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -97,6 +123,5 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tb_citasMedicas;
     // End of variables declaration//GEN-END:variables
-
-    
+ 
 }

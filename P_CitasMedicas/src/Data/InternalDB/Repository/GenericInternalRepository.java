@@ -3,8 +3,9 @@ package Data.InternalDB.Repository;
 import Data.IRepository;
 import Data.InternalDB.RepositoryInternalDB.IBaseRepositorio;
 import java.util.ArrayList;
+import modelos.BaseEntity;
 
-public abstract class GenericInternalRepository<T> implements IRepository<T>{
+public abstract class GenericInternalRepository<T extends BaseEntity> implements IRepository<T >{
     
     protected IBaseRepositorio actionEntidad;
     
@@ -32,10 +33,10 @@ public abstract class GenericInternalRepository<T> implements IRepository<T>{
         return actionEntidad.delete(id);
     }
 
-    
     @Override
     public T buscarPorCedula(T entity) {
         return entity;
     }
+
 }
 

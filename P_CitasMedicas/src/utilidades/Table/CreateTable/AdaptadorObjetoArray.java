@@ -8,6 +8,7 @@ import java.util.List;
 public class AdaptadorObjetoArray {
     
     public static Object[] convertirArrayObjects (Object objeto){
+        
         List<Class<?>> clases = new ArrayList<>();
         List<Object> valores = new ArrayList<>();
         Class<?> clase = objeto.getClass();

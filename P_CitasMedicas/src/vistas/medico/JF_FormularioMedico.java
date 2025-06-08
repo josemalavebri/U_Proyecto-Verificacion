@@ -16,12 +16,12 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
     
     private Medico medico;
     private final ManagerController managerController;
-    private final RefreshTable table;
+    private final RefreshTable tableRefresh;
 
     public JF_FormularioMedico() {
         initComponents();
         managerController = ManagerController.getInstance();
-        table = RefreshTable.getInstance();
+        tableRefresh = RefreshTable.getInstance();
 
     }
     
@@ -213,7 +213,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
         
         if (guadadoExitoso){
             JOptionPane.showMessageDialog(null, "Medico guardado con exito");
-            table.refrescar("tb_medico");
+            tableRefresh.refrescarTodas();
         } else {
             JOptionPane.showMessageDialog(null, "Error al guardar Medico");
         }

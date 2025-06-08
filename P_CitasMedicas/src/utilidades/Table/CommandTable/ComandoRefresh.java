@@ -23,6 +23,7 @@ public class ComandoRefresh implements Comando{
         ObjectTableModel objectTableModel = (ObjectTableModel) tabla.getModel();
         BaseEntity baseEntity = objectTableModel.getObjetoAt(0);
         List<BaseEntity> datos = manager.get(baseEntity.getClass());
+        objectTableModel.removeAll();
         objectTableModel.llenarDatosTabla(datos);
     }
     

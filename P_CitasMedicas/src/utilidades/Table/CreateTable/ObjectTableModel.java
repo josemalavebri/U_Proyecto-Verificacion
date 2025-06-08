@@ -44,6 +44,10 @@ public class ObjectTableModel<T extends BaseEntity> extends DefaultTableModel {
     public void removeById(int id) {
         datos.removeIf(entity -> entity.getId() == id);
     }
+    
+    public void removeAll(){
+        datos.clear();
+    }
         
      
 }

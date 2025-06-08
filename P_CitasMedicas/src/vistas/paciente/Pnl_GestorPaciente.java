@@ -12,14 +12,12 @@ import modelos.Paciente;
 import utilidades.Controller.AccesoController;
 import utilidades.Table.ButtonTable.ButtonEditor;
 import utilidades.Table.ButtonTable.ButtonRenderer;
-import utilidades.Controller.ManagerController;
 
 public class Pnl_GestorPaciente extends javax.swing.JPanel {
     
     private static final String MODIFICAR = "Modificar";
     private static final String ELIMINAR = "Eliminar";
     private AccesoController accesoController;
-    private ManagerController managerController;
     private ArrayList<Paciente> datosPaciente;
     private JF_NuevoFormularioPaciente formularioPaciente;
     
