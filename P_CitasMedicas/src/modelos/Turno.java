@@ -48,4 +48,11 @@ public class Turno extends BaseEntity{
      public void setMinuto(String minuto) {
         this.minuto = minuto;
     }
+
+    @Override
+    public String toString() {
+        return fecha + " - " + hora + ":" + minuto;
+    }
+     
+     
 }

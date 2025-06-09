@@ -15,11 +15,12 @@ public class ConstructorModeloTabla {
     public static void construirYAsignarModelo(JTable table, List listaDatos){
         ObjectTableModel objectTableModel = new ObjectTableModel(listaDatos);
         table.setModel (objectTableModel);
+        table.setRowHeight(30);
+
     }
    
     public static void AgregarEventosEditarYEliminar(JTable table, IReceptorEntityJFrame frame) {
         ObjectTableModel general = (ObjectTableModel) table.getModel();
-
 
         if (general.findColumn("Modificar") == -1) {
             general.addColumn("Modificar");

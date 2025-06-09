@@ -58,7 +58,7 @@ public class CommandEliminar implements Comando{
 
     
     private void refrescarTabla(){
-        ComandoRefresh comandoRefresh = new ComandoRefresh(tabla);
+        ComandoRefresh comandoRefresh = new ComandoRefresh((ObjectTableModel) tabla.getModel());
         comandoRefresh.ejecutar();
     }
     

@@ -20,7 +20,13 @@ public abstract class GenericInternalRepository<T extends BaseEntity> implements
 
     @Override
     public boolean add(T entity) {
-        return actionEntidad.insert(entity);
+        try{
+            return actionEntidad.insert(entity);
+            
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
     @Override

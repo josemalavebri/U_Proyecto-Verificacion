@@ -16,7 +16,6 @@ public class CitaMedicaRepositorio extends BaseRepositorio<CitaMedica>{
     @Override
     public boolean insert(CitaMedica entidad) {
         List<CitaMedica> citasMedicas = this.accesoDatos.datosCitasMedicas();
-        calcularId(citasMedicas, entidad);
         return citasMedicas.add(entidad);
     }
 

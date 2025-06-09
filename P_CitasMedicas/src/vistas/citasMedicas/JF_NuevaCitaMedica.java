@@ -15,7 +15,7 @@ import modelos.Paciente;
 import modelos.Turno;
 import utilidades.ComboBox.ComboBoxFiller;
 import utilidades.Controller.ManagerController;
-import utilidades.RefreshTable.RefreshTable;
+import utilidades.Table.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 import utilidades.Table.CreateTable.ObjectTableModel;
 import utilidades.Validador.MsgValidacion;
@@ -32,7 +32,6 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     private ArrayList<Paciente> listaTurnos;
 
     private boolean isEdit;
-    private RefreshTable refreshTable;
     
     public JF_NuevaCitaMedica() {
         initComponents();
@@ -40,8 +39,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         cargarDatosComboBox();
         mostrarTurnosEnTabla();
         eventoClickFila();
-        refreshTable = RefreshTable.getInstance();
-        refreshTable.suscribir("tb_turnos", tb_turnos);
+        
     } 
     
     private void mostrarTurnosEnTabla() {
@@ -225,13 +223,13 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         } else {
             guardarCitaMedica();
         }
-        refreshTable.refrescar(tb_turnos);
     }//GEN-LAST:event_btn_guardar1ActionPerformed
     
     private void actualizarCitaMedica(){
         CitaMedica citaMedica = crearCitaMedicaFormulario();
         if(managerController.post(citaMedica)){
             JOptionPane.showMessageDialog(null, "CitaMedica actualizada con exito");
+
         }else{
             JOptionPane.showMessageDialog(null, "CitaMedica no fue actualizada con exito");
         }

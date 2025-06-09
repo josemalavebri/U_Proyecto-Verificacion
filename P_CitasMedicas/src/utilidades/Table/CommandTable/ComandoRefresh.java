@@ -2,7 +2,6 @@
 package utilidades.Table.CommandTable;
 
 import java.util.List;
-import javax.swing.JTable;
 import modelos.BaseEntity;
 import utilidades.Controller.ManagerController;
 import utilidades.Table.CreateTable.ObjectTableModel;
@@ -11,21 +10,19 @@ import utilidades.Table.CreateTable.ObjectTableModel;
 public class ComandoRefresh implements Comando{
 
     private ManagerController manager;
-    private final JTable tabla;
+    private final ObjectTableModel objectTableModel;
     
-    public ComandoRefresh(JTable tabla){
-        this.tabla = tabla;
+    public ComandoRefresh(ObjectTableModel objectTableModel){
+        this.objectTableModel = objectTableModel;
         manager = ManagerController.getInstance();
     }
 
     @Override
     public void ejecutar() {
-        ObjectTableModel objectTableModel = (ObjectTableModel) tabla.getModel();
         BaseEntity baseEntity = objectTableModel.getObjetoAt(0);
         List<BaseEntity> datos = manager.get(baseEntity.getClass());
         objectTableModel.removeAll();
         objectTableModel.llenarDatosTabla(datos);
     }
-    
     
 }

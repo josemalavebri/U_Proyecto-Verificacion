@@ -2,13 +2,9 @@ package vistas.citasMedicas;
 
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import modelos.Casa;
 import modelos.CitaMedica;
-import modelos.Medico;
-import modelos.Paciente;
 import utilidades.Controller.ManagerController;
-import utilidades.RefreshTable.RefreshTable;
+import utilidades.Table.RefreshTable.RefreshTable;
 import utilidades.Table.CreateTable.ConstructorModeloTabla;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
@@ -22,9 +18,6 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         llenarDatosTabla();
         refreshTable = RefreshTable.getInstance();
         refreshTable.suscribir("tb_citasMedicas", tb_citasMedicas);
-        Casa casa = new Casa();
-
-        contratista(casa);
     }
     
     
@@ -34,24 +27,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
     }
     
-    private void contratista(Casa casa) {
-
-        asignarNombre("Villa Sol", casa);
-        asignarColor("Azul", casa);
-
-        String datos = "Nombre: " + casa.getNombre() + ", Color: " + casa.getColor();
-        JOptionPane.showMessageDialog(null, datos);
-    }
-
-    private void asignarNombre(String nombre, Casa casa) {
-        casa.setNombre(nombre);
-    }
-
-    private void asignarColor(String color, Casa casa) {
-        casa.setColor(color);
-    }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -60,6 +36,8 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_citasMedicas = new javax.swing.JTable();
         btn_nuevaCita = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(808, 425));
 
         jLabel1.setText("Citas Registradas:");
 
@@ -90,13 +68,10 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(236, 236, 236))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +82,7 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void btn_nuevaCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaCitaActionPerformed

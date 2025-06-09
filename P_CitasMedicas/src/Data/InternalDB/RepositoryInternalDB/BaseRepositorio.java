@@ -17,4 +17,7 @@ public abstract class BaseRepositorio<T extends BaseEntity> implements IBaseRepo
         baseEntity.setId(lastId);
     }
     
+    
+    
+    
 }

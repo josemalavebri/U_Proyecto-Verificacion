@@ -3,7 +3,7 @@ package vistas.medico;
 import javax.swing.JOptionPane;
 import modelos.Medico;
 import utilidades.Controller.ManagerController;
-import utilidades.RefreshTable.RefreshTable;
+import utilidades.Table.RefreshTable.RefreshTable;
 import utilidades.Validador.MsgValidacion;
 import utilidades.Validador.Validador;
 import vistas.IReceptorEntityJFrame;
@@ -22,7 +22,6 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
         initComponents();
         managerController = ManagerController.getInstance();
         tableRefresh = RefreshTable.getInstance();
-
     }
     
     @SuppressWarnings("unchecked")

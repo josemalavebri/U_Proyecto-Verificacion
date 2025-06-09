@@ -20,7 +20,7 @@ public class MedicoRepositorio extends BaseRepositorio<Medico>{
         calcularId(listaMedicos, entidad);
         return listaMedicos.add(entidad);
     }
-
+    
     @Override
     public boolean delete(int id) {
         return this.accesoDatos.datosMedicos().removeIf(medico -> medico.getId()== id);

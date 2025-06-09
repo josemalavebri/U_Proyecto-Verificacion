@@ -36,7 +36,11 @@
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Persona.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Turno.java</file>
             <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/InternalDB/InternalBD.java</file>
-            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/Casa.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/vistas/main/JF_Principal.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/InternalDB/Repository/MedicoInternalRepository.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/Data/InternalDB/RepositoryInternalDB/IBaseRepositorio.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/BaseEntity.java</file>
+            <file>file:/C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/P_CitasMedicas/src/modelos/CitaMedica.java</file>
         </group>
     </open-files>
 </project-private>
