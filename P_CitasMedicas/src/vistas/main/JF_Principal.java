@@ -128,7 +128,7 @@ public class JF_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         pnl_principal.removeAll();
-        Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente(accesoController);
+        Pnl_GestorPaciente panelGestorPaciente = new Pnl_GestorPaciente();
         pnl_principal.setLayout(new BorderLayout());
         pnl_principal.add(panelGestorPaciente, BorderLayout.CENTER);
         pnl_principal.revalidate();
