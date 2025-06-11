@@ -1,34 +1,26 @@
 package vistas.paciente;
 
-import modelos.Paciente;
-import utilidades.Validador.TipoValidacion;
-import utilidades.Validador.ValidadorDeCampos;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import utilidades.Controller.AccesoController;
+import modelos.Paciente;
+import utilidades.Controller.ManagerController;
+import utilidades.Table.RefreshTable.RefreshTable;
+import utilidades.Validador.MsgValidacion;
+import utilidades.Validador.TipoValidacion;
+import utilidades.Validador.Validador;
+import vistas.IReceptorEntityJFrame;
 
-public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
-
-    private Pnl_GestorPaciente panelPadre;
-    private ValidadorDeCampos verificador;
+public class JF_FormularioPaciente extends javax.swing.JFrame implements IReceptorEntityJFrame<Paciente> {
+    private final ManagerController managerController;
+    private final RefreshTable tableRefresh;
+    private boolean isEdit = false;
     private Paciente paciente;
-    private AccesoController accesoController;
     
-    public JF_NuevoFormularioPaciente(Pnl_GestorPaciente panelPadre, AccesoController accesoController) {
-        this.accesoController = accesoController;
-        this.panelPadre = panelPadre;
+    public JF_FormularioPaciente() {
         initComponents();
-        inicializarDatos();
+        managerController = ManagerController.getInstance();
+        tableRefresh = RefreshTable.getInstance();
     }
 
-    public JF_NuevoFormularioPaciente() {
-    }
-
-    private void inicializarDatos(){
-        verificador = new ValidadorDeCampos();
-
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -122,6 +114,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(0, 29, Short.MAX_VALUE)
+                            .addGap(0, 50, Short.MAX_VALUE)
                             .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnResetear, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -165,91 +158,100 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-        llenarFormulario();
-    }
-
-    private void llenarFormulario() {
-        if (paciente != null) {
-            txtCedula.setText(String.valueOf(paciente.getCedula()));
-            txtNombre.setText(paciente.getNombre());
-            txtApellido.setText(paciente.getApellido());
-            txtEdad.setText(String.valueOf(paciente.getEdad()));
-            txtCorreo.setText(paciente.getCorreo());
-            txtTelefono.setText(String.valueOf(paciente.getTelefono()));
-        }
-    }
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        String cedulaTexto = txtCedula.getText().trim();
-        int cedula = Integer.parseInt(cedulaTexto);
-        String nombre = txtNombre.getText().trim();
-        String apellido = txtApellido.getText().trim();
-        String edadTexto = txtEdad.getText().trim();
-        int edad = Integer.parseInt(edadTexto);
-        String correo = txtCorreo.getText().trim();
-        String telefonoTexto = txtTelefono.getText().trim();
-        int telefono = Integer.parseInt(telefonoTexto);
-        if(validarEntrada()){
-            Paciente paciente = new Paciente(cedula,nombre,apellido,edad,correo,telefono);
-            if(accesoController.pacienteController().post(paciente)){
-                panelPadre.TablaPacienteLlenado();
-                this.dispose();
-                JOptionPane.showMessageDialog(null, "Paciente guardado correctamente.");
+       if(!verificarCampos()){
+            return;
+        }
+        if(isEdit){
+            Paciente pacienteActualizado = getPacienteFormularioActualizado();
+            boolean actualizadoExitoso = managerController.put(pacienteActualizado);
+            if(actualizadoExitoso){
+                JOptionPane.showMessageDialog(null, "Paciente Actualizado con exito");
+                tableRefresh.refrescarTodas();
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Campos vacios, llene todos los campos");
+            else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar paciente");
+            }
+        } else{
+            Paciente paciente = getPacienteFormulario();
+            boolean guadadoExitoso = managerController.post(paciente);
+
+            if (guadadoExitoso){
+                JOptionPane.showMessageDialog(null, "Paciente guardado con exito");
+                tableRefresh.refrescarTodas();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar paciente");
+            }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private boolean validarEntrada(){
-        if(!validarNumero(txtCedula)){
-            JOptionPane.showMessageDialog(null, "Campo cedula es un dato incorrecto o vacio");
-            return false;
-        }
-        if(!validarLetra(txtNombre)){
-            JOptionPane.showMessageDialog(null, "Campo nombre es un dato incorrecto o vacio");
-            return false;
-        }
-        if(!validarLetra(txtApellido)){
-            JOptionPane.showMessageDialog(null, "Campo apellido es dato incorrecto o vacio");
-            return false;
-        }
-        if(!validarNumero(txtEdad)){
-            JOptionPane.showMessageDialog(null, "Campo edad es dato incorrecto o vacio");
-            return false;
-        }
-        if(!validarNumero(txtTelefono)){
-            JOptionPane.showMessageDialog(null, "Campo telefono es dato incorrecto o vacio");
-            return false;
-        }
-        return true;
+    private boolean verificarCampos() {
+        Validador validador = new Validador();
+        validador.agregarCampo(txtNombre.getText(), MsgValidacion.NOMBRE_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA,TipoValidacion.SOLO_LETRAS);
+
+        validador.agregarCampo(txtApellido.getText(), MsgValidacion.APELLIDO_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA, TipoValidacion.SOLO_LETRAS);
+
+        validador.agregarCampo(txtEdad.getText(), MsgValidacion.EDAD_INVALIDA,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        validador.agregarCampo(txtCedula.getText(), MsgValidacion.CEDULA_INVALIDA,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        validador.agregarCampo(txtCorreo.getText(), MsgValidacion.CORREO_INVALIDO,
+            TipoValidacion.NO_NULO);
+        
+        validador.agregarCampo(txtTelefono.getText(), MsgValidacion.TELEFONO_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        return validador.validarTodos();
     }
     
-    private boolean validarLetra(JTextField texto){
-        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA);
+    private Paciente getPacienteFormularioActualizado(){
+        paciente.setCedula(Integer.parseInt(txtCedula.getText()) );
+        paciente.setNombre(txtNombre.getText());
+        paciente.setApellido(txtApellido.getText());
+        paciente.setEdad(Integer.parseInt(txtEdad.getText()));
+        paciente.setCorreo(txtCorreo.getText());
+        paciente.setTelefono(Integer.parseInt(txtTelefono.getText()));
+        return paciente;
     }
     
-    private boolean validarNumero(JTextField texto){
-        return verificador.validarCampo(texto.getText(), TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+    private Paciente getPacienteFormulario(){
+        paciente = new Paciente();
+        paciente.setCedula(Integer.parseInt(txtCedula.getText()) );
+        paciente.setNombre(txtNombre.getText());
+        paciente.setApellido(txtApellido.getText());
+        paciente.setEdad(Integer.parseInt(txtEdad.getText()));
+        paciente.setCorreo(txtCorreo.getText());
+        paciente.setTelefono(Integer.parseInt(txtTelefono.getText()));
+        return paciente;
     }
+    
+    private void llenarFormularioConObjeto(Paciente paciente) {
+        if (paciente != null) {
+            String cedula = ""+paciente.getCedula();
+            String telefono = ""+paciente.getTelefono();
+            String edad = ""+paciente.getEdad();
+            txtCedula.setText(cedula);
+            txtEdad.setText(edad);
+            txtNombre.setText(paciente.getNombre());
+            txtApellido.setText(paciente.getApellido());
+            txtCorreo.setText(paciente.getCorreo());
+            txtTelefono.setText(telefono);
+        }
+    }  
     
     private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
-        // TODO add your handling code here:
         txtCedula.setText("");
+        txtEdad.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
-        txtEdad.setText("");
         txtCorreo.setText("");
         txtTelefono.setText("");
     }//GEN-LAST:event_btnResetearActionPerformed
-
-   
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnResetear;
@@ -267,4 +269,12 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void setEntidad(Paciente entidad) {
+        btnAceptar.setText("Actualizar");
+        this.isEdit= true;
+        llenarFormularioConObjeto(entidad);
+        this.paciente = entidad;
+    }
 }
