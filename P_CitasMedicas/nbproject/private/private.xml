@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/ConstructorModeloTabla.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/ObjectTableModel.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/utilidades/Table/CreateTable/GeneradorModeloTabla.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/vistas/medico/Pnl_GestionMedico.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/Data/InternalDB/Repository/GenericInternalRepository.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/Data/InternalDB/RepositoryInternalDB/BaseRepositorio.java</file>
-            <file>file:/C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/P_CitasMedicas/src/Data/InternalDB/RepositoryInternalDB/MedicoRepositorio.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
