@@ -4,7 +4,6 @@ package utilidades.Table.CommandTable;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import modelos.BaseEntity;
 import utilidades.Controller.ManagerController;
 import utilidades.Table.ButtonTable.ButtonEditor;

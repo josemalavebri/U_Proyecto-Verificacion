@@ -72,23 +72,23 @@ public class AccesoDatos {
     
     private static void crearPacienteTemporales() {
         listaPacientes = new ArrayList<>();
-        listaPacientes.add(new Paciente(1, 102030405, "Ana", "Pérez", 28, "ana.perez@mail.com", 991234567));
-        listaPacientes.add(new Paciente(2, 203040506, "Luis", "Gómez", 35, "luis.gomez@mail.com", 987654321));
-        listaPacientes.add(new Paciente(3, 304050607, "Marta", "Ramírez", 22, "marta.r@mail.com", 971122334));
-        listaPacientes.add(new Paciente(4, 405060708, "Carlos", "López", 40, "carlos.l@mail.com", 965566778));
-        listaPacientes.add(new Paciente(5, 506070809, "Lucía", "Fernández", 30, "lucia.f@mail.com", 999988776));
-        listaPacientes.add(new Paciente(6, 607080910, "Pedro", "Suárez", 45, "pedro.suarez@mail.com", 954433221));
-        listaPacientes.add(new Paciente(7, 708091011, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901));
-        listaPacientes.add(new Paciente(8, 809101112, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334));
-        listaPacientes.add(new Paciente(9, 910111213, "Camila", "Ríos", 29, "camila.rios@mail.com", 979988776));
-        listaPacientes.add(new Paciente(10, 1011121314, "Andrés", "Navarro", 38, "andres.n@mail.com", 966677889));
+        listaPacientes.add(new Paciente(1, 1723456789, "Ana", "Perez", 28, "ana.perez@mail.com", 991234567));
+        listaPacientes.add(new Paciente(2, 912345678, "Luis", "Gomez", 35, "luis.gomez@mail.com", 987654321));
+        listaPacientes.add(new Paciente(3, 801122334, "Marta", "Ramirez", 22, "marta.r@mail.com", 971122334));
+        listaPacientes.add(new Paciente(4, 609876543, "Carlos", "Lopez", 40, "carlos.l@mail.com", 965566778));
+        listaPacientes.add(new Paciente(5, 1109988776, "Lucia", "Fernandez", 30, "lucia.f@mail.com", 999988776));
+        listaPacientes.add(new Paciente(6, 203344556, "Pedro", "Suarez", 45, "pedro.suarez@mail.com", 954433221));
+        listaPacientes.add(new Paciente(7, 502233445, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901));
+        listaPacientes.add(new Paciente(8, 1401122334, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334));
+        listaPacientes.add(new Paciente(9, 1019988776, "Camila", "Rios", 29, "camila.rios@mail.com", 979988776));
+        listaPacientes.add(new Paciente(10, 1712345678, "Andres", "Navarro", 38, "andres.n@mail.com", 966677889));
     }
     
     private static void crearMedicosTemporales(){
         listaMedicos = new ArrayList<>();
-        listaMedicos.add(new Medico(1, 12345689, 20,"Carlos", "López", "Cardiología", "Masculino", 9876521));
-        listaMedicos.add(new Medico(2, 987654321, 20,"Ana", "Gómez", "Pediatría", "Femenino", 123456789));
-        listaMedicos.add(new Medico(5, 445566778, 20,"Mateo", "Díaz", "Traumatología", "Masculino", 111222333));
+        listaMedicos.add(new Medico(1, 1109988663, 20,"Carlos", "López", "Cardiología", "Masculino", 935679901));
+        listaMedicos.add(new Medico(2, 913348678, 20,"Ana", "Gómez", "Pediatría", "Femenino", 925577900));
+        listaMedicos.add(new Medico(5, 709973543, 20,"Mateo", "Díaz", "Traumatología", "Masculino", 915775979));
     }
     
     private static void crearCitasMedicasTemporales(){
@@ -108,5 +108,4 @@ public class AccesoDatos {
             listaCitasMedicas.add(new CitaMedica(idCita++, paciente, medico, descripcion, turno));
         }
     }
-    
 }

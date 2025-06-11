@@ -3,6 +3,8 @@ package utilidades.Table.CreateTable;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
+import modelos.BaseEntity;
+import utilidades.Controller.ManagerController;
 import utilidades.Table.ButtonTable.ButtonEditor;
 import utilidades.Table.ButtonTable.ButtonRenderer;
 import utilidades.Table.CommandTable.ComandoListenerActualizar;
@@ -11,12 +13,13 @@ import vistas.IReceptorEntityJFrame;
 
 public class ConstructorModeloTabla {
 
-    
-    public static void construirYAsignarModelo(JTable table, List listaDatos){
-        ObjectTableModel objectTableModel = new ObjectTableModel(listaDatos);
-        table.setModel (objectTableModel);
-        table.setRowHeight(30);
+    private static final ManagerController managerController = ManagerController.getInstance();
 
+        
+    public static ObjectTableModel construirYAsignarModelo(Class<? extends BaseEntity> c){
+        List listaDatos = managerController.get(c);
+        ObjectTableModel objectTableModel = new ObjectTableModel(listaDatos);
+        return objectTableModel;
     }
    
     public static void AgregarEventosEditarYEliminar(JTable table, IReceptorEntityJFrame frame) {

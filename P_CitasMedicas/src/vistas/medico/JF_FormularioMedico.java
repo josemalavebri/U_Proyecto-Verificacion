@@ -5,19 +5,16 @@ import modelos.Medico;
 import utilidades.Controller.ManagerController;
 import utilidades.Table.RefreshTable.RefreshTable;
 import utilidades.Validador.MsgValidacion;
+import utilidades.Validador.TipoValidacion;
 import utilidades.Validador.Validador;
 import vistas.IReceptorEntityJFrame;
 
-/**
- *
- * @author conta
- */
 public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptorEntityJFrame<Medico>{
     
-    private Medico medico;
     private final ManagerController managerController;
     private final RefreshTable tableRefresh;
-
+    private boolean isEdit = false;
+    private Medico medico;
     public JF_FormularioMedico() {
         initComponents();
         managerController = ManagerController.getInstance();
@@ -36,17 +33,16 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
         txtTelefono = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
-        txtEspecialidad = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         lblApellido = new javax.swing.JLabel();
         btnResetear = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         lblCedula1 = new javax.swing.JLabel();
         lblTelefono1 = new javax.swing.JLabel();
         cbx_Genero = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
         lblCedula2 = new javax.swing.JLabel();
         txt_Edad = new javax.swing.JTextField();
+        cbx_especialidad = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -79,8 +75,6 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
         lblNombre.setText("Nombre");
 
-        txtEspecialidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
-
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,12 +84,10 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
         lblApellido.setText("Apellido");
 
-        btnResetear.setText("Resetea");
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnResetear.setText("Resetear");
+        btnResetear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnResetearActionPerformed(evt);
             }
         });
 
@@ -103,7 +95,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
         lblTelefono1.setText("Genero ");
 
-        cbx_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_Genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
         txtNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
 
@@ -111,172 +103,207 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
         txt_Edad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.BOTTOM)));
 
+        cbx_especialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Traumatologia", "Pediatria", "Cardiologia" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblCedula)
-                        .addGap(93, 93, 93)
-                        .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblCedula2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblApellido)
-                                .addComponent(lblNombre)
-                                .addComponent(lblTelefono)
-                                .addComponent(lblCedula1)
-                                .addComponent(lblTelefono1))
-                            .addGap(65, 65, 65)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEspecialidad)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtTelefono)
-                                .addComponent(cbx_Genero, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btnAceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnResetear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSalir)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(119, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCedula)
+                                .addGap(93, 93, 93)
+                                .addComponent(txt_Cedula))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCedula2)
+                                .addGap(104, 104, 104)
+                                .addComponent(txt_Edad))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblCedula1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTelefono1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTelefono)
+                                    .addComponent(cbx_Genero, javax.swing.GroupLayout.Alignment.TRAILING, 0, 102, Short.MAX_VALUE)
+                                    .addComponent(btnResetear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNombre)
+                                    .addComponent(cbx_especialidad, 0, 102, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblCedula)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(lblCedula2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNombre)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblApellido)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbx_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTelefono1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTelefono)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCedula1)
-                            .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAceptar)
-                            .addComponent(btnResetear))))
-                .addGap(56, 56, 56))
+                        .addComponent(lblCedula)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula2)
+                    .addComponent(txt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblApellido))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelefono1)
+                    .addComponent(cbx_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefono))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula1)
+                    .addComponent(cbx_especialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnResetear, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if(!verificarCampos()){
             return;
         }
         
-        Medico medico = getMedicoFormulario();
-        boolean guadadoExitoso = managerController.post(medico);
-        
-        if (guadadoExitoso){
-            JOptionPane.showMessageDialog(null, "Medico guardado con exito");
-            tableRefresh.refrescarTodas();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al guardar Medico");
+        if(isEdit){
+            Medico medicoActualizado = getMedicoFormularioActualizado();
+            boolean actualizadoExitoso = managerController.put(medicoActualizado);
+            if(actualizadoExitoso){
+                JOptionPane.showMessageDialog(null, "Medico Actualizado con exito");
+                tableRefresh.refrescarTodas();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Error al actualizar Medico");
+            }
+        } else{
+            Medico medico = getMedicoFormulario();
+            boolean guadadoExitoso = managerController.post(medico);
+
+            if (guadadoExitoso){
+                JOptionPane.showMessageDialog(null, "Medico guardado con exito");
+                tableRefresh.refrescarTodas();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al guardar Medico");
+            }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private boolean verificarCampos(){
+    private boolean verificarCampos() {
         Validador validador = new Validador();
-        validador.putCampo(txtApellido.getText(), MsgValidacion.APELLIDO_INVALIDO);
-        validador.putCampo(txtEspecialidad, "ESPECIALIDAD POR ARREGLAR");
-        return validador.validarCamposGuardados();
-    } 
+        validador.agregarCampo(txtNombre.getText(), MsgValidacion.NOMBRE_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA,TipoValidacion.SOLO_LETRAS);
+
+        validador.agregarCampo(txtApellido.getText(), MsgValidacion.APELLIDO_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA, TipoValidacion.SOLO_LETRAS);
+
+        validador.agregarCampo(txt_Edad.getText(), MsgValidacion.EDAD_INVALIDA,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        validador.agregarCampo(txt_Cedula.getText(), MsgValidacion.CEDULA_INVALIDA,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        validador.agregarCampo(txtTelefono.getText(), MsgValidacion.TELEFONO_INVALIDO,
+            TipoValidacion.NO_NULO, TipoValidacion.NUMERICO);
+
+        return validador.validarTodos();
+    }
     
     private Medico getMedicoFormulario(){
-        Medico medico = new Medico();
-        medico.setId(0);
+        medico = new Medico();
         medico.setCedula(Integer.parseInt(txt_Cedula.getText()) );
         medico.setNombre(txtNombre.getText());
         medico.setApellido(txtApellido.getText());
-        medico.setEspecialidad(txtEspecialidad.getText());
+        medico.setEspecialidad(cbx_especialidad.getSelectedItem().toString());
+        medico.setGenero(cbx_Genero.getSelectedItem().toString());
         medico.setEdad(Integer.parseInt(txt_Edad.getText()));
         medico.setTelefono(Integer.parseInt(txtTelefono.getText()));
         return medico;
     }
     
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+    private Medico getMedicoFormularioActualizado(){
+        medico.setCedula(Integer.parseInt(txt_Cedula.getText()) );
+        medico.setNombre(txtNombre.getText());
+        medico.setApellido(txtApellido.getText());
+        medico.setEspecialidad(cbx_especialidad.getSelectedItem().toString());
+        medico.setGenero(cbx_Genero.getSelectedItem().toString());
+        medico.setEdad(Integer.parseInt(txt_Edad.getText()));
+        medico.setTelefono(Integer.parseInt(txtTelefono.getText()));
+        return medico;
+    }
+    
+    private void btnResetearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetearActionPerformed
         txt_Cedula.setText("");
         txt_Edad.setText("");
         txtNombre.setText("");
         txtApellido.setText("");
-        txtEspecialidad.setText("");
+        cbx_especialidad.setSelectedIndex(0);
         cbx_Genero.setSelectedIndex(-1); 
-        txtTelefono.setText("");      
-    }//GEN-LAST:event_btnSalirActionPerformed
-
+        txtTelefono.setText("");
+    }//GEN-LAST:event_btnResetearActionPerformed
     
     private void llenarFormularioConObjeto(Medico medico) {
         if (medico != null) {
             String cedula = ""+medico.getCedula();
             String telefono = ""+medico.getTelefono();
-            
+            String edad = ""+medico.getEdad();
             txt_Cedula.setText(cedula);
-            txt_Edad.setText(cedula);
+            txt_Edad.setText(edad);
             txtNombre.setText(medico.getNombre());
             txtApellido.setText(medico.getApellido());
-            txtEspecialidad.setText(medico.getEspecialidad());
-            cbx_Genero.setSelectedItem(cedula);
             txtTelefono.setText(telefono);
-        }
-        if(medico.getGenero().equals("")){
-            if (medico.getGenero().equalsIgnoreCase("Masculino")) {
-                cbx_Genero.setSelectedItem("Masculino");
 
-            } else if (medico.getGenero().equalsIgnoreCase("Femenino")) {
-                cbx_Genero.setSelectedItem("Femenino");
+            if (!medico.getEspecialidad().equals("")) {
+                if (medico.getEspecialidad().equalsIgnoreCase("Traumatologia")) {
+                    cbx_especialidad.setSelectedItem("Traumatologia");
+                } else if (medico.getEspecialidad().equalsIgnoreCase("Pediatria")) {
+                    cbx_especialidad.setSelectedItem("Pediatria");
+                } else if (medico.getEspecialidad().equalsIgnoreCase("Cardiologia")) {
+                    cbx_especialidad.setSelectedItem("Cardiologia");
+                }
             }
-            
+
+            if(!medico.getGenero().equals("")){
+                if (medico.getGenero().equalsIgnoreCase("Masculino")) {
+                    cbx_Genero.setSelectedItem("Masculino");
+                } else if (medico.getGenero().equalsIgnoreCase("Femenino")) {
+                    cbx_Genero.setSelectedItem("Femenino");
+                }
+            }
         }
     }  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnResetear;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbx_Genero;
+    private javax.swing.JComboBox<String> cbx_especialidad;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApellido;
@@ -287,7 +314,6 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTelefono1;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txt_Cedula;
@@ -296,7 +322,9 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
     @Override
     public void setEntidad(Medico entidad) {
-        
-        System.out.println(entidad.getCedula());
+        btnAceptar.setText("Actualizar");
+        this.isEdit= true;
+        llenarFormularioConObjeto(entidad);
+        this.medico = entidad;
     }
 }

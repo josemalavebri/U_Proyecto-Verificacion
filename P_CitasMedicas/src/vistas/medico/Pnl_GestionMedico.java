@@ -1,24 +1,19 @@
 package vistas.medico;
 
-import java.util.List;
 import javax.swing.JFrame;
 import modelos.Medico;
-import utilidades.Controller.ManagerController;
-import utilidades.Table.RefreshTable.RefreshTable;
-import utilidades.Table.CreateTable.ConstructorModeloTabla;
+import utilidades.Table.ControlTable.ControlTable;
 
 
 public class Pnl_GestionMedico extends javax.swing.JPanel {
    
-    private final ManagerController managerController;
-    private final RefreshTable table;
+    private final ControlTable controlTable;
     
     public Pnl_GestionMedico() {
-        managerController = ManagerController.getInstance();
         initComponents();
+        controlTable = new ControlTable();
         llenarDatosTabla();
-        table = RefreshTable.getInstance();
-        table.suscribir("tb_medico", tb_Medico);
+        controlTable.registrarTabla(Medico.class,tb_Medico);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,22 +68,21 @@ public class Pnl_GestionMedico extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(btn_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btn_Buscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Resetear)
+                        .addContainerGap(168, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(btn_Buscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btn_Resetear)))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 758, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,8 +97,8 @@ public class Pnl_GestionMedico extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -115,13 +109,10 @@ public class Pnl_GestionMedico extends javax.swing.JPanel {
         formularioMedico.setVisible(true);
     }//GEN-LAST:event_btn_NuevoActionPerformed
     
-    
     private void llenarDatosTabla(){
-        List<Medico> listaMedicos = managerController.get(Medico.class);
-        ConstructorModeloTabla.construirYAsignarModelo(tb_Medico, listaMedicos);
-        ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_Medico, new JF_FormularioMedico());
+        controlTable.llenarTablaDatos(Medico.class , tb_Medico);
+        controlTable.eventosTabla(tb_Medico, new JF_FormularioMedico());
     }
-   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Buscar;

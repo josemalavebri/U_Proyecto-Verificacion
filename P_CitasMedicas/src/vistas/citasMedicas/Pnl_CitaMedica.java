@@ -1,30 +1,25 @@
 package vistas.citasMedicas;
 
-import java.util.List;
 import javax.swing.JFrame;
 import modelos.CitaMedica;
-import utilidades.Controller.ManagerController;
-import utilidades.Table.RefreshTable.RefreshTable;
-import utilidades.Table.CreateTable.ConstructorModeloTabla;
+import utilidades.Table.ControlTable.ControlTable;
+import vistas.IReceptorEntityJFrame;
 
 public class Pnl_CitaMedica extends javax.swing.JPanel {
     
-    private ManagerController managerController;
-    private RefreshTable refreshTable;
+    private ControlTable controlTable = new ControlTable();
     
     public Pnl_CitaMedica() {
         initComponents();
-        managerController = ManagerController.getInstance();
-        llenarDatosTabla();
-        refreshTable = RefreshTable.getInstance();
-        refreshTable.suscribir("tb_citasMedicas", tb_citasMedicas);
+        llenarDatosTablaInstanciarMetodo();
+        controlTable.registrarTabla(CitaMedica.class, tb_citasMedicas);
     }
     
     
-    private void llenarDatosTabla(){
-        List<CitaMedica> listaCitaMedica = managerController.get(CitaMedica.class);
-        ConstructorModeloTabla.construirYAsignarModelo(tb_citasMedicas, listaCitaMedica);
-        ConstructorModeloTabla.AgregarEventosEditarYEliminar(tb_citasMedicas, new JF_NuevaCitaMedica());
+    private void llenarDatosTablaInstanciarMetodo(){
+        controlTable.llenarTablaDatos(CitaMedica.class, tb_citasMedicas);
+        IReceptorEntityJFrame frame = new JF_NuevaCitaMedica();
+        controlTable.eventosTabla(tb_citasMedicas, frame);
     }
     
     
@@ -68,21 +63,22 @@ public class Pnl_CitaMedica extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(25, 25, 25)
                 .addComponent(btn_nuevaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void btn_nuevaCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevaCitaActionPerformed

@@ -7,7 +7,6 @@ package vistas.Factura;
 import modelos.CitaMedica;
 import modelos.Factura;
 import utilidades.Controller.AccesoController;
-import controladores.IGeneralController;
 
 /**
  *
@@ -168,9 +167,6 @@ public class JF_Factura extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        
-        
-        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     

@@ -1,11 +1,10 @@
 package Data.InternalDB.RepositoryInternalDB;
 
 import java.util.ArrayList;
+import java.util.List;
 import modelos.Paciente;
 
 public class PacienteRepositorio extends BaseRepositorio<Paciente>{
-    
-    
     
     @Override
     public ArrayList<Paciente> select() {
@@ -14,7 +13,9 @@ public class PacienteRepositorio extends BaseRepositorio<Paciente>{
 
     @Override
     public boolean insert(Paciente entidad) {
-        return this.accesoDatos.datosPacientes().add(entidad);
+        List<Paciente> datosPaciente = this.accesoDatos.datosPacientes();
+        calcularId(datosPaciente, entidad);
+        return datosPaciente.add(entidad);
     }
 
     @Override

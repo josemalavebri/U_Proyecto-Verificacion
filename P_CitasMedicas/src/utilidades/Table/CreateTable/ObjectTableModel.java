@@ -13,7 +13,7 @@ public class ObjectTableModel<T extends BaseEntity> extends DefaultTableModel {
 
     public ObjectTableModel(List<T> datos) {
         super();
-        this.datos.addAll(datos);
+        this.datos.addAll(datos); 
         
         String[] columnas = GeneradorModeloTabla.extraerNombresColumnas(datos.get(0));
         setColumnIdentifiers(columnas);
