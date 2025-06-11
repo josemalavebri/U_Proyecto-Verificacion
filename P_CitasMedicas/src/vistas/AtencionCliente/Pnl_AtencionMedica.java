@@ -82,7 +82,9 @@ public class Pnl_AtencionCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_atencionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atencionClienteActionPerformed
-        // TODO add your handling code here:
+       JF_FormularioAtencionCliente formularioAtencionCliente = new JF_FormularioAtencionMedico();
+       formularioAtencionCliente.setLocationRelative(null);
+       
     }//GEN-LAST:event_btn_atencionClienteActionPerformed
 
 
