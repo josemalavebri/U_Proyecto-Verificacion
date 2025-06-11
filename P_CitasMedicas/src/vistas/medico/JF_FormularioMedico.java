@@ -13,6 +13,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
     
     private final ManagerController managerController;
     private final RefreshTable tableRefresh;
+    
     private boolean isEdit = false;
     private Medico medico;
     public JF_FormularioMedico() {
@@ -213,8 +214,12 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
                 JOptionPane.showMessageDialog(null, "Error al guardar Medico");
             }
         }
+        
+        
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    
     private boolean verificarCampos() {
         Validador validador = new Validador();
 

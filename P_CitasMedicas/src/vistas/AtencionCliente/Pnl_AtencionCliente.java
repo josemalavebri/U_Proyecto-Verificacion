@@ -11,8 +11,6 @@ public class Pnl_AtencionCliente extends javax.swing.JPanel {
     public Pnl_AtencionCliente() {
         initComponents();
         controlTable = new ControlTable();
-        llenarDatosTabla();
-        controlTable.registrarTabla.(AtencionCliente.class,tb_AtencionCliente;
         
     }
 

@@ -2,6 +2,7 @@ package vistas.main;
 
 import java.awt.BorderLayout;
 import utilidades.Controller.AccesoController;
+import vistas.AtencionCliente.Pnl_AtencionCliente;
 import vistas.citasMedicas.Pnl_CitaMedica;
 import vistas.medico.Pnl_GestionMedico;
 import vistas.paciente.Pnl_GestorPaciente;
@@ -36,6 +37,7 @@ public class JF_Principal extends javax.swing.JFrame {
         pnl_principal = new javax.swing.JPanel();
         btn_medico = new javax.swing.JButton();
         btn_paciente1 = new javax.swing.JButton();
+        btn_medico1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +73,13 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         });
 
+        btn_medico1.setText("Atencion Cliente");
+        btn_medico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_medico1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +89,8 @@ public class JF_Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_citasMedicas, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                     .addComponent(btn_medico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_paciente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_paciente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_medico1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pnl_principal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -94,10 +104,12 @@ public class JF_Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addComponent(btn_citasMedicas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addGap(18, 18, 18)
                         .addComponent(btn_paciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(btn_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_medico, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_medico1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -135,6 +147,19 @@ public class JF_Principal extends javax.swing.JFrame {
         pnl_principal.repaint();
         setVisible(true);
     }//GEN-LAST:event_btn_paciente1ActionPerformed
+
+    private void btn_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_medico1ActionPerformed
+
+        pnl_principal.removeAll();
+        Pnl_AtencionCliente panelAtencionCliente = new Pnl_AtencionCliente();
+        pnl_principal.setLayout(new BorderLayout());
+        pnl_principal.add(panelAtencionCliente, BorderLayout.CENTER);
+        pnl_principal.revalidate();
+        pnl_principal.repaint();
+        setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_medico1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +203,7 @@ public class JF_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_citasMedicas;
     private javax.swing.JButton btn_medico;
+    private javax.swing.JButton btn_medico1;
     private javax.swing.JButton btn_paciente1;
     private javax.swing.JPanel pnl_principal;
     // End of variables declaration//GEN-END:variables

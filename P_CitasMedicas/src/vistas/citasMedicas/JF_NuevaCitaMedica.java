@@ -35,11 +35,11 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
     
     public JF_NuevaCitaMedica() {
         initComponents();
-      
         inicializarComponentesLogicos();
         cargarDatosComboBox();
         mostrarTurnosEnTabla();
         eventoClickFila();
+        
     } 
     
     private void mostrarTurnosEnTabla() {
@@ -276,14 +276,7 @@ public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorE
         citaMedica.setTurno(turnoSeleccionado);
         return citaMedica;
     }
-    
-    private void generarFactura(CitaMedica citaMedica){
-        JF_Factura factura = new JF_Factura();
-        factura.setCitaMedica(citaMedica);
-        factura.setLocationRelativeTo(null);
-        factura.setVisible(true);
-    }
-  
+ 
     @Override
     public void setEntidad(CitaMedica entidad) {
         int idMedico = entidad.getMedico().getId();
