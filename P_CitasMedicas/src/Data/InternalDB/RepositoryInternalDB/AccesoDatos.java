@@ -72,17 +72,18 @@ public class AccesoDatos {
     
     private static void crearPacienteTemporales() {
         listaPacientes = new ArrayList<>();
-        listaPacientes.add(new Paciente(1, 1723456789, "Ana", "Perez", 28, "ana.perez@mail.com", 991234567));
-        listaPacientes.add(new Paciente(2, 912345678, "Luis", "Gomez", 35, "luis.gomez@mail.com", 987654321));
-        listaPacientes.add(new Paciente(3, 801122334, "Marta", "Ramirez", 22, "marta.r@mail.com", 971122334));
-        listaPacientes.add(new Paciente(4, 609876543, "Carlos", "Lopez", 40, "carlos.l@mail.com", 965566778));
-        listaPacientes.add(new Paciente(5, 1109988776, "Lucia", "Fernandez", 30, "lucia.f@mail.com", 999988776));
-        listaPacientes.add(new Paciente(6, 203344556, "Pedro", "Suarez", 45, "pedro.suarez@mail.com", 954433221));
-        listaPacientes.add(new Paciente(7, 502233445, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901));
-        listaPacientes.add(new Paciente(8, 1401122334, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334));
-        listaPacientes.add(new Paciente(9, 1019988776, "Camila", "Rios", 29, "camila.rios@mail.com", 979988776));
-        listaPacientes.add(new Paciente(10, 1712345678, "Andres", "Navarro", 38, "andres.n@mail.com", 966677889));
+        listaPacientes.add(new Paciente(1, 1723456789, "Ana", "Perez", 28, "ana.perez@mail.com", 991234567, "Femenino"));
+        listaPacientes.add(new Paciente(2, 912345678, "Luis", "Gomez", 35, "luis.gomez@mail.com", 987654321, "Masculino"));
+        listaPacientes.add(new Paciente(3, 801122334, "Marta", "Ramirez", 22, "marta.r@mail.com", 971122334, "Femenino"));
+        listaPacientes.add(new Paciente(4, 609876543, "Carlos", "Lopez", 40, "carlos.l@mail.com", 965566778, "Masculino"));
+        listaPacientes.add(new Paciente(5, 1109988776, "Lucia", "Fernandez", 30, "lucia.f@mail.com", 999988776, "Femenino"));
+        listaPacientes.add(new Paciente(6, 203344556, "Pedro", "Suarez", 45, "pedro.suarez@mail.com", 954433221, "Masculino"));
+        listaPacientes.add(new Paciente(7, 502233445, "Elena", "Cruz", 27, "elena.cruz@mail.com", 945678901, "Femenino"));
+        listaPacientes.add(new Paciente(8, 1401122334, "Jorge", "Mendoza", 33, "jorge.m@mail.com", 981122334, "Masculino"));
+        listaPacientes.add(new Paciente(9, 1019988776, "Camila", "Rios", 29, "camila.rios@mail.com", 979988776, "Femenino"));
+        listaPacientes.add(new Paciente(10, 1712345678, "Andres", "Navarro", 38, "andres.n@mail.com", 966677889, "Masculino"));
     }
+
     
     private static void crearMedicosTemporales(){
         listaMedicos = new ArrayList<>();

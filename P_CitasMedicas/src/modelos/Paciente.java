@@ -7,13 +7,13 @@ public class Paciente extends Persona {
     public Paciente(){
     }
 
-    public Paciente(int cedula, String nombre, String apellido, int edad, String correo, int telefono) {
-        super(0,cedula,edad,nombre,apellido,telefono);
+    public Paciente(int cedula, String nombre, String apellido, int edad, String correo, int telefono,String genero) {
+        super(0,cedula,edad,nombre,apellido,telefono, genero);
         this.correo = correo;
     }
 
-    public Paciente(int id, int cedula, String nombre, String apellido, int edad, String correo, int telefono) {
-        super(id,cedula,edad,nombre,apellido,telefono);
+    public Paciente(int id, int cedula, String nombre, String apellido, int edad, String correo, int telefono, String genero) {
+        super(id,cedula,edad,nombre,apellido,telefono, genero);
         this.correo = correo;
     }
 
@@ -24,9 +24,6 @@ public class Paciente extends Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
- 
-
 
 
 }

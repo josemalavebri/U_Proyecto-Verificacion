@@ -8,6 +8,10 @@ public abstract class Persona extends BaseEntity{
     protected String nombre;
     protected String apellido;
     protected int telefono;
+
+ 
+    private String genero;
+
     
     public Persona() {
         super(0);
@@ -18,13 +22,14 @@ public abstract class Persona extends BaseEntity{
         this.telefono = 0;
     }
 
-    public Persona(int id, int cedula, int edad,String nombre, String apellido, int telefono) {
+    public Persona(int id, int cedula, int edad,String nombre, String apellido, int telefono, String genero) {
         super(id);
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.telefono = telefono;
+        this.genero = genero;
     }
     
 
@@ -73,5 +78,12 @@ public abstract class Persona extends BaseEntity{
         return nombre + " "+apellido;
     }
     
+       public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
     
 }
