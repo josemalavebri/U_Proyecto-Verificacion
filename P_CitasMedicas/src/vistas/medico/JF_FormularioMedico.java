@@ -217,6 +217,7 @@ public class JF_FormularioMedico extends javax.swing.JFrame implements IReceptor
 
     private boolean verificarCampos() {
         Validador validador = new Validador();
+
         validador.agregarCampo(txtNombre.getText(), MsgValidacion.NOMBRE_INVALIDO,
             TipoValidacion.NO_NULO, TipoValidacion.CADENA_TEXTO_VALIDA,TipoValidacion.SOLO_LETRAS);
 

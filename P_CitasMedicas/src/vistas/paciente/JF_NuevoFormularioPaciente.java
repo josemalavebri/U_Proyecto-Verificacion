@@ -121,7 +121,7 @@ public class JF_NuevoFormularioPaciente extends javax.swing.JFrame {
                                 .addComponent(txtCorreo)
                                 .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(0, 30, Short.MAX_VALUE)
+                            .addGap(0, 29, Short.MAX_VALUE)
                             .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(btnResetear, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))

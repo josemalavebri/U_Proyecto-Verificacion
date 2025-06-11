@@ -33,10 +33,10 @@ public class ValidadorDeCampos {
                     if (!opcionSeleccionada(valor)) return false;
                 }
                 case LONGITUD_MINIMA -> {
-                    if (!tieneLongitudMinima(valor, 3)) return false; // ejemplo: mínimo 3 caracteres
+                    if (!tieneLongitudMinima(valor, 3)) return false; 
                 }
                 case LONGITUD_MAXIMA -> {
-                    if (!tieneLongitudMaxima(valor, 50)) return false; // ejemplo: máximo 50 caracteres
+                    if (!tieneLongitudMaxima(valor, 50)) return false;
                 }
             }
         }
@@ -77,7 +77,7 @@ public class ValidadorDeCampos {
 
     private static boolean esCedulaValida(Object valor) {
         String cedula = valor.toString();
-        return cedula.matches("^\\d{10}$"); // puedes agregar el algoritmo oficial si lo deseas
+        return cedula.matches("^\\d{10}$"); 
     }
 
     private static boolean esCorreoValido(Object valor) {
