@@ -1,21 +1,20 @@
-
 package vistas.AtencionCliente;
 
+import javax.swing.JFrame;
+import modelos.AtencionMedica;
 import utilidades.Table.ControlTable.ControlTable;
 
 
-public class Pnl_AtencionCliente extends javax.swing.JPanel {
+public class Pnl_AtencionMedica extends javax.swing.JPanel {
 
   private final ControlTable controlTable;
   
-    public Pnl_AtencionCliente() {
+    public Pnl_AtencionMedica() {
         initComponents();
         controlTable = new ControlTable();
         llenarDatosTabla();
-        controlTable.registrarTabla.(AtencionCliente.class,tb_AtencionCliente;
-        
+        controlTable.registrarTabla.(AtencionMedica.class,tb_AtencionMedica);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,12 +81,18 @@ public class Pnl_AtencionCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_atencionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atencionClienteActionPerformed
-       JF_FormularioAtencionCliente formularioAtencionCliente = new JF_FormularioAtencionMedico();
+       JF_FormularioAtencionMedica formularioAtencionCliente = new JF_FormularioAtencionMedica();
        formularioAtencionCliente.setLocationRelative(null);
-       
+       formulario.setDefaultCloseOperation(JFrame.DISPONE_ON_CLOSE);
+       formularioMedico.setVisible(true);       
     }//GEN-LAST:event_btn_atencionClienteActionPerformed
 
+private void llenarDatosTabla(){
+    controlTable.llenarTablaDatos(AtencionMedica.class , tb_AtencionMedica);
+    controlTable.eventosTabla(tb_AtencionMedica, new JF_FormularioAtencionMedica());
+    }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jl_atencionCliente;
     private javax.swing.JButton btn_atencionCliente;
