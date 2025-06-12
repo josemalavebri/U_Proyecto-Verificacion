@@ -146,7 +146,7 @@ public class BaseDatosInternal {
         };
 
         for (int i = 0; i < listaCitasMedicas.size(); i++) {
-            CitaMedica cita = listaCitasMedicas.get(i);
+            CitaMedica cita = listaCitasMedicas.get(1);
 
             // Usa el índice para rotar los ejemplos
             String sintomas = sintomasEjemplo[i % sintomasEjemplo.length];

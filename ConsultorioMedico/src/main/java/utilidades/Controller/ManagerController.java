@@ -11,7 +11,11 @@ import Data.InternalDB.RepositoryInternalDB.CitaMedicaRepositorio;
 import Data.InternalDB.RepositoryInternalDB.MedicoRepositorio;
 import Data.InternalDB.RepositoryInternalDB.PacienteRepositorio;
 import Data.InternalDB.RepositoryInternalDB.TurnoRepositorio;
-import Data.SQLite.PacientexternalRepository;
+import Data.SQLite.AtencionMedicaExternalRepository;
+import Data.SQLite.CitaMedicaExternalRepository;
+import Data.SQLite.MedicoExternalRepository;
+import Data.SQLite.PacienteExternalRepository;
+import Data.SQLite.TurnoExternalRepository;
 import controladores.AtencionMedicaController;
 import controladores.CitaMedicaController;
 import controladores.IGeneralController;
@@ -34,11 +38,11 @@ public class ManagerController{
     private final Map<Class<? extends BaseEntity>, IGeneralController<?>> controllers = new HashMap<>();
     
     public ManagerController() {
-        controllers.put(Medico.class, new MedicoController(new MedicoInternalRepository(new MedicoRepositorio())));
-        controllers.put(Paciente.class, new PacienteController(new PacientexternalRepository()));
-        controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaInternalRepository(new CitaMedicaRepositorio())));
-        controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository(new TurnoRepositorio())));
-        controllers.put(AtencionMedica.class, new AtencionMedicaController(new AtencionMedicaInternalRepository(new AtencionMedicaRepository())));
+        controllers.put(Medico.class, new MedicoController(new MedicoExternalRepository()));
+        controllers.put(Paciente.class, new PacienteController(new PacienteExternalRepository()));
+        controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaExternalRepository()));
+        controllers.put(Turno.class, new TurnoController(new TurnoExternalRepository()));
+        controllers.put(AtencionMedica.class, new AtencionMedicaController(new AtencionMedicaExternalRepository()));
     }
     
     

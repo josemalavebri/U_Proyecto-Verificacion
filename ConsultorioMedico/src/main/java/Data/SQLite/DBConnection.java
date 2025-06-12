@@ -12,7 +12,7 @@ public class DBConnection {
     public static Connection connect() {
         try {
             if (conn == null || conn.isClosed()) {
-                    String dbPath = "C:/Users/josem/Downloads/Archivos/Proyecto_verificacion/Proyecto_Verificacion/ConsultorioMedico/db/ConsultorioMedico.db";
+                    String dbPath = "C:/Users/Falconi/Documents/NetBeansProjects/U_Proyecto-Verificacion/ConsultorioMedico/db/ConsultorioMedico.db";
                 String url = "jdbc:sqlite:" + dbPath;
                     conn = DriverManager.getConnection(url);
                     System.out.println("Conexión exitosa a SQLite");
