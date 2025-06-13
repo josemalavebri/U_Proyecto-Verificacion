@@ -1,31 +1,19 @@
-package vistas;
+package vistas.main;
 
 import Data.SQLite.DBConnection;
 import Data.SQLite.DBDAOEjemplo;
+import InstallBD.InstallDB;
 import java.awt.BorderLayout;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-import utilidades.Controller.AccesoController;
 import vistas.AtencionCliente.Pnl_AtencionMedica;
 import vistas.citasMedicas.Pnl_CitaMedica;
 import vistas.medico.Pnl_GestionMedico;
 import vistas.paciente.Pnl_GestorPaciente;
 
-/**
- *
- * @author josem
- */
 public class JF_Principal extends javax.swing.JFrame {
 
     public JF_Principal ()  {
         initComponents();
-        DBConnection.connect();
-        DBDAOEjemplo conecBConnection = new DBDAOEjemplo();
-        List<String > pacientes = conecBConnection.obtenerTodosLosPacientes();
-        for (String cadena : pacientes) {
-            System.out.println(cadena);
-        }
+        DBConnection.installDB();
     }
 
     @SuppressWarnings("unchecked")

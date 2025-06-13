@@ -14,10 +14,6 @@ import utilidades.Table.ControlTable.ControlTable;
 import utilidades.Validador.Validador;
 import vistas.IReceptorEntityJFrame;
 
-/**
- *
- * @author conta
- */
 public class JF_FormularioAtencionMedica extends javax.swing.JFrame implements IReceptorEntityJFrame<AtencionMedica>{
 
     private boolean isEdit;

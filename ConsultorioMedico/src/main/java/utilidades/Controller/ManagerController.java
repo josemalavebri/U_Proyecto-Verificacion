@@ -4,12 +4,10 @@ package utilidades.Controller;
 import Data.InternalDB.Repository.AtencionMedicaInternalRepository;
 import Data.InternalDB.Repository.CitaMedicaInternalRepository;
 import Data.InternalDB.Repository.MedicoInternalRepository;
-import Data.InternalDB.Repository.PacienteInternalRepository;
 import Data.InternalDB.Repository.TurnoInternalRepository;
 import Data.InternalDB.RepositoryInternalDB.AtencionMedicaRepository;
 import Data.InternalDB.RepositoryInternalDB.CitaMedicaRepositorio;
 import Data.InternalDB.RepositoryInternalDB.MedicoRepositorio;
-import Data.InternalDB.RepositoryInternalDB.PacienteRepositorio;
 import Data.InternalDB.RepositoryInternalDB.TurnoRepositorio;
 import Data.SQLite.PacientexternalRepository;
 import controladores.AtencionMedicaController;
@@ -40,7 +38,6 @@ public class ManagerController{
         controllers.put(Turno.class, new TurnoController(new TurnoInternalRepository(new TurnoRepositorio())));
         controllers.put(AtencionMedica.class, new AtencionMedicaController(new AtencionMedicaInternalRepository(new AtencionMedicaRepository())));
     }
-    
     
     public static ManagerController getInstance(){
         if(managerControllerInstance == null ){

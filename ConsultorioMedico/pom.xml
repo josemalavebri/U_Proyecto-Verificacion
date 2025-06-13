@@ -35,5 +35,36 @@
             <version>5.10.3</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>   
+    </dependencies> 
+    
+       <build>
+    <plugins>
+      <!-- Plugin para empaquetar todas las dependencias dentro del .jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+                <mainClass>vistas.main.JF_Principal</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+    
 </project>
