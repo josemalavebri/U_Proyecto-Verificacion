@@ -24,6 +24,4 @@ public class Paciente extends Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
-
 }

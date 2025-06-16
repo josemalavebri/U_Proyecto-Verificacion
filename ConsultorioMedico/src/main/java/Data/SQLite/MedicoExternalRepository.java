@@ -45,32 +45,29 @@ public class MedicoExternalRepository extends ExternalRepository<Medico>{
 
     @Override
     public boolean add(Medico medico) {
-        String sqlPersona = "INSERT INTO Persona(id, cedula, nombre, apellido, edad, telefono, genero) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String sqlMedico = "INSERT INTO Medico(id, especialidad) VALUES (?, ?)";
+        String sqlPersona = "INSERT INTO Persona(cedula, nombre, apellido, edad, telefono, genero) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlMedico = "INSERT INTO Medico(especialidad) VALUES (?)";
 
         try (Connection conn = DBConnection.connect()) {
             conn.setAutoCommit(false);
 
             try (PreparedStatement pstmtPersona = conn.prepareStatement(sqlPersona);
-                 PreparedStatement pstmtMedico = conn.prepareStatement(sqlMedico)) {
-
-                pstmtPersona.setInt(1, medico.getId());
-                pstmtPersona.setInt(2, medico.getCedula());
-                pstmtPersona.setString(3, medico.getNombre());
-                pstmtPersona.setString(4, medico.getApellido());
-                pstmtPersona.setInt(5, medico.getEdad());
-                pstmtPersona.setInt(6, medico.getTelefono());
-                pstmtPersona.setString(7, medico.getGenero());
+                
+                PreparedStatement pstmtMedico = conn.prepareStatement(sqlMedico)) {
+                pstmtPersona.setInt(1, medico.getCedula());
+                pstmtPersona.setString(2, medico.getNombre());
+                pstmtPersona.setString(3, medico.getApellido());
+                pstmtPersona.setInt(4, medico.getEdad());
+                pstmtPersona.setInt(5, medico.getTelefono());
+                pstmtPersona.setString(6, medico.getGenero());
                 pstmtPersona.executeUpdate();
 
-                pstmtMedico.setInt(1, medico.getId());
-                pstmtMedico.setString(2, medico.getEspecialidad());
+                pstmtMedico.setString(1, medico.getEspecialidad());
                 pstmtMedico.executeUpdate();
 
                 conn.commit();
                 System.out.println("Médico insertado correctamente en ambas tablas.");
                 return true;
-
             } catch (SQLException e) {
                 conn.rollback();
                 System.out.println("Error al insertar médico: " + e.getMessage());

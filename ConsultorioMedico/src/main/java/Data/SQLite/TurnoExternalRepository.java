@@ -37,12 +37,11 @@ public class TurnoExternalRepository extends ExternalRepository<Turno>{
 
     @Override
     public boolean add(Turno turno) {
-        String sql = "INSERT INTO Turno(id, fecha, hora, minuto) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Turno(fecha, hora, minuto) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setInt(1, turno.getId());
             pstmt.setString(2, turno.getFecha());
             pstmt.setString(3, turno.getHora());
             pstmt.setString(4, turno.getMinuto());

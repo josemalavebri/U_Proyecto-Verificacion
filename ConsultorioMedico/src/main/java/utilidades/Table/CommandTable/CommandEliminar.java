@@ -11,7 +11,6 @@ import utilidades.Table.CreateTable.ObjectTableModel;
 
 public class CommandEliminar implements Comando{
 
-
     private final ManagerController controlador;
     private final JTable tabla;
     private final ActionEvent e;
@@ -31,7 +30,7 @@ public class CommandEliminar implements Comando{
         if(isEliminate){
             JOptionPane.showMessageDialog(null, "ELIMINADO CON EXITO");
             refrescarTabla();
-        }else{
+        } else{
             JOptionPane.showMessageDialog(null, "NO ELIMINADO");
         }
     }
@@ -54,11 +53,11 @@ public class CommandEliminar implements Comando{
     private boolean eliminarEntidad(int id, Class<?> clase) {
         return controlador.remove(id, clase);
     }
-
     
     private void refrescarTabla(){
         ComandoRefresh comandoRefresh = new ComandoRefresh((ObjectTableModel) tabla.getModel());
         comandoRefresh.ejecutar();
     }
+    
     
 }

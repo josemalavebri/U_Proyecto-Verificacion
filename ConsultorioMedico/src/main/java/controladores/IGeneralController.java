@@ -12,9 +12,5 @@ public interface IGeneralController <T> {
     boolean put(T objeto);
 
     boolean remove(int id);
-    
-  
-    
-    
 }
 

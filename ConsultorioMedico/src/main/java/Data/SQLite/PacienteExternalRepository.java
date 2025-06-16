@@ -45,8 +45,8 @@ public class PacienteExternalRepository extends ExternalRepository<Paciente> {
 
     @Override
     public boolean add(Paciente paciente) {
-        String sqlPersona = "INSERT INTO Persona(id, cedula, nombre, apellido, edad, telefono, genero) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        String sqlPaciente = "INSERT INTO Paciente(id, correo) VALUES (?, ?)";
+        String sqlPersona = "INSERT INTO Persona(cedula, nombre, apellido, edad, telefono, genero) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlPaciente = "INSERT INTO Paciente(correo) VALUES ( ?)";
 
         try (Connection conn = DBConnection.connect()) {
             conn.setAutoCommit(false); // Modo transaccional
@@ -54,17 +54,15 @@ public class PacienteExternalRepository extends ExternalRepository<Paciente> {
             try (PreparedStatement pstmtPersona = conn.prepareStatement(sqlPersona);
                  PreparedStatement pstmtPaciente = conn.prepareStatement(sqlPaciente)) {
 
-                pstmtPersona.setInt(1, paciente.getId());
-                pstmtPersona.setInt(2, paciente.getCedula());
-                pstmtPersona.setString(3, paciente.getNombre());
-                pstmtPersona.setString(4, paciente.getApellido());
-                pstmtPersona.setInt(5, paciente.getEdad());
-                pstmtPersona.setInt(6, paciente.getTelefono());
-                pstmtPersona.setString(7, paciente.getGenero());
+                pstmtPersona.setInt(1, paciente.getCedula());
+                pstmtPersona.setString(2, paciente.getNombre());
+                pstmtPersona.setString(3, paciente.getApellido());
+                pstmtPersona.setInt(4, paciente.getEdad());
+                pstmtPersona.setInt(5, paciente.getTelefono());
+                pstmtPersona.setString(6, paciente.getGenero());
                 pstmtPersona.executeUpdate();
 
-                pstmtPaciente.setInt(1, paciente.getId());
-                pstmtPaciente.setString(2, paciente.getCorreo());
+                pstmtPaciente.setString(1, paciente.getCorreo());
                 pstmtPaciente.executeUpdate();
 
                 conn.commit();

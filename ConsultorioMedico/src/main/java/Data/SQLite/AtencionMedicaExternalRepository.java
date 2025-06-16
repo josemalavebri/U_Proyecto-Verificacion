@@ -29,9 +29,7 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
              "INNER JOIN Persona mp ON m.id = mp.id " +
              "INNER JOIN Turno t ON c.turno_id = t.id";
 
-
-
-    ArrayList<AtencionMedica> atenciones = new ArrayList<>();
+        ArrayList<AtencionMedica> atenciones = new ArrayList<>();
 
     try (Connection conn = DBConnection.connect();
          Statement stmt = conn.createStatement();
@@ -95,22 +93,25 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
         System.out.println("Error al obtener atenciones médicas: " + e.getMessage());
     }
 
-    return atenciones;
+        return atenciones;
     }
 
     @Override
     public boolean add(AtencionMedica atencion) {
-        String sql = "INSERT INTO AtencionMedica(citaMedica, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO AtencionMedica(cita_medica_id, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = DBConnection.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnection.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // Validamos que la cita médica no sea nula y que tenga ID válido
+            if (atencion.getCitaMedica() == null || atencion.getCitaMedica().getId() <= 0) {
+                System.out.println("Cita médica no válida o no asignada.");
+                return false;
+            }
 
             pstmt.setInt(1, atencion.getCitaMedica().getId());
             pstmt.setString(2, atencion.getSintomas());
             pstmt.setString(3, atencion.getDiagnostico());
             pstmt.setString(4, atencion.getReceta());
-
 
             int filas = pstmt.executeUpdate();
 
@@ -119,7 +120,6 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
                 return true;
             } else {
                 System.out.println("No se insertó la atención médica.");
-                return false;
             }
 
         } catch (SQLException e) {
@@ -131,7 +131,7 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
 
     @Override
     public boolean update(AtencionMedica atencion) {
-        String sql = "UPDATE AtencionMedica SET citaMedica = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
+        String sql = "UPDATE AtencionMedica SET cita_medica_id = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
 
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -180,7 +180,6 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
         } catch (SQLException e) {
             System.out.println("Error al eliminar atención médica: " + e.getMessage());
         }
-
         return false;
     }
     
