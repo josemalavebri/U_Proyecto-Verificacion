@@ -14,7 +14,7 @@ public class ComboBoxControl {
     }
     
     public List LlenarDatos(Class<? extends BaseEntity> c, JComboBox<String> comboBox){
-        List lista = managerController.get(c);  // Asegúrate que esto devuelva una lista tipada
+        List lista = managerController.get(c); 
         ComboBoxFiller.llenarComboBox(comboBox, lista);
         return lista;
     }
