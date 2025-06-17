@@ -100,7 +100,7 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
 
     @Override
     public boolean add(AtencionMedica atencion) {
-        String sql = "INSERT INTO AtencionMedica(citaMedica, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO AtencionMedica(cita_medica_id, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
         
 
         try (Connection conn = DBConnection.connect();
@@ -131,7 +131,7 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
 
     @Override
     public boolean update(AtencionMedica atencion) {
-        String sql = "UPDATE AtencionMedica SET citaMedica = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
+        String sql = "UPDATE AtencionMedica SET cita_medica_id = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
 
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
