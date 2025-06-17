@@ -19,7 +19,6 @@ import utilidades.Table.ControlTable.ControlTable;
 import utilidades.Table.CreateTable.ObjectTableModel;
 import utilidades.Validador.MsgValidacion;
 import utilidades.Validador.Validador;
-import vistas.Factura.JF_Factura;
 import vistas.IReceptorEntityJFrame;
 
 public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorEntityJFrame<CitaMedica> {
