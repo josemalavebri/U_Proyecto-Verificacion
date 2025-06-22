@@ -171,7 +171,7 @@ public class CitaMedicaExternalRepository extends ExternalRepository<CitaMedica>
     @Override
     public boolean remove(int id) {
         String sql = "DELETE FROM CitaMedica WHERE id = ?";
-
+        
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 

@@ -24,7 +24,6 @@ public class TurnoExternalRepository extends ExternalRepository<Turno>{
                 String fecha = rs.getString("fecha");
                 String hora = rs.getString("hora");
                 String minuto = rs.getString("minuto");
-
                 Turno turno = new Turno(id, fecha, hora, minuto);
                 turnos.add(turno);
             }
@@ -32,7 +31,8 @@ public class TurnoExternalRepository extends ExternalRepository<Turno>{
         } catch (SQLException e) {
             System.out.println("Error al obtener turnos: " + e.getMessage());
         }
-    return turnos;
+        
+        return turnos;
     }
 
     @Override

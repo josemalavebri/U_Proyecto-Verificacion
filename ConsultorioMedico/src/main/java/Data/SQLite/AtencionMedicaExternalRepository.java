@@ -29,80 +29,76 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
              "INNER JOIN Persona mp ON m.id = mp.id " +
              "INNER JOIN Turno t ON c.turno_id = t.id";
 
+        ArrayList<AtencionMedica> atenciones = new ArrayList<>();
 
+        try (Connection conn = DBConnection.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-    ArrayList<AtencionMedica> atenciones = new ArrayList<>();
+            while (rs.next()) {
+                // Construir Paciente
+                Paciente paciente = new Paciente(
+                    rs.getInt("pacienteId"),
+                    rs.getInt("pacienteCedula"),
+                    rs.getString("pacienteNombre"),
+                    rs.getString("pacienteApellido"),
+                    rs.getInt("pacienteEdad"),
+                    rs.getString("pacienteCorreo"),
+                    rs.getInt("pacienteTelefono"),
+                    rs.getString("pacienteGenero")
+                );
 
-    try (Connection conn = DBConnection.connect();
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery(sql)) {
+                // Construir Medico
+                Medico medico = new Medico(
+                    rs.getInt("medicoId"),
+                    rs.getInt("medicoCedula"),
+                    rs.getInt("medicoEdad"),
+                    rs.getString("medicoNombre"),
+                    rs.getString("medicoApellido"),
+                    rs.getString("medicoEspecialidad"),
+                    rs.getString("medicoGenero"),
+                    rs.getInt("medicoTelefono")
+                );
 
-        while (rs.next()) {
-            // Construir Paciente
-            Paciente paciente = new Paciente(
-                rs.getInt("pacienteId"),
-                rs.getInt("pacienteCedula"),
-                rs.getString("pacienteNombre"),
-                rs.getString("pacienteApellido"),
-                rs.getInt("pacienteEdad"),
-                rs.getString("pacienteCorreo"),
-                rs.getInt("pacienteTelefono"),
-                rs.getString("pacienteGenero")
-            );
+                // Construir Turno
+                Turno turno = new Turno(
+                    rs.getInt("turnoId"),
+                    rs.getString("fecha"),
+                    rs.getString("hora"),
+                    rs.getString("minuto")
+                );
 
-            // Construir Medico
-            Medico medico = new Medico(
-                rs.getInt("medicoId"),
-                rs.getInt("medicoCedula"),
-                rs.getInt("medicoEdad"),
-                rs.getString("medicoNombre"),
-                rs.getString("medicoApellido"),
-                rs.getString("medicoEspecialidad"),
-                rs.getString("medicoGenero"),
-                rs.getInt("medicoTelefono")
-            );
+                // Construir CitaMedica
+                CitaMedica citaMedica = new CitaMedica(
+                    rs.getInt("citaId"),
+                    paciente,
+                    medico,
+                    rs.getString("descripcion"),
+                    turno
+                );
 
-            // Construir Turno
-            Turno turno = new Turno(
-                rs.getInt("turnoId"),
-                rs.getString("fecha"),
-                rs.getString("hora"),
-                rs.getString("minuto")
-            );
+                // Construir AtencionMedica
+                AtencionMedica atencion = new AtencionMedica(
+                    rs.getInt("atencionId"),
+                    citaMedica,
+                    rs.getString("sintomas"),
+                    rs.getString("diagnostico"),
+                    rs.getString("receta")
+                );
 
-            // Construir CitaMedica
-            CitaMedica citaMedica = new CitaMedica(
-                rs.getInt("citaId"),
-                paciente,
-                medico,
-                rs.getString("descripcion"),
-                turno
-            );
+                atenciones.add(atencion);
+            }
 
-            // Construir AtencionMedica
-            AtencionMedica atencion = new AtencionMedica(
-                rs.getInt("atencionId"),
-                citaMedica,
-                rs.getString("sintomas"),
-                rs.getString("diagnostico"),
-                rs.getString("receta")
-            );
-
-            atenciones.add(atencion);
+        } catch (SQLException e) {
+            System.out.println("Error al obtener atenciones médicas: " + e.getMessage());
         }
-
-    } catch (SQLException e) {
-        System.out.println("Error al obtener atenciones médicas: " + e.getMessage());
-    }
 
     return atenciones;
     }
 
     @Override
     public boolean add(AtencionMedica atencion) {
-        String sql = "INSERT INTO AtencionMedica(citaMedica, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
-        
-
+        String sql = "INSERT INTO AtencionMedica(cita_medica_id, sintomas, diagnostico, receta) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -131,7 +127,7 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
 
     @Override
     public boolean update(AtencionMedica atencion) {
-        String sql = "UPDATE AtencionMedica SET citaMedica = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
+        String sql = "UPDATE AtencionMedica SET cita_medica_id = ?, sintomas = ?, diagnostico = ?, receta = ? WHERE id = ?";
 
         try (Connection conn = DBConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -183,5 +179,4 @@ public class AtencionMedicaExternalRepository extends ExternalRepository<Atencio
 
         return false;
     }
-    
 }

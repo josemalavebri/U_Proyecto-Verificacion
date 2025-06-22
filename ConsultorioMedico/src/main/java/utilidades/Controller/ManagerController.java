@@ -30,7 +30,6 @@ import modelos.Medico;
 import modelos.Paciente;
 import modelos.Turno;
 
-
 public class ManagerController{
     private static ManagerController managerControllerInstance;
     private final Map<Class<? extends BaseEntity>, IGeneralController<?>> controllers = new HashMap<>();

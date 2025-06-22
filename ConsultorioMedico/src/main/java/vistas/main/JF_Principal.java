@@ -13,7 +13,6 @@ public class JF_Principal extends javax.swing.JFrame {
 
     public JF_Principal ()  {
         initComponents();
-        DBConnection.installDB();
     }
 
     @SuppressWarnings("unchecked")
