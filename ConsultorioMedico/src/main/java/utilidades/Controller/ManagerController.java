@@ -42,6 +42,8 @@ public class ManagerController{
         controllers.put(AtencionMedica.class, new AtencionMedicaController(new AtencionMedicaExternalRepository()));
     }
     
+    
+    
     public static ManagerController getInstance(){
         if(managerControllerInstance == null ){
             managerControllerInstance = new ManagerController();
@@ -94,4 +96,6 @@ public class ManagerController{
             throw new IllegalArgumentException("Entidad no soportada: " + c);
         }
     }
+    
+    
 }

@@ -22,7 +22,6 @@ import utilidades.Validador.Validador;
 import vistas.IReceptorEntityJFrame;
 
 public class JF_NuevaCitaMedica extends javax.swing.JFrame implements IReceptorEntityJFrame<CitaMedica> {
-
     private ArrayList<Medico> listaMedicos;
     private ArrayList<Paciente> listaPacientes;
     private ControlTable controlTable;
