@@ -4,7 +4,7 @@ import Data.IRepository;
 import java.util.ArrayList;
 import modelos.BaseEntity;
 
-public abstract class GeneralController<T extends BaseEntity> implements IGeneralController<T>{
+public abstract class GeneralController<T extends BaseEntity> implements IGeneralController<T> {
 
     protected IRepository<T> db;
 
@@ -14,7 +14,7 @@ public abstract class GeneralController<T extends BaseEntity> implements IGenera
 
     @Override
     public ArrayList<T> get() {
-       return db.all();
+        return db.all();
     }
 
     @Override
@@ -32,7 +32,4 @@ public abstract class GeneralController<T extends BaseEntity> implements IGenera
         return db.remove(id);
     }
 
-   
 }
-
-

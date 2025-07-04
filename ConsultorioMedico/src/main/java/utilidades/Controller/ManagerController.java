@@ -40,6 +40,7 @@ public class ManagerController{
         controllers.put(CitaMedica.class, new CitaMedicaController(new CitaMedicaExternalRepository()));
         controllers.put(Turno.class, new TurnoController(new TurnoExternalRepository()));
         controllers.put(AtencionMedica.class, new AtencionMedicaController(new AtencionMedicaExternalRepository()));
+
     }
     
     

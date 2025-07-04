@@ -19,9 +19,9 @@ public class JF_FormularioAtencionMedica extends javax.swing.JFrame implements I
     private boolean isEdit;
     private ControlTable controlTable;
     private ManagerController managerController;
+    private ComboBoxControl comboBoxControl;
     private int idAtencionActualizar;
     private List<CitaMedica> citasMedicas;
-    private ComboBoxControl comboBoxControl;
     public JF_FormularioAtencionMedica() {
         initComponents();
         controlTable = new ControlTable();

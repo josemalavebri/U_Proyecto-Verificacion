@@ -5,7 +5,7 @@ import Data.InternalDB.RepositoryInternalDB.IBaseRepositorio;
 import java.util.ArrayList;
 import modelos.BaseEntity;
 
-public abstract class GenericInternalRepository<T extends BaseEntity> implements IRepository<T >{
+public abstract class GenericInternalRepository<T extends BaseEntity> implements IRepository<T>{
     
     protected IBaseRepositorio actionEntidad;
     
@@ -38,8 +38,5 @@ public abstract class GenericInternalRepository<T extends BaseEntity> implements
     public boolean remove(int id) {
         return actionEntidad.delete(id);
     }
-
-   
-
 }
 

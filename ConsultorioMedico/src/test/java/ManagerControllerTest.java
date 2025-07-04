@@ -24,6 +24,7 @@ public class ManagerControllerTest {
         assertFalse(manager.get(Medico.class).isEmpty(), "La lista de médicos está vacía");
         assertFalse(manager.get(CitaMedica.class).isEmpty(), "La lista de citas está vacía");
         assertFalse(manager.get(AtencionMedica.class).isEmpty(), "La lista de atenciones médicas está vacía");
+
     }
 }
 

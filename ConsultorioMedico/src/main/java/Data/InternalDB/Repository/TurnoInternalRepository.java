@@ -7,6 +7,5 @@ public class TurnoInternalRepository extends GenericInternalRepository<Turno>{
 
     public TurnoInternalRepository(IBaseRepositorio actionEntidad) {
         super(actionEntidad);
-    }
-   
+    } 
 }
